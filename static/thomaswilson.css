@@ -1,0 +1,109 @@
+@font-face {
+	font-family: 'SpaceGrotesk-Regular';
+	src: url('/SpaceGrotesk-Regular.woff2');
+}
+
+@font-face {
+	font-family: 'FivoSansModern-Regular';
+	src: url('/FivoSansModern-Regular.otf');
+}
+
+:root {
+	--brand-orange: #ff8c0d;
+	--brand-purple: #464d77;
+	--brand-green: #36827f;
+	--brand-blue: #00a0e9;
+	--gray-100: #f8f9fa;
+	--gray-200: #e9ecef;
+	--gray-300: #dee2e6;
+	--gray-400: #ced4da;
+	--gray-500: #adb5bd;
+	--gray-600: #6c757d;
+	--gray-700: #495057;
+	--gray-800: #343a40;
+	--gray-900: #212529;
+	--gray-950: #1a1e23;
+	--gray-1000: #0a0c0e;
+	--font-family-title: 'FivoSansModern-Regular', sans-serif;
+	--font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+		'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+		'Noto Color Emoji';
+	--font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+
+	--font-size-base: 1rem;
+	--spacing-base: 1rem;
+	--spacing-sm: 0.25rem;
+	--spacing-md: 0.5rem;
+	--spacing-lg: 1rem;
+	--spacing-xl: 1.5rem;
+}
+
+body {
+	font-family: var(--font-family-sans);
+	color: var(--gray-900);
+	line-height: 130%;
+}
+
+.thomaswilson-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background-color: var(--gray-100);
+	padding: 24px 0;
+}
+
+.thomaswilson-container .section {
+	width: 95vw;
+	max-width: 700px;
+	font-size: 1.19rem;
+	line-height: 134%;
+	padding-bottom: var(--spacing-base);
+	color: var(--gray-700);
+	padding-bottom: 2rem;
+}
+
+.thomaswilson-strapline .title {
+	font-family: var(--font-family-title);
+	font-size: var(--font-size-base);
+	font-weight: 700;
+	margin: 0;
+	color: var(--gray-800);
+}
+
+.thomaswilson-strapline p {
+	font-size: 1.6rem;
+	line-height: 131%;
+	letter-spacing: -0.25px;
+	font-weight: 250;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-family-title);
+	padding-bottom: 0.25rem;
+	font-weight: 700;
+	margin: 0;
+	color: var(--gray-800);
+}
+
+p,
+li,
+a {
+	font-size: 1.08rem;
+	line-height: 143%;
+	font-family: var(--font-family-sans);
+	margin: 0;
+	color: var(--gray-800);
+	padding: 8px 0;
+}
+
+ul,
+ol {
+	padding-left: var(--spacing-base);
+}
