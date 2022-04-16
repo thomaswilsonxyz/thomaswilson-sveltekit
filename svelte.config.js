@@ -2,7 +2,6 @@ import adapter from '@sveltejs/adapter-netlify';
 import preprocess from 'svelte-preprocess';
 
 import { mdsvex } from 'mdsvex'
-import remarkGfm from 'remark-gfm'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +10,6 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [preprocess(), mdsvex({
 		extensions: ['.md'],
-		remarkPlugins: [remarkGfm]
 	})],
 
 	kit: {
