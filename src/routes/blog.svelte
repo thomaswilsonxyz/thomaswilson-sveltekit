@@ -39,8 +39,6 @@
 	import Navbar from '../components/Navbar.svelte';
 	export let posts: BlogPost[];
 	export let daysSinceLastPublish: number;
-
-	console.log({ posts });
 </script>
 
 <Navbar />

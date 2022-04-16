@@ -14,12 +14,5 @@ export const fetchBlogPostBySlug = async (slug: string): Promise<Post | null> =>
 		return null;
 	}
 
-	const compiles = await compile(post.html, { remarkPlugins: [remarkGfm] });
-
-	console.log({ compiles, filename: post.filename });
-
-	return {
-		...post,
-		html: compiles.code
-	};
+	return post;
 };

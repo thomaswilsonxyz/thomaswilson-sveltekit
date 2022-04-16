@@ -9,7 +9,6 @@ export async function getPostsFromGlobResult(result: Record<string, any>): Promi
 					default: { render, $$render, ...rest }
 				} = await resolver();
 				const { html } = render();
-				console.log({ metadata });
 				const { date, ...data } = metadata;
 				return {
 					...data,
