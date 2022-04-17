@@ -38,8 +38,11 @@
 	}
 
 	.right {
+		display: flex;
 		flex: 1;
 		text-align: right;
+		align-items: center;
+		justify-content: flex-end;
 		padding: var(--spacing-base);
 	}
 

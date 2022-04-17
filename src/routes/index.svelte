@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true
+</script>
+
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import Navbar from '../components/Navbar.svelte';
@@ -126,27 +130,31 @@
 		padding: var(--link-padding);
 		transition: var(--link-transition);
 		border-radius: var(--link-border-radius);
-		background: #0256f2;
-		color: white;
+		border: 1px solid #0256f2;
+		color: #0256f2;
+		text-decoration: none;
 	}
 
 	.oxwash:hover {
 		background: #6fbbec;
-		text-decoration: none;
+		border: 1px solid #6fbbec;
+		text-decoration: underline;
+		color: white;
 	}
 
 	.figma {
 		padding: var(--link-padding);
 		transition: var(--link-transition);
 		border-radius: var(--link-border-radius);
-		background: #c7b9ff;
+		border: 1px solid #c7b9ff;
 		color: #000000;
+		text-decoration: none;
 	}
 
 	.figma:hover {
-		background: #ffc700;
+		background: #c7b9ff;
 		color: #000000;
-		text-decoration: none;
+		text-decoration: underline;
 	}
 
 	.thesis {

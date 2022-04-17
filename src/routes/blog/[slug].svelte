@@ -53,6 +53,12 @@
 		max-width: 65ch;
 	}
 
+	@media screen and (max-width: 700px) {
+		article {
+			padding: 12px;
+		}
+	}
+
 	.post-title {
 		text-align: center;
 		padding-bottom: 1rem;

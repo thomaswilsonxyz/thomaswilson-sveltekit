@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
 	import type { Load, LoadInput, LoadOutput } from '@sveltejs/kit';
 	import { differenceInCalendarDays, intlFormat } from 'date-fns';
+	export const prerender=true
 
 	type BlogPost = {
 		filename: string;
