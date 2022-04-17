@@ -42,6 +42,10 @@
 	export let daysSinceLastPublish: number;
 </script>
 
+<svelte:head>
+	<title>Blog | thomaswilson.xyz</title>
+</svelte:head>
+
 <Navbar />
 <main class="thomaswilson-container">
 	<section class="thomaswilson-strapline section">
@@ -51,7 +55,7 @@
 			things.
 		</p>
 		<p>
-			I like to write at least once a month. It's been <span class="days-since">
+			I like to write at least once a month. It's been <span class="days-since" class:days-since-success={daysSinceLastPublish === 0}>
 				{daysSinceLastPublish}
 			</span>
 			{daysSinceLastPublish === 1 ? 'day' : 'days'} since I last published something.
@@ -124,5 +128,23 @@
 		border-radius: 4px;
 		padding: 8px;
 		font-family: monospace;
+	}
+
+	.days-since-success {
+		color: var(--brand-green);
+		border: 1px solid var(--brand-green);
+		animation-name: pulse_green;
+		animation-duration: 5.2s;
+		animation-iteration-count: infinite;
+		background: rgba(54, 130, 127, 0.05);
+	}
+
+	@keyframes pulse_green {
+		0% {
+			box-shadow: 0 0 0 0px rgba(54, 130, 127, 1);
+		}
+		20%, 100% {
+			box-shadow: 0 0 0 5px rgba(54, 130, 127, 0);
+		}
 	}
 </style>

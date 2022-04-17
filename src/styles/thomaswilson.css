@@ -85,6 +85,8 @@ h6 {
 	font-weight: 700;
 	margin: 0;
 	color: var(--gray-800);
+	padding-top: 8px;
+	padding-bottom: 6px;
 }
 
 p,

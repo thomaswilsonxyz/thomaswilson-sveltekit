@@ -10,6 +10,10 @@
 	let isPersonalExpanded = false;
 </script>
 
+<svelte:head>
+	<title>Thomas Wilson</title>
+</svelte:head>
+
 <Navbar />
 <main class="thomaswilson-container">
 	<section class="section thomaswilson-strapline">

@@ -31,6 +31,10 @@
 	export let post: Post;
 </script>
 
+<svelte:head>
+	<title>{post.title} | thomaswilson.xyz</title>
+</svelte:head>
+
 <Navbar />
 <main class="thomaswilson-container">
 	<header class="section">
