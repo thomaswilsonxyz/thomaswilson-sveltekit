@@ -1,11 +1,11 @@
 <script lang="ts" context="module">
 	import type { Load, LoadInput, LoadOutput } from '@sveltejs/kit';
 	import { differenceInCalendarDays, intlFormat } from 'date-fns';
-	export const prerender=true
+	export const prerender = true;
 
 	type BlogPost = {
 		filename: string;
-		html: string[];
+		preview: string[];
 		title: string;
 		slug: string;
 		date: Date;
@@ -55,7 +55,10 @@
 			things.
 		</p>
 		<p>
-			I like to write at least once a month. It's been <span class="days-since" class:days-since-success={daysSinceLastPublish === 0}>
+			I like to write at least once a month. It's been <span
+				class="days-since"
+				class:days-since-success={daysSinceLastPublish === 0}
+			>
 				{daysSinceLastPublish}
 			</span>
 			{daysSinceLastPublish === 1 ? 'day' : 'days'} since I last published something.
@@ -70,7 +73,7 @@
 					<a href={`/blog/${post.slug}`}>
 						{#if post.book_review} 📚 {/if}
 						<div class="post-title">{post.title}</div>
-						<div class="post-preview">{post.html.slice(0, 140)}...</div>
+						<div class="post-preview">{post.preview}...</div>
 						<div class="post-date">{intlFormat(new Date(post.date))}</div>
 					</a>
 				</li>{/each}
@@ -143,7 +146,8 @@
 		0% {
 			box-shadow: 0 0 0 0px rgba(54, 130, 127, 1);
 		}
-		20%, 100% {
+		20%,
+		100% {
 			box-shadow: 0 0 0 5px rgba(54, 130, 127, 0);
 		}
 	}

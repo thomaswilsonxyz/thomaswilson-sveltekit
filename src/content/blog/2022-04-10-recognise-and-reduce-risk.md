@@ -1,7 +1,7 @@
 ---
 title: "Recognise and reduce risk"
 author: "Thomas Wilson"
-date: 2022-04-10T21:10
+date: 2022-04-10T21:10:00
 slug: "2022-04-10-recognise-and-reduce-risk"
 draft: false
 ---

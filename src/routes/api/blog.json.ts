@@ -1,9 +1,10 @@
-import { fetchBlogPosts } from '$lib/fetchBlogPosts';
-import sanitise from 'sanitize-html';
+import allPosts from '../../content/posts.json';
 
 export const get = async ({ url }) => {
 	try {
-		const posts = await fetchBlogPosts();
+		const posts = Object.entries(allPosts).map(([key, value]) => ({
+			...value
+		}));
 
 		const sortedBlogPosts = posts.sort((a, b) => {
 			if (a.date > b.date) {
@@ -15,19 +16,10 @@ export const get = async ({ url }) => {
 			return 0;
 		});
 
-		const withCleanHtml = sortedBlogPosts.map((post) => {
-			return {
-				...post,
-				html: sanitise(post.html, {
-					allowedTags: []
-				})
-			};
-		});
-
 		return {
 			status: 200,
 			body: {
-				posts: withCleanHtml
+				posts: sortedBlogPosts
 			}
 		};
 	} catch (error) {

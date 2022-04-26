@@ -1,7 +1,7 @@
 ---
 title: "Discover Complexity"
 author: "Thomas Wilson"
-date: 2022-03-13T10:10
+date: 2022-03-13T10:10:00
 slug: "2022-03-13-discover-complexity"
 draft: false
 ---

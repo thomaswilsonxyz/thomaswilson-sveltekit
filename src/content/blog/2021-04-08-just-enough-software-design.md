@@ -1,5 +1,4 @@
 ---
-
 title: "How much is just-enough system design for new apps and software?"
 author: "Thomas Wilson"
 date: 2021-04-08

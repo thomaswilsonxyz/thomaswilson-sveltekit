@@ -1,5 +1,4 @@
 ---
-
 title: "Where I go for UI inspiration"
 author: Thomas Wilson
 date: 2020-08-07T12:00:00

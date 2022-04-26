@@ -1,7 +1,7 @@
 ---
 title: "'How did this PR get so big?' – Advice for separating aesthetic and functional changes in code"
 author: "Thomas Wilson"
-date: 2022-04-17T10:48
+date: 2022-04-17T09:48:00Z
 slug: "2022-04-17-why-is-this-pr-so-big"
 draft: false
 tags:
