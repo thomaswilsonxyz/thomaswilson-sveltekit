@@ -1,5 +1,5 @@
 <script context="module">
-	export const prerender = true
+	export const prerender = true;
 </script>
 
 <script lang="ts">
@@ -167,12 +167,13 @@
 		border-radius: var(--link-border-radius);
 		border: 1px solid var(--brand-orange);
 		color: var(--brand-orange);
+		text-decoration: none;
 	}
 
 	.thesis:hover {
 		background: var(--brand-orange);
 		color: white;
-		text-decoration: none;
+		text-decoration: underline;
 	}
 
 	.links a {
