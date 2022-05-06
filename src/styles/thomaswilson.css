@@ -46,12 +46,13 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	background-color: var(--gray-100);
-	padding: 24px 0;
+	padding: 24px;
 }
 
 .thomaswilson-container .section {
-	width: 95vw;
-	max-width: 700px;
+	padding: 24px;
+	width: 100%;
+	max-width: 750px;
 	font-size: 1.19rem;
 	line-height: 134%;
 	padding-bottom: var(--spacing-base);

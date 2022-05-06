@@ -89,6 +89,7 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--spacing-base);
+		max-width: 100%;
 	}
 
 	.post {
@@ -96,6 +97,7 @@
 		padding: var(--spacing-md);
 		transition: 0.2s;
 		border-radius: 8px;
+		max-width: 100%;
 	}
 
 	.post:hover {
