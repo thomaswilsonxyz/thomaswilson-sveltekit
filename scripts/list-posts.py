@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 from datetime import date
 from dateutil.parser import *
+from markdown import markdown
 
 """
 Build a hashamp of all blog posts and book reviews used in the blog.
@@ -29,9 +30,11 @@ for file in blog_posts:
 
         details = {
                 'title': post['title'],
+                'author': post['author'],
                 'date': published_date.isoformat(),
                 'book_review': 'book_review' in frontmatter_keys,
                 'preview': post.content[0:180],
+                'content': markdown(post.content),
                 'slug': slug
                 }
         hash_map[slug] = details

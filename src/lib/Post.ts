@@ -5,6 +5,7 @@ export type PostMetadata = {
 	draft: boolean;
 	date: Date;
 	html: string;
+	content: string
 
 	image?: string;
 	book_review?: boolean;

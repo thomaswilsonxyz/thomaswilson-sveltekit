@@ -1,12 +1,10 @@
 import type { Post } from './Post';
 import { getPostsFromGlobResult } from './getPostsFromGlobResult';
+import allPosts from '../content/posts.json'
 
 export const fetchBlogPostBySlug = async (slug: string): Promise<Post | null> => {
-	const globResult = await import.meta.glob('../content/**/*.md');
 
-	const allFiles = await getPostsFromGlobResult(globResult);
-
-	const post = allFiles.find((post) => post.slug === slug);
+	const post = allPosts[slug]
 
 	if (!post) {
 		return null;

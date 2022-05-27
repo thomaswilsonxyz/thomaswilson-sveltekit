@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	export const prerender = true;
 	import type { LoadInput, LoadOutput } from '@sveltejs/kit';
 
 	export async function load({ params, fetch }: LoadInput): Promise<LoadOutput> {
@@ -32,7 +33,21 @@
 </script>
 
 <svelte:head>
+	<!-- Primary Meta Tags -->
 	<title>{post.title} | thomaswilson.xyz</title>
+	<meta name="title" content="Blog | thomaswilson.xyz">
+	<meta name="description" content={post.preview}>
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content={`https://www.thomaswilson.xyz/blog/${post.slug}`}>
+	<meta property="og:title" content={post.title}>
+	<meta property="og:description" content={post.preview}>
+
+	<!-- Twitter -->
+	<meta property="twitter:title" content={post.title}>
+	<meta property="twitter:description" content={post.preview}>
+
 </svelte:head>
 
 <Navbar />
@@ -44,7 +59,7 @@
 	</header>
 
 	<article>
-		{@html post.html}
+		{@html post.content}
 	</article>
 </main>
 
