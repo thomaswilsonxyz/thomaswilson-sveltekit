@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	export const prerender = true;
 	import type { LoadInput, LoadOutput } from '@sveltejs/kit';
 
 	export async function load({ params, fetch }: LoadInput): Promise<LoadOutput> {
