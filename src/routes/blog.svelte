@@ -24,11 +24,20 @@
 			new Date(mostRecentPost.date)
 		);
 
+		const numberOfPosts = posts.length;
+		const firstPost = posts[numberOfPosts - 1]
+		const daysSinceFirstPost = differenceInCalendarDays(new Date(), new Date(firstPost.date))
+		const averageDaysBetweenPosts = Number(daysSinceFirstPost / numberOfPosts).toFixed(2)
+
 		const res: LoadOutput = {
 			status: 200,
 			props: {
 				posts,
-				daysSinceLastPublish
+				firstPost,
+				averageDaysBetweenPosts,
+				daysSinceFirstPost,
+				daysSinceLastPublish,
+				numberOfPosts,
 			}
 		};
 
@@ -39,7 +48,11 @@
 <script lang="ts">
 	import Navbar from '../components/Navbar.svelte';
 	export let posts: BlogPost[];
+	export let firstPost: BlogPost;
+	export let numberOfPosts: number;
 	export let daysSinceLastPublish: number;
+	export let daysSinceFirstPost: number;
+	export let averageDaysBetweenPosts: number;
 </script>
 
 <svelte:head>
@@ -68,13 +81,13 @@
 			things.
 		</p>
 		<p>
-			I like to write at least once a month. It's been <span
+			It's been <span
 				class="days-since"
 				class:days-since-success={daysSinceLastPublish === 0}
 			>
 				{daysSinceLastPublish}
 			</span>
-			{daysSinceLastPublish === 1 ? 'day' : 'days'} since I last published something.
+			{daysSinceLastPublish === 1 ? 'day' : 'days'} since I last published something.  On average I publish something every {averageDaysBetweenPosts} days ({numberOfPosts} posts in {daysSinceFirstPost} days).
 		</p>
 	</section>
 
