@@ -5,6 +5,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import Navbar from '../components/Navbar.svelte';
+	import OutOfOffice from '../components/SummerOutOfOffice.svelte';
 
 	let isWorkExpanded = false;
 	let isPersonalExpanded = false;
@@ -15,7 +16,10 @@
 </svelte:head>
 
 <Navbar />
+
 <main class="thomaswilson-container">
+	<OutOfOffice />
+
 	<section class="section thomaswilson-strapline">
 		<h1 class="title">Thomas Wilson</h1>
 		<p>
