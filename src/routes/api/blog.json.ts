@@ -1,6 +1,6 @@
 import allPosts from '../../content/posts.json';
 
-export const get = async ({ url }) => {
+export const GET = async ({ url }) => {
 	try {
 		const posts = Object.entries(allPosts).map(([key, value]) => ({
 			...value

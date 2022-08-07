@@ -1,7 +1,7 @@
 import { fetchBlogPostBySlug } from '$lib';
 import type { LoadInput } from '@sveltejs/kit';
 
-export const get = async ({ params }: LoadInput) => {
+export const GET = async ({ params }: LoadInput) => {
 	const { slug } = params;
 
 	const post = await fetchBlogPostBySlug(slug);
