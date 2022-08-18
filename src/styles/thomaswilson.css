@@ -31,6 +31,7 @@
 	--spacing-md: 0.5rem;
 	--spacing-lg: 1rem;
 	--spacing-xl: 1.5rem;
+	--navbar-height: 75px;
 }
 
 body {
@@ -40,13 +41,14 @@ body {
 }
 
 .thomaswilson-container {
+	--container-padding: 24px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
+	min-height: calc(100vh - var(--navbar-height) - calc(2 * var(--container-padding)));
 	background-color: var(--gray-100);
-	padding: 24px;
+	padding: var(--container-padding);
 }
 
 .thomaswilson-container .section {

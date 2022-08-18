@@ -34,19 +34,18 @@
 <svelte:head>
 	<!-- Primary Meta Tags -->
 	<title>{post.title} | thomaswilson.xyz</title>
-	<meta name="title" content="Blog | thomaswilson.xyz">
-	<meta name="description" content={post.preview}>
+	<meta name="title" content="Blog | thomaswilson.xyz" />
+	<meta name="description" content={post.preview} />
 
 	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content={`https://www.thomaswilson.xyz/blog/${post.slug}`}>
-	<meta property="og:title" content={post.title}>
-	<meta property="og:description" content={post.preview}>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={`https://www.thomaswilson.xyz/blog/${post.slug}`} />
+	<meta property="og:title" content={post.title} />
+	<meta property="og:description" content={post.preview} />
 
 	<!-- Twitter -->
-	<meta property="twitter:title" content={post.title}>
-	<meta property="twitter:description" content={post.preview}>
-
+	<meta property="twitter:title" content={post.title} />
+	<meta property="twitter:description" content={post.preview} />
 </svelte:head>
 
 <Navbar />
@@ -59,6 +58,7 @@
 
 	<article>
 		{@html post.content}
+		<a href="/blog">See other articles</a>
 	</article>
 </main>
 

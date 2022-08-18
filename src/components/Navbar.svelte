@@ -14,6 +14,7 @@
 		flex-flow: row;
 		max-width: 100vw;
 		overflow: hidden;
+		min-height: var(--navbar-height);
 	}
 
 	.left {
@@ -46,7 +47,12 @@
 		padding: var(--spacing-base);
 	}
 
+	.blog {
+		font-size: 1.4rem;
+		padding: 0;
+		color: var(--gray-1000);
+	}
 	.blog:visited {
-		color: var(--brand-blue);
+		color: var(--gray-1000);
 	}
 </style>
