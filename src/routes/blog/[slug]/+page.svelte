@@ -1,34 +1,11 @@
-<script lang="ts" context="module">
-	import type { LoadInput, LoadOutput } from '@sveltejs/kit';
-
-	export async function load({ params, fetch }: LoadInput): Promise<LoadOutput> {
-		const { slug } = params;
-		const { post } = await fetch(`/api/blog/${slug}.json`)
-			.then((res) => res.json())
-			.catch((error) => {
-				console.error(error);
-				return { post: null };
-			});
-
-		const res: LoadOutput = {
-			status: post ? 200 : 404,
-			props: {
-				date: new Date(post.date),
-				post
-			}
-		};
-
-		return res;
-	}
-</script>
-
 <script lang="ts">
+	import type { PageData } from './$types';
 	import type { Post } from '$lib/Post';
 	import { intlFormat } from 'date-fns';
-	import Navbar from '../../components/Navbar.svelte';
+	import Navbar from '../../../components/Navbar.svelte';
 
-	export let date: Date;
-	export let post: Post;
+	export let data: PageData;
+	$: ({ date, post } = data);
 </script>
 
 <svelte:head>
