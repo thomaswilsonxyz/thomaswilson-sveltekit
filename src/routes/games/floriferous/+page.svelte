@@ -1,20 +1,7 @@
-<script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ fetch }) => {
-		const previousGames = await fetch('/api/games/floriferous.json').then((res) => res.json());
-		return {
-			status: 200,
-			props: {
-				previousGames: previousGames.map(FloriferousGameApiPort.jsonToGame)
-			}
-		};
-	};
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import type { PageData } from './$types.ts';
 
 	import { FloriferousGame } from '../../../lib/floriferous';
 	import type { FloriferousPlayer } from '../../../lib/floriferous';
@@ -26,16 +13,13 @@
 	import ApiPasswordFrom from '../../../components/games/ApiPasswordForm.svelte';
 	import type { ApiGamesFloriferousPostRequest } from '$lib/floriferous/floriferous-api-controller';
 
-	export let previousGames: FloriferousGame[];
+	export let data: PageData;
+	let previousGames: FloriferousGame[] = data.previousGames;
 	let apiPassword = '';
 	let players: FloriferousPlayer[] = [];
 	let isWinnerVisible = false;
 	let isSaveSubmitting = false;
 	let isGameSaved = false;
-
-	onMount(() => {
-		console.log({ previousGames });
-	});
 
 	function handleShowWinner() {
 		isWinnerVisible = true;
