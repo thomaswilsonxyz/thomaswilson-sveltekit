@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import Employee from '../components/salary-calculator/employee.svelte';
+	import Employee from '../../components/salary-calculator/employee.svelte';
 
 	type Employee = {
 		id: string;

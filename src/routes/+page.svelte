@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import Navbar from '../components/Navbar.svelte';
