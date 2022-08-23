@@ -32,6 +32,10 @@
 	--spacing-lg: 1rem;
 	--spacing-xl: 1.5rem;
 	--navbar-height: 75px;
+
+	--font-size-sm: 0.875rem;
+	--font-size-md: 1.25rem;
+	--font-size-lg: 1.5rem;
 }
 
 body {

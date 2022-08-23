@@ -13,7 +13,10 @@ const config = {
 	})],
 
 	kit: {
-		adapter: adapter({ split: false })
+		adapter: adapter({ split: false }),
+		env: {
+			publicPrefix: 'PUBLIC_'
+		}
 	}
 };
 
