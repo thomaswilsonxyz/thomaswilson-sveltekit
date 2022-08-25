@@ -78,17 +78,15 @@
 		{#if isPersonalExpanded}
 			<ul transition:slide={{ duration: 210 }}>
 				<li>I try to write at least once a month on my <a class="thesis" href="/blog">blog</a>.</li>
-				<li>I used to dance and produce with a contemporary dance company.</li>
-				<li>I'm learning to sew (clothes, one day)</li>
-				<li>
-					I live in Oxford, England and I love botanical gins, fruity coffee, bicycles, and lists.
-				</li>
+				<li>I'm learning to sew my own clothes</li>
+				<li>I love fruity coffees and botanical gins</li>
+				<li>I used to dance and produce with a contemporary dance company</li>
 				<li><button on:click={() => (isPersonalExpanded = false)}>Cool, show less</button></li>
 			</ul>
 		{:else}
 			<p>
 				I like to write on my <a href="/blog">blog</a> and ride bikes. I'm learning to sew and my French
-				is terrible
+				is terrible.
 			</p>
 			<button on:click={() => (isPersonalExpanded = true)}>Oh, cool, tell me more</button>
 		{/if}
