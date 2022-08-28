@@ -36,6 +36,12 @@
 	--font-size-sm: 0.875rem;
 	--font-size-md: 1.25rem;
 	--font-size-lg: 1.5rem;
+
+	--btn-border: 0;
+	--btn-padding: var(--spacing-sm);
+	--btn-border-radius: 0.25rem;
+	--btn-font-size: 1.08rem;
+	--btn-text-decoration: none;
 }
 
 body {
@@ -111,4 +117,17 @@ a {
 ul,
 ol {
 	padding-left: var(--spacing-base);
+}
+
+.thomaswilson-button {
+	border: var(--btn-border);
+	padding: var(--btn-padding);
+	border-radius: var(--btn-border-radius);
+	font-size: var(--btn-font-size);
+	text-decoration: var(--btn-text-decoration);
+}
+
+.thomaswilson-button:hover {
+	text-decoration: none;
+	cursor: pointer;
 }

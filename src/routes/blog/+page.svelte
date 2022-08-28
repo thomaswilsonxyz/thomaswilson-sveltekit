@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Navbar from '../../components/Navbar.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import { intlFormat } from 'date-fns';
 
 	export let data: PageData;

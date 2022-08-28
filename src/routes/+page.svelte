@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	import Navbar from '../components/Navbar.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 
 	let isWorkExpanded = false;
 	let isPersonalExpanded = false;

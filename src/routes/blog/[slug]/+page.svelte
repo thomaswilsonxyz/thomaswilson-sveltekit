@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import type { Post } from '$lib/Post';
+	import type { PageData } from './$types.js';
+	import type { Post } from '$lib/Post.js';
 	import { intlFormat } from 'date-fns';
-	import Navbar from '../../../components/Navbar.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 
 	export let data: PageData;
 	$: ({ date, post } = data);

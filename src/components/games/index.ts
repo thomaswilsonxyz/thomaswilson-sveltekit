@@ -1,3 +1,3 @@
 import FloriferousPlayerForm from './FloriferousPlayerForm.svelte';
 
-export { FloriferousPlayerForm };
+export { FloriferousPlayerForm, PreviousGameScores };
