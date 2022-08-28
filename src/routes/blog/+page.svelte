@@ -60,8 +60,8 @@
 	<section class="section">
 		<h2>All Writing</h2>
 		<ul class="posts">
-			{#each posts as post}
-				<li class="post">
+			{#each posts as post, index}
+				<li class="post" role="article" aria-posinset={index + 1} aria-setsize={posts.length}>
 					<a href={`/blog/${post.slug}`}>
 						{#if post.book_review} 📚 {/if}
 						<div class="post-title">{post.title}</div>
@@ -79,7 +79,7 @@
 		margin: 0;
 		padding: 0;
 		display: grid;
-		grid-template-columns: 1fr;
+		grid-template-columns: 100%;
 		gap: var(--spacing-base);
 		max-width: 100%;
 	}
