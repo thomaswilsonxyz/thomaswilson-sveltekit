@@ -3,6 +3,7 @@
 	import { slide } from 'svelte/transition';
 	import type { PageData } from './$types.js';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import FloriferousScoreCalculator from './FloriferousScoreCalculator.svelte';
 
 	import { FloriferousGame } from '../../../lib/floriferous/floriferous-game.js';
 	import type { FloriferousPlayer } from '../../../lib/floriferous';
@@ -19,6 +20,8 @@
 	let previousGames: FloriferousGame[] = data.previousGames;
 	let apiPassword = '';
 	let players: FloriferousPlayer[] = [];
+	let isScoreCalculatorVisible = true;
+	let isPlayersVisible = false;
 	let isPreviousScoresVisible = false;
 	let isWinnerVisible = false;
 	let isSaveSubmitting = false;
@@ -92,42 +95,64 @@
 		abundance of nature.
 	</p>
 
-	<section class="players">
-		<h2>Players</h2>
-
-		{#if players.length > 0}
-			<ul>
-				{#each players as player}
-					<li>
-						{player.name} ({player.score} points, finished on row {player.rowAtEndOfGame}) (<button
-							on:click={() => onRemovePlayer(player)}>Remove</button
-						>)
-					</li>
-				{/each}
-			</ul>
-
-			{#if players.length > 1}
-				{#if isWinnerVisible}
-					<p transition:slide>And the winner is:<strong>{game.winner}</strong></p>
-					<h3>Add to Ledger</h3>
-
-					<ApiPasswordFrom on:change={(event) => (apiPassword = event.detail)} />
-
-					{#if apiPassword.length > 0}
-						<p>You can save this game in the Ledger</p>
-						<button on:click={onSaveGame}>Save Game</button>
-					{/if}
-				{:else}
-					<button on:click={handleShowWinner}>Show me the winner</button>
-				{/if}
+	<section class="score-calculator">
+		<div class="score-calculator__header">
+			<h2>Score Calculator</h2>
+			{#if isScoreCalculatorVisible}
+				<button on:click={() => (isScoreCalculatorVisible = false)}>Hide</button>
+			{:else}
+				<button on:click={() => (isScoreCalculatorVisible = true)}>Show</button>
 			{/if}
-		{:else}
-			<p>Add at least one player to get started</p>
-		{/if}
+		</div>
 
-		{#if !isWinnerVisible}
-			<h3>Add a New Player</h3>
-			<FloriferousPlayerForm on:submit={onAddPlayer} />
+		<FloriferousScoreCalculator isVisible={isScoreCalculatorVisible} />
+	</section>
+
+	<section class="players">
+		<div class="players__header">
+			<h2>Players</h2>
+			{#if isPlayersVisible}
+				<button on:click={() => (isPlayersVisible = false)}>Hide</button>
+			{:else}
+				<button on:click={() => (isPlayersVisible = true)}>Show</button>
+			{/if}
+		</div>
+
+		{#if isPlayersVisible}
+			{#if players.length > 0}
+				<ul>
+					{#each players as player}
+						<li>
+							{player.name} ({player.score} points, finished on row {player.rowAtEndOfGame}) (<button
+								on:click={() => onRemovePlayer(player)}>Remove</button
+							>)
+						</li>
+					{/each}
+				</ul>
+
+				{#if players.length > 1}
+					{#if isWinnerVisible}
+						<p transition:slide>And the winner is:<strong>{game.winner}</strong></p>
+						<h3>Add to Ledger</h3>
+
+						<ApiPasswordFrom on:change={(event) => (apiPassword = event.detail)} />
+
+						{#if apiPassword.length > 0}
+							<p>You can save this game in the Ledger</p>
+							<button on:click={onSaveGame}>Save Game</button>
+						{/if}
+					{:else}
+						<button on:click={handleShowWinner}>Show me the winner</button>
+					{/if}
+				{/if}
+			{:else}
+				<p>Add at least one player to get started</p>
+			{/if}
+
+			{#if !isWinnerVisible}
+				<h3>Add a New Player</h3>
+				<FloriferousPlayerForm on:submit={onAddPlayer} />
+			{/if}
 		{/if}
 	</section>
 
@@ -145,6 +170,26 @@
 		flex-direction: column;
 		padding: var(--spacing-sm);
 		max-width: 600px;
+	}
+
+	.players {
+		padding: var(--spacing-md) 0;
+		width: 100%;
+	}
+
+	.players__header {
+		display: grid;
+		grid-template-columns: auto min-content;
+	}
+
+	.score-calculator {
+		padding: var(--spacing-md) 0;
+		width: 100%;
+	}
+
+	.score-calculator__header {
+		display: grid;
+		grid-template-columns: auto min-content;
 	}
 
 	.previous-games {
