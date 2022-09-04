@@ -1,9 +1,9 @@
 import { describe, expect, it, beforeEach, afterAll } from 'vitest';
 
-import { FloriferousGame, type FloriferousGameParams } from './floriferous-game';
-import { FloriferousPlayer, type FloriferousPlayerParams } from './floriferous-player';
+import { FloriferousGame, type FloriferousGameParams } from './floriferous-game.js';
+import { FloriferousPlayer, type FloriferousPlayerParams } from './floriferous-player.js';
 import { customAlphabet } from 'nanoid';
-import { MongodbFloriferousGameRepository } from './mongodb-floriferous-game-repository';
+import { MongodbFloriferousGameRepository } from './mongodb-floriferous-game-repository.js';
 import { MongoClient } from 'mongodb';
 
 describe('MongoDB FloriferousGame Repository', () => {
