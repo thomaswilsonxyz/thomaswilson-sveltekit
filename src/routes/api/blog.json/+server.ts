@@ -1,4 +1,4 @@
-import { json as json$1 } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import allPosts from '../../../content/posts.json';
 
 export const GET = async ({ url }) => {
@@ -17,15 +17,18 @@ export const GET = async ({ url }) => {
 			return 0;
 		});
 
-		return json$1({
+		return json({
 			posts: sortedBlogPosts
 		});
 	} catch (error) {
 		console.error({ error: JSON.stringify(error) });
-		return json$1({
-			error: 'Could not fetch posts. ' + error
-		}, {
-			status: 500
-		});
+		return json(
+			{
+				error: 'Could not fetch posts. ' + error
+			},
+			{
+				status: 500
+			}
+		);
 	}
 };
