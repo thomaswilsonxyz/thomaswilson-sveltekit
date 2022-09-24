@@ -38,10 +38,11 @@ for file in blog_posts:
                 'slug': slug
                 }
         hash_map[slug] = details
-    except:
+    except Exception as e:
         print("!!!")
         print("Caught Error in following file, ignoring")
         print(file)
+        print(e)
         print("---")
 
 with open('./src/content/posts.json', "w") as file:
