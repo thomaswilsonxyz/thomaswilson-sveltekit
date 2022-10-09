@@ -727,11 +727,6 @@ detect-libc@^2.0.0:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-2.0.1.tgz#e1897aa88fa6ad197862937fbc0441ef352ee0cd"
   integrity sha512-463v3ZeIrcWtdgIg6vI6XUncguvr2TnGl4SzDXinkt9mSLpBJKXT3mW6xT3VQdDN11+WVs29pgvivTc4Lp8v+w==
 
-devalue@3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/devalue/-/devalue-3.1.2.tgz#412497b63d2dc0beba2179723475c2ef4c2b1b31"
-  integrity sha512-wUXbMGPAsBx79UF14nsWSsJlC7RcwPlf2w3bGheODWxKx57e9n68ceoijbqCJCEbjyo0S79nqfPwQgyijwLaqw==
-
 devalue@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/devalue/-/devalue-4.0.0.tgz#efeadbc922894d468ad903029d4a7e65e37f4952"
@@ -903,7 +898,7 @@ esbuild-windows-arm64@0.15.10:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.15.10.tgz#5a6fcf2fa49e895949bf5495cf088ab1b43ae879"
   integrity sha512-S+th4F+F8VLsHLR0zrUcG+Et4hx0RKgK1eyHc08kztmLOES8BWwMiaGdoW9hiXuzznXQ0I/Fg904MNbr11Nktw==
 
-esbuild@^0.15.6, esbuild@^0.15.7:
+esbuild@^0.15.6, esbuild@^0.15.7, esbuild@^0.15.9:
   version "0.15.10"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.15.10.tgz#85c2f8446e9b1fe04fae68daceacba033eedbd42"
   integrity sha512-N7wBhfJ/E5fzn/SpNgX+oW2RLRjwaL8Y0ezqNqhjD6w0H2p0rDuEz2FKZqpqLnO8DCaWumKe8dsC/ljvVSSxng==
@@ -1438,9 +1433,9 @@ kleur@^4.1.4, kleur@^4.1.5:
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
 leaflet@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.8.0.tgz#4615db4a22a304e8e692cae9270b983b38a2055e"
-  integrity sha512-gwhMjFCQiYs3x/Sf+d49f10ERXaEFCPr+nVTryhAW8DWbMGqJqt9G4XuIaHmFW08zYvhgdzqXGr8AlW8v8dQkA==
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.9.2.tgz#168b6c6ef1d4d1e8409bde2c4ad050c249c4dbe6"
+  integrity sha512-Kc77HQvWO+y9y2oIs3dn5h5sy2kr3j41ewdqCMEUA4N89lgfUUfOBy7wnnHEstDpefiGFObq12FdopGRMx4J7g==
 
 levn@^0.4.1:
   version "0.4.1"
@@ -2309,11 +2304,11 @@ vfile-message@^2.0.4:
     fsevents "~2.3.2"
 
 vite@^3.1.0:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-3.1.4.tgz#b75824b819d8354a6f36e4b988943c7e4947e155"
-  integrity sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-3.1.6.tgz#4c6db3000326342c918204a42a130fb3ffed2414"
+  integrity sha512-qMXIwnehvvcK5XfJiXQUiTxoYAEMKhM+jqCY6ZSTKFBKu1hJnAKEzP3AOcnTerI0cMZYAaJ4wpW1wiXLMDt4mA==
   dependencies:
-    esbuild "^0.15.6"
+    esbuild "^0.15.9"
     postcss "^8.4.16"
     resolve "^1.22.1"
     rollup "~2.78.0"
