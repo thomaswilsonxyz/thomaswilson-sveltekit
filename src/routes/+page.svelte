@@ -16,8 +16,8 @@
 	<section class="section thomaswilson-strapline">
 		<h1 class="title">Thomas Wilson</h1>
 		<p>
-			I'm a software engineer who loves the craft of building reliable and human-friendly software
-			for the web. I build good things with good people for good companies.
+			I'm a software engineer who loves the craft of leading teams, and building software that is
+			reliable and human-friendly.  I build good things with good people for good companies.
 		</p>
 	</section>
 
@@ -39,12 +39,7 @@
 				</li>
 
 				<li>
-					I can create and champion Design Systems in Code and in <a
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://www.figma.com"
-						class="figma">Figma</a
-					>
+					I lead teams with domain driven design, and agile (with a little 'a') opinions about delivery and collaboration.
 				</li>
 
 				<li>
@@ -68,7 +63,7 @@
 				<li><button on:click={() => (isWorkExpanded = false)}> Ew, show less </button></li>
 			</ul>
 		{:else}
-			<p>I build human-friendly software for the web, and help teams do that with better design.</p>
+			<p>I build human-friendly software for the web.</p>
 			<button on:click={() => (isWorkExpanded = true)}> Wow, Show more </button>
 		{/if}
 	</section>
@@ -85,7 +80,7 @@
 			</ul>
 		{:else}
 			<p>
-				I like to write on my <a href="/blog">blog</a> and ride bikes. I'm learning to sew and my French
+				I like to write on my <a href="/blog">blog</a> and ride bikes. I'm learning to sew my own clothes, and my French
 				is terrible.
 			</p>
 			<button on:click={() => (isPersonalExpanded = true)}>Oh, cool, tell me more</button>
