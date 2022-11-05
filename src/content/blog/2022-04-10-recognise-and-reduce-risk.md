@@ -28,6 +28,6 @@ If you know your customer is extremely price sensitive, then building a $99/yr s
 
 Risk is risk.  Risk from product (what) and risk from engineering (how) cannot be meaningfully separated once you take more than three steps backwards.  
 
-Your job is to reduce risk for yourself, your boss, or your company.  If you have any interest beyond the pure craft of software, aim to reduce risk for the most number of people possible
+Your job is to reduce risk for yourself, your boss, or your company.  Build software that reduces overall risk for the people who use it.
 
 [^1]: I think we (I) separate the _what_ from the _how_ because they are often solved by a CEO and CTO.  Just because a problem is solved by two people does not mean it is two problems.
