@@ -14,14 +14,14 @@
 
 	<section>
 		<ul class="principles">
-			<li class="principles__item"><a href="/blog/2022-10-22-maintenance-plus-plus">Make your software opinionated</a></li>
+			<li class="principles__item"><a href="/blog/2022-11-28-all-problems">All Problems are People Problems</a></li>
 			<li class="principles__item"><a href="/blog/2022-03-13-discover-complexity">Discover Complexity</a></li>
-			<li class="principles__item"><a href="/blog/2022-03-02-concentrate-on-concentrated-tests">Concentrate on Concentrated Tests</a></li>
 			<li class="principles__item"><a href="/blog/2021-12-12-build-the-platform-ship-the-product">Ship the product, build the platform</a></li>
 			<li class="principles__item">
 				<a href="blog/2022-04-10-recognise-and-reduce-risk">Recognise and Reduce Risk</a>
-
 			</li>
+			<li class="principles__item"><a href="/blog/2022-10-22-maintenance-plus-plus">Make your software opinionated</a></li>
+			<li class="principles__item"><a href="/blog/2022-03-02-concentrate-on-concentrated-tests">Concentrate on Concentrated Tests</a></li>
 		</ul>
 	</section>
 
