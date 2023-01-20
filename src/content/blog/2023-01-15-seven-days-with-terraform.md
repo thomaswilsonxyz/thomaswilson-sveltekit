@@ -64,7 +64,7 @@ I spent a lot of today (hours) attempting to get a Lambda to trigger on a schedu
 
 ## Day Three: Lambda => SQS Communication
 
-I managed to get the scheduled Lambda running in <20 minutes by using Cloudwatch Events.  From what I can tell it's using EventBridge under the hood, but it was available in `eu-west-2` and also worked first time without complaint.
+I managed to get the scheduled Lambda running in less than 20 minutes by using Cloudwatch Events.  From what I can tell it's using EventBridge under the hood, but it was available in `eu-west-2` and also worked first time without complaint.
 
 My focus other of this day way getting the results from a web scraping operation into a known format, converting that to JSON, then sending that over to SQS.
 
