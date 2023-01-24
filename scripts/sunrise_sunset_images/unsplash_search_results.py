@@ -1,4 +1,7 @@
 class UnsplashSearchResult: 
+    """
+    This class represents a single photo from Unsplash.
+    """
     def __init__(self, data: dict): 
         self.id = data["id"]
         self._description = data["description"] or "No description"
@@ -6,9 +9,6 @@ class UnsplashSearchResult:
         self.username_url = data["user"]["links"]["html"]
         self.small_url = data["urls"]["small"]
         self.json = data
-    
-    def __str__(self):
-        return f"{self.description} : {self.small_url} by {self.username}"
 
     @staticmethod
     def from_json(data: dict) -> "UnsplashSearchResult":
@@ -40,6 +40,12 @@ class UnsplashSearchResult:
 
 
 class UnsplashSearchResultSet:
+    """
+    This class collects a set of UnsplashSearchResults, i.e. a set of photos from Unsplash.
+    We use this to filter our duplicate photos, or those which have a description which 
+    suggests they are the opposite of the day time we are looking for (e.g. a sunset photo
+    with the word "sunrise" in the description).
+    """
     def __init__(self, json, sunrise_or_sunset: str):
         self.total = json["total"]
         self.total_pages = json["total_pages"]

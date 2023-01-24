@@ -37,11 +37,6 @@ class SunriseOrSunsetPhoto:
             sunrise_or_sunset=data["sunrise_or_sunset"],
         )
 
-    @property
-    def does_description_contain_opposite_daytime(self) -> bool:
-        opposite_word = "sunrise" if self.sunrise_or_sunset == "sunset" else "sunset"
-        return opposite_word in self.description.lower()
-
     def as_json(self) -> object:
         return {
             "id": self.id,
@@ -51,6 +46,11 @@ class SunriseOrSunsetPhoto:
             "small_url": self.small_url,
             "sunrise_or_sunset": self.sunrise_or_sunset
         }
+    
+    @property
+    def does_description_contain_opposite_daytime(self) -> bool:
+        opposite_word = "sunrise" if self.sunrise_or_sunset == "sunset" else "sunset"
+        return opposite_word in self.description.lower()
     
 class SunriseOrSunsetPhotoSet:
     def __init__(self, photos: list[SunriseOrSunsetPhoto]):

@@ -8,8 +8,8 @@ def main():
     """Get sunrise and sunset images from Unsplash API."""
     api  = unsplash_api_gateway.UnsplashApi(environment_variables.UNSPLASH_ACCESS_KEY, environment_variables.UNSPLASH_SECRET_KEY)
 
-    sunrise_images = api.search_results_for_query(query="sunrise", page_size=100, page_number=5)
-    sunset_images = api.search_results_for_query(query="sunset", page_size=100, page_number=5)
+    sunrise_images = api.search_results_for_query(query="sunrise", page_size=25, page_number=20)
+    sunset_images = api.search_results_for_query(query="sunset", page_size=25, page_number=20)
 
     unfiltered_length = len(sunrise_images.unfiltered_results) + len(sunset_images.unfiltered_results)
     filtered_length = len(sunrise_images.results) + len(sunset_images.results)
