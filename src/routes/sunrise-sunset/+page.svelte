@@ -2,18 +2,29 @@
   import type { PageData } from "./$types.js";
   import { format as formatDate } from "date-fns";
   import { onMount } from "svelte";
+  import { spring } from "svelte/motion";
+  import { fade } from "svelte/transition";
   import { writable } from "svelte/store";
   import Navbar from "$lib/components/Navbar.svelte";
 
   import type { ISunriseSunsetGuessingHistory } from "./ISunriseSunsetGuessingHistory.js";
 
   let hasGuessingHistoryBeenLoaded = false;
+  let debug = false;
+  let visibleNotification: "none" | "success" | "failure" = "none";
+
   const guessingHistory = writable<ISunriseSunsetGuessingHistory>({
     mostRecentGuessDate: undefined,
     totalNumberOfGuesses: 0,
     guesses: [],
     correctDays: [],
     incorrectDays: []
+  });
+
+  const notificationSpring = spring(20, {
+    stiffness: 0.1,
+    damping: 0.15,
+    precision: 0.01
   });
 
   export let data: PageData;
@@ -23,17 +34,41 @@
 
   $: picture = data.body.photo;
 
+  function debugRemoveLocalStorage() {
+    notificationSpring.set(20);
+    localStorage.removeItem(localStorageKey);
+    visibleNotification = "none";
+    guessingHistory.set({
+      mostRecentGuessDate: undefined,
+      totalNumberOfGuesses: 0,
+      guesses: [],
+      correctDays: [],
+      incorrectDays: []
+    });
+  }
+
+  function revealNotification(wasCorrect: boolean) {
+    notificationSpring.set(0);
+    if (wasCorrect) {
+      visibleNotification = "success";
+    } else {
+      visibleNotification = "failure";
+    }
+  }
+
   function onOptionSelected(option: "sunrise" | "sunset") {
     $guessingHistory.mostRecentGuessDate = todaysDateString;
     $guessingHistory.totalNumberOfGuesses += 1;
     $guessingHistory.guesses = [...$guessingHistory.guesses, option];
 
     if (option === picture.sunrise_or_sunset) {
+      revealNotification(true);
       $guessingHistory.correctDays = [
         ...$guessingHistory.correctDays,
         todaysDateString
       ];
     } else {
+      revealNotification(false);
       $guessingHistory.incorrectDays = [
         ...$guessingHistory.incorrectDays,
         todaysDateString
@@ -66,15 +101,30 @@
   <section class="header">
     <h1 class="header__title">Sunrise, Sunset?</h1>
     <p class="header__explanation">
-      It's a simple game. Is the picture below a sunrise, or a sunet?
+      It's a simple game. Is the picture below a sunrise, or a sunset?
     </p>
   </section>
+
+  {#if debug}
+    <button on:click={debugRemoveLocalStorage}>Remove Local Storage</button>
+  {/if}
 
   <section class="picture">
     <img src={picture.small_url} alt="Sunrise or Sunset?" />
   </section>
 
   {#if hasGuessingHistoryBeenLoaded}
+    <section class="notification">
+      {#if visibleNotification !== "none"}
+        <div
+          class="notification--success"
+          transition:fade={{ duration: 200 }}
+          style="transform: translateY({$notificationSpring}px);"
+        >
+          {visibleNotification === "success" ? "Correct 🎉" : "Incorrect 💔"}
+        </div>
+      {/if}
+    </section>
     <section class="options">
       <div class="options__buttons-container">
         <button
@@ -101,10 +151,15 @@
         <h2 class="score__title">Your Score</h2>
         {#if $guessingHistory.mostRecentGuessDate !== undefined}
           <p class="score__text">
+            You've made {$guessingHistory.totalNumberOfGuesses}
+            {$guessingHistory.totalNumberOfGuesses === 1 ? "guess" : "guesses"} so
+            far.
+          </p>
+          <p class="score__text">
             You've guessed correctly {Number(
               $guessingHistory.correctDays.length /
                 $guessingHistory.totalNumberOfGuesses
-            ) * 100}% of the time
+            ) * 100}% of the time.
           </p>
         {:else}
           <p class="score__text">You've not guessed yet.</p>
@@ -121,6 +176,7 @@
     --colour-grey: hsl(20, 6%, 10%);
     --colour-grey-lightened: hsl(20, 7%, 22%);
     --colour-orage: hsl(19, 69%, 49%);
+    --colour-green: hsl(120, 69%, 49%);
     --colour-orange-lightened: hsl(19, 75%, 55%);
     --colour-dark-grey: #1b1918;
   }
@@ -211,6 +267,16 @@
     color: white;
     background-color: var(--colour-grey);
     border-color: var(--colour-dark-grey);
+  }
+
+  .notification {
+  }
+
+  .notification--success {
+    color: var(--colour-dark-grey);
+    padding: 12px;
+    text-align: center;
+    font-size: 1.2rem;
   }
 
   .score {
