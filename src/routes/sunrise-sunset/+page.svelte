@@ -77,8 +77,6 @@
   }
 
   guessingHistory.subscribe((value) => {
-    console.log("guessingHistory.subscribe", value);
-
     if (!hasGuessingHistoryBeenLoaded) {
       return;
     }
@@ -216,7 +214,6 @@
   }
 
   .options {
-    width: 100%;
     padding: 12px;
     display: grid;
     place-items: center;
@@ -249,7 +246,7 @@
   .option--sunrise {
     border-color: var(--colour-orage);
     background-color: var(--colour-orage);
-    color: var(--colour-light-grey);
+    color: white;
   }
 
   .option--sunrise:hover:not(:disabled) {
