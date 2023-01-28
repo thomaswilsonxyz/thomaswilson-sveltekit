@@ -7,6 +7,7 @@
   import { writable } from "svelte/store";
   import Navbar from "$lib/components/Navbar.svelte";
 
+  import MetaTags from "./MetaTags.svelte";
   import type { ISunriseSunsetGuessingHistory } from "./ISunriseSunsetGuessingHistory.js";
 
   let hasGuessingHistoryBeenLoaded = false;
@@ -92,6 +93,8 @@
     hasGuessingHistoryBeenLoaded = true;
   });
 </script>
+
+<MetaTags />
 
 <Navbar />
 
