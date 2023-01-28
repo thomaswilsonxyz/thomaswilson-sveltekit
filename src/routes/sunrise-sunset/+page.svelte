@@ -94,7 +94,9 @@
   });
 </script>
 
-<MetaTags />
+<svelte:head>
+  <MetaTags />
+</svelte:head>
 
 <Navbar />
 
