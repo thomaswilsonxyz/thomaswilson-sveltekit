@@ -2,19 +2,19 @@
   import type { PageData } from "./$types.js";
   import { format as formatDate } from "date-fns";
   import { onMount } from "svelte";
-  import { spring } from "svelte/motion";
-  import { fade } from "svelte/transition";
-  import { writable } from "svelte/store";
+  import { writable, type Writable } from "svelte/store";
   import Navbar from "$lib/components/Navbar.svelte";
 
   import MetaTags from "./MetaTags.svelte";
   import OptionsSection from "./OptionsSection.svelte";
   import ScoreCardSection from "./ScoreCardSection.svelte";
+  import NotificationSection from "./NotificationSection.svelte";
   import type { ISunriseSunsetGuessingHistory } from "./ISunriseSunsetGuessingHistory.js";
 
   let hasGuessingHistoryBeenLoaded = false;
-  let debug = true;
-  let visibleNotification: "none" | "success" | "failure" = "none";
+  let debug = false;
+  let visibleNotification: Writable<"none" | "success" | "failure"> =
+    writable("none");
 
   const guessingHistory = writable<ISunriseSunsetGuessingHistory>({
     mostRecentGuessDate: undefined,
@@ -22,12 +22,6 @@
     guesses: [],
     correctDays: [],
     incorrectDays: []
-  });
-
-  const notificationSpring = spring(20, {
-    stiffness: 0.1,
-    damping: 0.15,
-    precision: 0.01
   });
 
   export let data: PageData;
@@ -38,9 +32,8 @@
   $: picture = data.body.photo;
 
   function debugRemoveLocalStorage() {
-    notificationSpring.set(20);
     localStorage.removeItem(localStorageKey);
-    visibleNotification = "none";
+    visibleNotification.set("none");
     guessingHistory.set({
       mostRecentGuessDate: undefined,
       totalNumberOfGuesses: 0,
@@ -51,11 +44,10 @@
   }
 
   function revealNotification(wasCorrect: boolean) {
-    notificationSpring.set(0);
     if (wasCorrect) {
-      visibleNotification = "success";
+      visibleNotification.set("success");
     } else {
-      visibleNotification = "failure";
+      visibleNotification.set("failure");
     }
   }
 
@@ -92,6 +84,13 @@
     const storedGuessHistory = localStorage.getItem(localStorageKey);
     if (storedGuessHistory) {
       guessingHistory.set(JSON.parse(storedGuessHistory));
+      const wasTodayGuessed =
+        $guessingHistory.mostRecentGuessDate === todaysDateString;
+      if (wasTodayGuessed) {
+        revealNotification(
+          $guessingHistory.correctDays.includes(todaysDateString)
+        );
+      }
     }
     hasGuessingHistoryBeenLoaded = true;
   });
@@ -120,17 +119,7 @@
   </section>
 
   {#if hasGuessingHistoryBeenLoaded}
-    <section class="notification">
-      {#if visibleNotification !== "none"}
-        <div
-          class="notification--success"
-          transition:fade={{ duration: 200 }}
-          style="transform: translateY({$notificationSpring}px);"
-        >
-          {visibleNotification === "success" ? "Correct 🎉" : "Incorrect 💔"}
-        </div>
-      {/if}
-    </section>
+    <NotificationSection {visibleNotification} />
 
     <OptionsSection
       isDisabled={$guessingHistory.mostRecentGuessDate === todaysDateString}
@@ -194,15 +183,5 @@
   .picture img {
     max-width: 100%;
     max-height: 100%;
-  }
-
-  .notification {
-  }
-
-  .notification--success {
-    color: var(--colour-dark-grey);
-    padding: 12px;
-    text-align: center;
-    font-size: 1.2rem;
   }
 </style>
