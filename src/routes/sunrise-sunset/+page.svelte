@@ -9,6 +9,7 @@
   import OptionsSection from "./OptionsSection.svelte";
   import ScoreCardSection from "./ScoreCardSection.svelte";
   import NotificationSection from "./NotificationSection.svelte";
+  import { SunriseSunsetStreakCalculator } from "./SunriseSunsetStreakCalculator.js";
   import type { ISunriseSunsetGuessingHistory } from "./ISunriseSunsetGuessingHistory.js";
 
   let hasGuessingHistoryBeenLoaded = false;
@@ -28,6 +29,9 @@
   const now = new Date();
   const todaysDateString = formatDate(now, "yyyy-MM-dd");
   const localStorageKey = "sunrise-sunset-guessing-history";
+  let currentStreakLength = 0;
+
+  const streakCalculator = new SunriseSunsetStreakCalculator(todaysDateString);
 
   $: picture = data.body.photo;
 
@@ -74,9 +78,13 @@
 
   guessingHistory.subscribe((value) => {
     if (!hasGuessingHistoryBeenLoaded) {
+      console.log(value);
       return;
     }
 
+    currentStreakLength = streakCalculator.getStreakLength(
+      $guessingHistory.correctDays
+    );
     localStorage.setItem(localStorageKey, JSON.stringify(value));
   });
 
@@ -133,6 +141,7 @@
     <ScoreCardSection
       doesUserHaveGuessingHistory={$guessingHistory.mostRecentGuessDate !==
         undefined}
+      {currentStreakLength}
       correctGuessCount={$guessingHistory.correctDays.length}
       incorrectGuessCount={$guessingHistory.incorrectDays.length}
     />

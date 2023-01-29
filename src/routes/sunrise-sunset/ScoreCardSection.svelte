@@ -2,6 +2,7 @@
   export let doesUserHaveGuessingHistory: boolean;
   export let correctGuessCount: number;
   export let incorrectGuessCount: number;
+  export let currentStreakLength: number;
 
   $: totalGuessCount = correctGuessCount + incorrectGuessCount;
 </script>
@@ -13,6 +14,10 @@
       <p class="score__text">
         You've made {totalGuessCount}
         {totalGuessCount === 1 ? "guess" : "guesses"} so far.
+      </p>
+      <p class="score__text">
+        Your current streak is {currentStreakLength}
+        {currentStreakLength === 1 ? "day" : "days"}.
       </p>
       <p class="score__text">
         You've guessed correctly {Number(correctGuessCount / totalGuessCount) *
