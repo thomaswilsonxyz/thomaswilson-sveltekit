@@ -29,24 +29,23 @@ export class SunriseSunsetStreakCalculator {
             return 1;
         }
 
-        let streakLength = 1;
-        for (const [index, day] of sortedDays.entries()) {
-            const nextDay = sortedDays[index + 1];
-
-            if (nextDay === undefined) {
-                console.log(`No next day, returning streak length of ${streakLength}`);
-                return streakLength;
-            }
-
-            const daysBetween = differenceInCalendarDays(day, nextDay);
-            console.log(`Days Between ${day} - ${nextDay}`, daysBetween);
+        // A (reverse-order) list of streaks in the lis tof correct days.
+        const allStreaks: number[] = sortedDays.reduce((streaks: number[], day, index, days) => {
+            const currentStreakLength = streaks[0] ?? 1;
+            const daysBetween = differenceInCalendarDays(day, days[index + 1]);
 
             if (daysBetween === 1) {
-                streakLength++;
+                // The streak continues ! Add a day.
+                streaks[0] = currentStreakLength + 1;
             } else {
-                console.log(`Days between is not 1, returning streak length of ${streakLength}`);
-                return streakLength;
+                // We've hit a gap, so start a new streak
+                streaks.unshift(1);
             }
-        }
+
+            return streaks;
+        }, []);
+
+        // The streaks are in reverse order, so the most recent streak is the last one.
+        return allStreaks[allStreaks.length - 1];
     }
 }
