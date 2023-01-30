@@ -1,0 +1,104 @@
+---
+title: "Eight days to build Sunrise, Sunset?"
+date: 2023-01-30T22:20:19Z
+slug: 2023-01-30-building-sunrise-sunset
+author: Thomas Wilson
+---
+
+[I recently wrote](https://thomaswilson.xyz/blog/2023-01-30-sunrise-sunset) about the *Sunrise, Sunset?* game.  It's a Wordle-style daily game where you have to decide if a photo is a sunrise or a sunset.
+
+This is a (very rough) log I wrote while building that.
+
+## Day Zero: What ?
+
+Over the festive break, someone (definitely not fiancée) mentioned (offhand, very non-consequential) that they could tell the difference between a sunrise and a sunset just by looking at a photo.
+
+I've previously used flash cards to learn vocab, and I have distinct memories of always getting sunrise/sunset photos the wrong way around... because it is impossible to say which is which from just a photo.  
+
+This someone (again, definitely not my fiancée) doubled down on their conviction.  
+
+So I decided to build a wordle-style once-a-day guessing game where each day it shows you a photo, and asks you one simple question: *Sunrise or Sunset?*
+
+## Day One: Can I get some photos?
+
+Step one is to get a list of pictures which are either sunrise or sunset.  Not doing this manually, so went to the Unsplash API to see if I could automate the fetching of images.
+
+Shockingly, I can.
+
+## Day Two: Build the photo-fetching pipeline.
+
+Build out the scripts for fetching (and saving) images from the Unsplash API. 
+
+Type hinting syntax in Python seems pretty intuitive, huh?
+
+## Day Three: Filter out misleading photos or descriptions
+
+Having taken a look (with human eyes) at the Data coming back from Unsplash, and it looks like sunset photos are coming back when I search `sunrise` (and vice versa).  
+
+I'd imagine this is people spamming the keywords/tags (somethign I hadn't noticed until I took a proper look at the data, yet more proof that people probably can't tell the difference between the two).
+
+Still, I need a way of flagging pictures as suspicious, and with the relatively small amount of data I'm looking at, I'm okay to do this with my human eyes.  So I need a way of flagging a specific search result as suspicious.
+
+It turns out this was affecting about 8% (22/254) of the pictures I had previously downloaded.
+
+I ended today with 215 photos, so enough for seven months of the game, which will do for now :)
+
+## Day Four: Make the photos accessible via API
+
+Took all the data from yesterday and did some triple checking with my human eyes.  Looks good.
+
+Next step is creating an API endpoint on my personal site that you can go to and say "can I have today's photo" - and it does it.  
+
+Decided to go for `/api/sunrise-sunset-photo.json`
+
+Now we need to make sure that that data is accessible from a web page.  Let's stand up an API endpoint in Sveltekit
+
+![An early screenshot of the Sunrise Sunset game](/assets/blog-images/2023-01/2023-01-24-sunrise-sunset.png)
+
+## Day Five: Creating the UI for guessing + showing results
+
+Today was all about storing the user's previous guesses, and also about shamelessly stealing a colour palette from Dribbble (thank you [Brielle Killeen](https://dribbble.com/shots/17508382-Wordle-Redesign-Rebound) for the orange and greys on this Wordle redesign).
+
+Adding little micro interactions on buttons (like making them brighter on hover, or dimmer when they're disabled) is something I still get a lot of joy from.
+
+Used LocalStorage to store previous performance, and Svelte's Writeable stores as very basic state management.  Because this relies on the browser environment being present, have to do this on the mount of the component - which means getting a *little* jank, which never feels great.
+
+Only managed an hour or so today, so feels nice to take it from 1% to maybe 20% (after 0-1% yesterday).
+
+![A screenshot showing updated styles of the Sunrise Sunset game](/assets/blog-images/2023-01/2023-01-26-sunrise-sunset.png)
+
+## Day Six: Creating a guessing micro-interaction 
+
+I wanted to add some basic interactions to the page.  When you guess (right or wrong), I wanted a little pop-up notification to appear letting you know. 
+
+I used Svelte's own Spring and Transition tools.
+
+## Day Seven: Design Details
+
+Yesterday we got to a UI I'm 20% happy with.  Today I wanted to take that to 40-50%.
+
+**(Gardening) Components.** Behind the scenes I split out the components. A single giant component is good for prototyping, but I did some gardening to split it apart into various smaller onse.  No visible change to the user, but much smaller files.
+
+I love how CSS variables are reachable by the child components - it made consistent theming on this page really nice.
+
+**Link Previews.** In more user-facing things, I was sharing the URL of the page with a few people and hated that the preview in WhatsApp was so void.  I went to MidJourney and generated a little image:
+
+![Preview image for Sunrise-Sunset, generated by Midjourney](/sunrise-sunset-art.png)
+
+I popped this as the preview image, and added some basic meta tags (thanks [metatags.io](https://metatags.io/)) for suggesting metatags, and [opengraph.dev](https://opengraph.dev/panel?url=https://www.thomaswilson.xyz/sunrise-sunset) for letting me preview the link.
+
+**Reveal Animation.** I also took some time to focus on the reveal interaction for your guess.  I like how Wordle slowly reveals your answer to you, letter by letter - I wanted the animation to pop out slowly here too.  So I paid a bit of attention to delaying the reveal of the result, to build a little bit of suspense.  
+
+Lastly, I made the notification persist between sessions on a set day.  So if you open up the window *after* guessing, it shows you if you were right or wrong.
+
+![Sunrise Sunset notifications](/assets/blog-images/2023-01/2023-01-28-sunrise-sunset.png)
+
+## Day Eight: Current Streak Length 
+
+I want to wrap this up.  But I absolutely need to know what the user's *current* streak is.  That is: how many days in a row have they guessed correctly?
+
+I wrote this code out today (test-driven, thankfully), and this _really_ feels like one of those problems that I just don't have the vocabulary to effectively solve.  The fun part being that I record _all_ the guessing history, so just have a list of days where the answer was right, and where it was wrong. 
+
+Fun fact, while writing the above section, I realised I could solve the problem in a slightly more intelligent way, so I did.
+
+I think I'm ready to wrap up this Little Project for now :)

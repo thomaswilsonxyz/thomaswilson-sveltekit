@@ -1,90 +1,89 @@
 @font-face {
-	font-family: 'FivoSansModern-Regular';
-	src: url('/FivoSansModern-Regular.otf');
+    font-family: 'FivoSansModern-Regular';
+    src: url('/FivoSansModern-Regular.otf');
 }
 
 :root {
-	--brand-orange: #ff8c0d;
-	--brand-purple: #464d77;
-	--brand-green: #36827f;
-	--brand-blue: #00a0e9;
-	--gray-100: #f8f9fa;
-	--gray-200: #e9ecef;
-	--gray-300: #dee2e6;
-	--gray-400: #ced4da;
-	--gray-500: #adb5bd;
-	--gray-600: #6c757d;
-	--gray-700: #495057;
-	--gray-800: #343a40;
-	--gray-900: #212529;
-	--gray-950: #1a1e23;
-	--gray-1000: #0a0c0e;
-	--font-family-title: 'FivoSansModern-Regular', sans-serif;
-	--font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-		'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-		'Noto Color Emoji';
-	--font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+    --brand-orange: #ff8c0d;
+    --brand-purple: #464d77;
+    --brand-green: #36827f;
+    --brand-blue: #00a0e9;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --gray-950: #1a1e23;
+    --gray-1000: #0a0c0e;
+    --font-family-title: 'FivoSansModern-Regular', sans-serif;
+    --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
 
-	--font-size-base: 1rem;
-	--spacing-base: 1rem;
-	--spacing-sm: 0.25rem;
-	--spacing-md: 0.5rem;
-	--spacing-lg: 1rem;
-	--spacing-xl: 1.5rem;
-	--navbar-height: 75px;
+    --font-size-base: 1rem;
+    --spacing-base: 1rem;
+    --spacing-sm: 0.25rem;
+    --spacing-md: 0.5rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+    --navbar-height: 75px;
 
-	--font-size-sm: 0.875rem;
-	--font-size-md: 1.25rem;
-	--font-size-lg: 1.5rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
 
-	--btn-border: 0;
-	--btn-padding: var(--spacing-sm);
-	--btn-border-radius: 0.25rem;
-	--btn-font-size: 1.08rem;
-	--btn-text-decoration: none;
+    --btn-border: 0;
+    --btn-padding: var(--spacing-sm);
+    --btn-border-radius: 0.25rem;
+    --btn-font-size: 1.08rem;
+    --btn-text-decoration: none;
 }
 
 body {
-	font-family: var(--font-family-sans);
-	color: var(--gray-900);
-	line-height: 130%;
+    font-family: var(--font-family-sans);
+    color: var(--gray-900);
+    line-height: 130%;
 }
 
 .thomaswilson-container {
-	--container-padding: 24px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: calc(100vh - var(--navbar-height) - calc(2 * var(--container-padding)));
-	background-color: var(--gray-100);
-	padding: var(--container-padding);
+    --container-padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - var(--navbar-height) - calc(2 * var(--container-padding)));
+    background-color: var(--gray-100);
+    padding: var(--container-padding);
 }
 
 .thomaswilson-container .section {
-	padding: 24px;
-	width: 100%;
-	max-width: 750px;
-	font-size: 1.19rem;
-	line-height: 134%;
-	padding-bottom: var(--spacing-base);
-	color: var(--gray-700);
-	padding-bottom: 2rem;
+    padding: 24px;
+    width: 100%;
+    max-width: 750px;
+    font-size: 1.19rem;
+    line-height: 134%;
+    padding-bottom: var(--spacing-base);
+    color: var(--gray-700);
+    padding-bottom: 2rem;
 }
 
 .thomaswilson-strapline .title {
-	font-family: var(--font-family-title);
-	font-size: var(--font-size-base);
-	font-weight: 700;
-	margin: 0;
-	color: var(--gray-800);
+    font-family: var(--font-family-title);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    margin: 0;
+    color: var(--gray-800);
 }
 
 .thomaswilson-strapline p {
-	font-size: 1.6rem;
-	line-height: 131%;
-	letter-spacing: -0.25px;
-	font-weight: 250;
+    font-size: 1.6rem;
+    line-height: 131%;
+    letter-spacing: -0.25px;
+    font-weight: 250;
 }
 
 h1,
@@ -93,53 +92,58 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--font-family-title);
-	padding-bottom: 0.25rem;
-	font-weight: 700;
-	margin: 0;
-	color: var(--gray-800);
-	padding-top: 8px;
-	padding-bottom: 6px;
-	line-height: 120%;
+    font-family: var(--font-family-title);
+    padding-bottom: 0.25rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--gray-800);
+    padding-top: 8px;
+    padding-bottom: 6px;
+    line-height: 120%;
 }
 
 p,
 li,
 a {
-	font-size: 1.08rem;
-	line-height: 143%;
-	font-family: var(--font-family-sans);
-	margin: 0;
-	color: var(--gray-800);
-	padding: 8px 0;
+    font-size: 1.08rem;
+    line-height: 143%;
+    font-family: var(--font-family-sans);
+    margin: 0;
+    color: var(--gray-800);
+    padding: 8px 0;
 }
 
 ul,
 ol {
-	padding-left: var(--spacing-base);
+    padding-left: var(--spacing-base);
 }
 
 .thomaswilson-button {
-	border: var(--btn-border);
-	padding: var(--btn-padding);
-	border-radius: var(--btn-border-radius);
-	font-size: var(--btn-font-size);
-	text-decoration: var(--btn-text-decoration);
+    border: var(--btn-border);
+    padding: var(--btn-padding);
+    border-radius: var(--btn-border-radius);
+    font-size: var(--btn-font-size);
+    text-decoration: var(--btn-text-decoration);
 }
 
 .thomaswilson-button:hover {
-	text-decoration: none;
-	cursor: pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
