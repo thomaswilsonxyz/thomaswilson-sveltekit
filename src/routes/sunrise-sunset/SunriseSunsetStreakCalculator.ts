@@ -13,9 +13,9 @@ class SunriseSunsetDayGuess {
     private static getEmojiForGuessType(guessType: GuessType): string {
         switch (guessType) {
             case GuessType.correct:
-                return '🌞';
+                return '🎉';
             case GuessType.incorrect:
-                return '🌚';
+                return '💔';
             case GuessType.missing:
                 return '🥷';
         }

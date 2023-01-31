@@ -115,7 +115,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             const emojiVisualisation = calculator.getEmojiForHistory(correctDays, incorrectDays);
 
             // THEN
-            expect(emojiVisualisation).toBe('🌞🌚');
+            expect(emojiVisualisation).toBe('🎉💔');
         });
 
         it(`should handle a missing day`, () => {
@@ -127,7 +127,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             const emojiVisualisation = calculator.getEmojiForHistory(correctDays, incorrect);
 
             // THEN
-            expect(emojiVisualisation).toBe('🌚🌞🌞🥷🌚');
+            expect(emojiVisualisation).toBe('💔🎉🎉🥷💔');
         });
 
         it(`should get a fully shareable streak when all things are empty`, () => {
@@ -154,7 +154,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             const shareableStatement = calculator.getShareableStatement(correctDays, incorrectDays, today);
 
             // THEN
-            const expected = `Sunrise, Sunset?\n2023-01-31\n🌞🥷🥷🌚🌞🌞\nCurrent Streak: 1\nLongest Streak: 2`;
+            const expected = `Sunrise, Sunset?\n2023-01-31\n🎉🥷🥷💔🎉🎉\nCurrent Streak: 1\nLongest Streak: 2`;
             expect(shareableStatement).toStrictEqual(expected);
         });
     });
