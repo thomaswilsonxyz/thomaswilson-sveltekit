@@ -27,7 +27,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             expect(currentStreakLength).toBe(1);
         });
 
-        it(`should return a two day stream if it's the most recent`, () => {
+        it(`should return a two day streak if it's the most recent`, () => {
             // GIVEN
             const correctDays = ['2023-01-29', '2023-01-28', '2023-01-26', '2023-01-25', '2023-01-24'];
             const today = '2023-01-29';
@@ -46,6 +46,17 @@ describe('SunriseSunsetStreakCalculator', () => {
 
             // WHEN
             const currentStreakLength = new SunriseSunsetStreakCalculator(today).getStreakLength(correctDays);
+
+            // THEN
+            expect(currentStreakLength).toBe(1);
+        });
+
+        it(`should recognise a one-day streak with gaps`, () => {
+            // GIVEN
+            const correctDays = ['2023-01-26', '2023-01-27', '2023-01-31'];
+
+            // WHEN
+            const currentStreakLength = new SunriseSunsetStreakCalculator('2023-01-31').getStreakLength(correctDays);
 
             // THEN
             expect(currentStreakLength).toBe(1);
@@ -135,15 +146,15 @@ describe('SunriseSunsetStreakCalculator', () => {
 
         it(`should get a fully shareable streak`, () => {
             // GIVEN
-            const correctDays = ['2023-01-10', '2023-01-11', '2023-01-15', '2023-01-16'];
-            const incorrectDays = ['2023-01-12', '2023-01-13'];
-            const today = new Date('2023-01-20T21:52Z');
+            const correctDays = ['2023-01-26', '2023-01-27', '2023-01-31'];
+            const incorrectDays = ['2023-01-28'];
+            const today = new Date('2023-01-31T21:52Z');
 
             // WHEN
             const shareableStatement = calculator.getShareableStatement(correctDays, incorrectDays, today);
 
             // THEN
-            const expected = `Sunrise, Sunset?\n2023-01-20\n🌞🌞🥷🌚🌚🌞🌞\nCurrent Streak: 2\nLongest Streak: 2`;
+            const expected = `Sunrise, Sunset?\n2023-01-31\n🌞🥷🥷🌚🌞🌞\nCurrent Streak: 1\nLongest Streak: 2`;
             expect(shareableStatement).toStrictEqual(expected);
         });
     });

@@ -78,31 +78,53 @@ class SunriseSunsetDayGuessSet {
 }
 
 class SunriseSunsetStreak {
-    private readonly longestStreak: number;
+    readonly longestStreak: number;
     private readonly allStreaks: number[];
     readonly mostRecentStreak: number;
 
     constructor(correctDays: Date[]) {
+        if (correctDays.length === 0) {
+            this.longestStreak = 0;
+            this.mostRecentStreak = 0;
+            this.allStreaks = [];
+            return;
+        }
+
         // A (reverse-order) list of streaks in the lis tof correct days.
         const sortedDays = correctDays.sort((a, b) => b.getTime() - a.getTime());
-        const allStreaks: number[] = sortedDays.reduce((streaks: number[], day, index, days) => {
-            const currentStreakLength = streaks[0] ?? 1;
-            const daysBetween = differenceInCalendarDays(day, days[index + 1]);
 
-            if (daysBetween === 1) {
-                // The streak continues ! Add a day.
-                streaks[0] = currentStreakLength + 1;
-            } else {
-                // We've hit a gap, so start a new streak
-                streaks.unshift(1);
-            }
+        const allStreaks: number[] = sortedDays.reduce(
+            (streaks: number[], day, index, days) => {
+                const currentStreakLength = streaks.at(-1);
 
-            return streaks;
-        }, []);
+                const daysBetween = differenceInCalendarDays(day, days.at(index + 1));
+
+                console.log(
+                    streaks,
+                    `Day ${index}: ${formatDate(
+                        day,
+                        'yyyy-MM-dd'
+                    )}, streak length: ${currentStreakLength}, days between: ${daysBetween}`
+                );
+
+                if (isNaN(daysBetween)) {
+                    // We're on the last day, so just return the streaks
+                    return streaks;
+                } else if (daysBetween === 1) {
+                    // Add one to the last item in the streaks array
+                    return [...streaks.slice(0, -1), currentStreakLength + 1];
+                } else {
+                    // We've hit a gap, so start a new streak
+                    return [...streaks, 1];
+                }
+            },
+            [1]
+        );
 
         // The streaks are in reverse order, so the most recent streak is the last one.
-        this.mostRecentStreak = allStreaks[allStreaks.length - 1] ?? 0;
-        this.longestStreak = Math.max(...allStreaks);
+        console.log('allStreaks', allStreaks);
+        this.mostRecentStreak = allStreaks[0] ?? 0;
+        this.longestStreak = allStreaks.length > 0 ? Math.max(...allStreaks) : 0;
         this.allStreaks = allStreaks;
     }
 }
@@ -139,11 +161,14 @@ export class SunriseSunsetStreakCalculator {
             todayFormatted,
             emoji,
             `Current Streak: ${streak.mostRecentStreak}`,
-            `Longest Streak: ${streak.mostRecentStreak}`,
+            `Longest Streak: ${streak.longestStreak}`,
         ].join(joiningString);
     }
 
     getStreakLength(correctDays: string[]): number {
+        console.log(`getStreakLength`);
+        console.log(correctDays);
+
         if (correctDays.length === 0) {
             console.log(`No correct days, returning 0.`);
             return 0;
