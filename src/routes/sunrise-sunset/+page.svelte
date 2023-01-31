@@ -142,8 +142,8 @@
       doesUserHaveGuessingHistory={$guessingHistory.mostRecentGuessDate !==
         undefined}
       {currentStreakLength}
-      correctGuessCount={$guessingHistory.correctDays.length}
-      incorrectGuessCount={$guessingHistory.incorrectDays.length}
+      correctGuessDays={$guessingHistory.correctDays}
+      incorrectGuessDays={$guessingHistory.incorrectDays}
     />
   {/if}
 </div>

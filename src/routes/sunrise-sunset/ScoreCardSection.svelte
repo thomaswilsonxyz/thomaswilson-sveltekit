@@ -1,10 +1,29 @@
 <script lang="ts">
+  import { format as formatDate } from "date-fns";
+  import { SunriseSunsetStreakCalculator } from "./SunriseSunsetStreakCalculator.js";
+  import { browser } from "$app/environment";
   export let doesUserHaveGuessingHistory: boolean;
-  export let correctGuessCount: number;
-  export let incorrectGuessCount: number;
+  export let correctGuessDays: string[];
+  export let incorrectGuessDays: string[];
   export let currentStreakLength: number;
 
-  $: totalGuessCount = correctGuessCount + incorrectGuessCount;
+  const todayAsString = formatDate(new Date(), "yyyy-MM-dd");
+  $: totalGuessCount = incorrectGuessDays.length + correctGuessDays.length;
+  const calculator = new SunriseSunsetStreakCalculator(todayAsString);
+  let hasTextBeenCopied = false;
+
+  $: historyStatement = calculator.getShareableStatement(
+    correctGuessDays,
+    incorrectGuessDays,
+    new Date()
+  );
+
+  function copyHistory() {
+    if (browser) {
+      navigator.clipboard.writeText(historyStatement);
+      hasTextBeenCopied = true;
+    }
+  }
 </script>
 
 <section class="score">
@@ -12,17 +31,13 @@
     <h2 class="score__title">Your Score Card</h2>
     {#if doesUserHaveGuessingHistory}
       <p class="score__text">
-        You've made {totalGuessCount}
-        {totalGuessCount === 1 ? "guess" : "guesses"} so far.
+        {historyStatement}
       </p>
-      <p class="score__text">
-        Your current streak is {currentStreakLength}
-        {currentStreakLength === 1 ? "day" : "days"}.
-      </p>
-      <p class="score__text">
-        You've guessed correctly {Number(correctGuessCount / totalGuessCount) *
-          100}% of the time.
-      </p>
+      <button on:click={() => copyHistory()}> Copy to Clipboard </button>
+
+      {#if hasTextBeenCopied}
+        <p>Copied!</p>
+      {/if}
     {:else}
       <p class="score__text">You've not guessed yet.</p>
     {/if}
@@ -53,5 +68,10 @@
 
   .score__title {
     font-size: 1.2rem;
+  }
+
+  .score__text {
+    white-space: pre-line;
+    line-height: 135%;
   }
 </style>
