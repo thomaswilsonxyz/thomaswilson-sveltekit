@@ -1,4 +1,4 @@
-import { parse, format as formatDate, differenceInCalendarDays } from 'date-fns';
+import { parse, format as formatDate, differenceInCalendarDays, isSameDay } from 'date-fns';
 import { SunriseSunsetDayGuess } from './SunriseSunsetDayGuess.js';
 import { SunriseSunsetDayGuessSet } from './SunriseSunsetGuessSet.js';
 import { GuessType } from './GuessType.js';
@@ -9,7 +9,10 @@ class SunriseSunsetStreak {
     readonly mostRecentStreak: number;
 
     constructor(correctDays: Date[], today = new Date()) {
-        if (correctDays.length === 0) {
+        const isCorrectDaysEmpty = correctDays.length === 0;
+
+        if (isCorrectDaysEmpty) {
+            console.log(`No correct days recorded.`);
             this.longestStreak = 0;
             this.mostRecentStreak = 0;
             this.allStreaks = [];
@@ -47,17 +50,26 @@ class SunriseSunsetStreak {
             [1]
         );
 
-        // The streaks are in reverse order, so the most recent streak is the last one.
-        console.log('allStreaks', allStreaks);
-        this.mostRecentStreak = allStreaks[0] ?? 0;
         this.longestStreak = allStreaks.length > 0 ? Math.max(...allStreaks) : 0;
         this.allStreaks = allStreaks;
+
+        const isTodayMissingFromCorrectDays = !correctDays.some((day) => isSameDay(day, today));
+
+        // The streaks are in reverse order, so the most recent streak is the last one.
+        if (allStreaks[0] === undefined) {
+            this.mostRecentStreak = 0;
+        } else if (isTodayMissingFromCorrectDays) {
+            this.mostRecentStreak = 0;
+        } else {
+            this.mostRecentStreak = allStreaks[0];
+        }
     }
 }
 
 export class SunriseSunsetStreakCalculator {
     private readonly todayDate: Date;
-    constructor(private readonly today: string) {
+
+    constructor(today: string) {
         this.todayDate = parse(today, 'yyyy-MM-dd', new Date());
     }
 
@@ -77,11 +89,18 @@ export class SunriseSunsetStreakCalculator {
         return streak;
     }
 
+    getCurrentStreakLengthForCorrectDays(correctDays: string[]): number {
+        const streak = new SunriseSunsetStreak(this.daysAsDates(correctDays), this.todayDate);
+
+        return streak.mostRecentStreak;
+    }
+
     getShareableStatement(correctDays: string[], incorrectDays: string[], today: Date, joiningString = '\n'): string {
-        const emoji = this.getEmojiForHistory(correctDays, incorrectDays);
-        const todayFormatted = formatDate(today, 'yyyy-MM-dd');
         const streak = new SunriseSunsetStreak(this.daysAsDates(correctDays));
-        const currentStreak = this.getStreakLength(correctDays);
+        const todayFormatted = formatDate(today, 'yyyy-MM-dd');
+
+        const emoji = this.getEmojiForHistory(correctDays, incorrectDays);
+        const currentStreak = this.getCurrentStreakLengthForCorrectDays(correctDays);
 
         return [
             `Sunrise, Sunset?`,
@@ -90,33 +109,5 @@ export class SunriseSunsetStreakCalculator {
             `Current Streak: ${currentStreak}`,
             `Longest Streak: ${streak.longestStreak}`,
         ].join(joiningString);
-    }
-
-    getStreakLength(correctDays: string[]): number {
-        if (correctDays.length === 0) {
-            console.log(`No correct days, returning 0.`);
-            return 0;
-        } else if (!correctDays.some((day) => day === this.today)) {
-            console.log(`Today is not in the list of correct days`);
-            return 0;
-        }
-
-        const daysAsDates = this.daysAsDates(correctDays);
-
-        const sortedDaysWithoutToday = correctDays
-            .filter((day) => day !== this.today)
-            .map((day) => parse(day, 'yyyy-MM-dd', new Date()))
-            .sort((a, b) => b.getTime() - a.getTime());
-
-        const daysBetweenTodayAndMostRecentDay = differenceInCalendarDays(this.todayDate, sortedDaysWithoutToday[0]);
-
-        if (daysBetweenTodayAndMostRecentDay > 1) {
-            console.log(`Today is more than one day after the most recent correct day`);
-            return 1;
-        }
-
-        const streaks = new SunriseSunsetStreak(daysAsDates);
-
-        return streaks.mostRecentStreak;
     }
 }

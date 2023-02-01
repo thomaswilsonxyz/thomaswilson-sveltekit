@@ -9,7 +9,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const correctDays = [];
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator(anyDay).getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(anyDay).getCurrentStreakLengthForCorrectDays(
+                correctDays
+            );
 
             // THEN
             expect(currentStreakLength).toBe(0);
@@ -21,7 +23,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const today = '2023-01-29';
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getCurrentStreakLengthForCorrectDays(
+                correctDays
+            );
 
             // THEN
             expect(currentStreakLength).toBe(1);
@@ -33,7 +37,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const today = '2023-01-29';
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getCurrentStreakLengthForCorrectDays(
+                correctDays
+            );
 
             // THEN
             expect(currentStreakLength).toBe(2);
@@ -45,7 +51,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const today = '2023-01-28';
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getCurrentStreakLengthForCorrectDays(
+                correctDays
+            );
 
             // THEN
             expect(currentStreakLength).toBe(1);
@@ -56,7 +64,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const correctDays = ['2023-01-26', '2023-01-27', '2023-01-31'];
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator('2023-01-31').getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(
+                '2023-01-31'
+            ).getCurrentStreakLengthForCorrectDays(correctDays);
 
             // THEN
             expect(currentStreakLength).toBe(1);
@@ -68,7 +78,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const today = '2023-01-28';
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getCurrentStreakLengthForCorrectDays(
+                correctDays
+            );
 
             // THEN
             expect(currentStreakLength).toBe(2);
@@ -80,7 +92,9 @@ describe('SunriseSunsetStreakCalculator', () => {
             const today = '2023-01-28';
 
             // WHEN
-            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getStreakLength(correctDays);
+            const currentStreakLength = new SunriseSunsetStreakCalculator(today).getCurrentStreakLengthForCorrectDays(
+                correctDays
+            );
 
             // THEN
             expect(currentStreakLength).toBe(3);

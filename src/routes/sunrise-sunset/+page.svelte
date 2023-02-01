@@ -82,7 +82,7 @@
       return;
     }
 
-    currentStreakLength = streakCalculator.getStreakLength(
+    currentStreakLength = streakCalculator.getCurrentStreakLengthForCorrectDays(
       $guessingHistory.correctDays
     );
     localStorage.setItem(localStorageKey, JSON.stringify(value));
