@@ -1,88 +1,14 @@
-import { parse, format as formatDate, isAfter, isBefore, isSameDay, addDays, differenceInCalendarDays } from 'date-fns';
-
-enum GuessType {
-    correct = 'correct',
-    incorrect = 'incorrect',
-    missing = 'missing',
-}
-
-class SunriseSunsetDayGuess {
-    readonly day: Date;
-    readonly emoji: string;
-
-    private static getEmojiForGuessType(guessType: GuessType): string {
-        switch (guessType) {
-            case GuessType.correct:
-                return '🎉';
-            case GuessType.incorrect:
-                return '💔';
-            case GuessType.missing:
-                return '🥷';
-        }
-    }
-
-    constructor(dayString: string, private readonly guessType: GuessType) {
-        this.day = parse(dayString, 'yyyy-MM-dd', new Date());
-        this.emoji = SunriseSunsetDayGuess.getEmojiForGuessType(guessType);
-    }
-}
-
-class SunriseSunsetDayGuessSet {
-    private readonly sortedGuesses: SunriseSunsetDayGuess[];
-    private readonly sortedGuessesWithMissingDays: SunriseSunsetDayGuess[];
-
-    constructor(guesses: SunriseSunsetDayGuess[]) {
-        this.sortedGuesses = guesses.sort((a, b) => b.day.getTime() - a.day.getTime());
-        const missingGuesses = this.getGuessesForMissingDays();
-        this.sortedGuessesWithMissingDays = SunriseSunsetDayGuessSet.sortGuesses([...guesses, ...missingGuesses]);
-    }
-
-    private static sortGuesses(guesses: SunriseSunsetDayGuess[]): SunriseSunsetDayGuess[] {
-        return guesses.sort((a, b) => b.day.getTime() - a.day.getTime());
-    }
-
-    private isGuessPresentForDay(date: Date): boolean {
-        return this.sortedGuesses.some((guess) => isSameDay(guess.day, date));
-    }
-
-    private getGuessesForMissingDays(): SunriseSunsetDayGuess[] {
-        const earliestDate: Date | undefined = this.sortedGuesses[this.sortedGuesses.length - 1]?.day;
-
-        if (!earliestDate) {
-            return [];
-        }
-
-        const latestDate = this.sortedGuesses[0].day;
-        let guessesForMissingDays: SunriseSunsetDayGuess[] = [];
-
-        let currentDay = earliestDate;
-
-        while (isBefore(currentDay, latestDate)) {
-            const isPresent = this.isGuessPresentForDay(currentDay);
-
-            if (!isPresent) {
-                guessesForMissingDays = [
-                    ...guessesForMissingDays,
-                    new SunriseSunsetDayGuess(formatDate(currentDay, 'yyyy-MM-dd'), GuessType.missing),
-                ];
-            }
-            currentDay = addDays(currentDay, 1);
-        }
-
-        return guessesForMissingDays;
-    }
-
-    getLastDays(maxDays = 10): SunriseSunsetDayGuess[] {
-        return this.sortedGuessesWithMissingDays.slice(0, maxDays);
-    }
-}
+import { parse, format as formatDate, differenceInCalendarDays } from 'date-fns';
+import { SunriseSunsetDayGuess } from './SunriseSunsetDayGuess.js';
+import { SunriseSunsetDayGuessSet } from './SunriseSunsetGuessSet.js';
+import { GuessType } from './GuessType.js';
 
 class SunriseSunsetStreak {
     readonly longestStreak: number;
     private readonly allStreaks: number[];
     readonly mostRecentStreak: number;
 
-    constructor(correctDays: Date[]) {
+    constructor(correctDays: Date[], today = new Date()) {
         if (correctDays.length === 0) {
             this.longestStreak = 0;
             this.mostRecentStreak = 0;
@@ -155,20 +81,18 @@ export class SunriseSunsetStreakCalculator {
         const emoji = this.getEmojiForHistory(correctDays, incorrectDays);
         const todayFormatted = formatDate(today, 'yyyy-MM-dd');
         const streak = new SunriseSunsetStreak(this.daysAsDates(correctDays));
+        const currentStreak = this.getStreakLength(correctDays);
 
         return [
             `Sunrise, Sunset?`,
             todayFormatted,
             emoji,
-            `Current Streak: ${streak.mostRecentStreak}`,
+            `Current Streak: ${currentStreak}`,
             `Longest Streak: ${streak.longestStreak}`,
         ].join(joiningString);
     }
 
     getStreakLength(correctDays: string[]): number {
-        console.log(`getStreakLength`);
-        console.log(correctDays);
-
         if (correctDays.length === 0) {
             console.log(`No correct days, returning 0.`);
             return 0;

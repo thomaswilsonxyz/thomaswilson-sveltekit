@@ -8,7 +8,6 @@
   export let currentStreakLength: number;
 
   const todayAsString = formatDate(new Date(), "yyyy-MM-dd");
-  $: totalGuessCount = incorrectGuessDays.length + correctGuessDays.length;
   const calculator = new SunriseSunsetStreakCalculator(todayAsString);
   let hasTextBeenCopied = false;
 

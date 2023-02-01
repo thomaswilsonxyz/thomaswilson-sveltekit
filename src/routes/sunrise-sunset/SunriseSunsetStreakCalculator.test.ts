@@ -88,10 +88,10 @@ describe('SunriseSunsetStreakCalculator', () => {
     });
 
     describe(`Streak Visualisation`, () => {
-        let calculator: SunriseSunsetStreakCalculator;
+        let streakCalculator: SunriseSunsetStreakCalculator;
 
         beforeAll(() => {
-            calculator = new SunriseSunsetStreakCalculator('2023-01-29');
+            streakCalculator = new SunriseSunsetStreakCalculator('2023-01-29');
         });
 
         it(`Sound visualise an empty streak`, () => {
@@ -100,7 +100,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             const incorrectDays = [];
 
             // WHEN
-            const emojiVisualisation = calculator.getEmojiForHistory(correctDays, incorrectDays);
+            const emojiVisualisation = streakCalculator.getEmojiForHistory(correctDays, incorrectDays);
 
             // THEN
             expect(emojiVisualisation).toBe('');
@@ -112,10 +112,23 @@ describe('SunriseSunsetStreakCalculator', () => {
             const incorrectDays = ['2023-01-19'];
 
             // WHEN
-            const emojiVisualisation = calculator.getEmojiForHistory(correctDays, incorrectDays);
+            const emojiVisualisation = streakCalculator.getEmojiForHistory(correctDays, incorrectDays);
 
             // THEN
             expect(emojiVisualisation).toBe('🎉💔');
+        });
+
+        it(`should recognise a streak which has just ended`, () => {
+            // GIVEN
+            const today = new Date('2023-02-01');
+            const correctDays = ['2023-01-31', '2023-01-30'];
+            const calculator = new SunriseSunsetStreakCalculator('2023-02-01');
+
+            // WHEN
+            const statement = calculator.getShareableStatement(correctDays, [], today);
+
+            // THEN
+            expect(statement).toContain(`Current Streak: 0`);
         });
 
         it(`should handle a missing day`, () => {
@@ -124,7 +137,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             const incorrect = ['2023-01-18', '2023-01-22'];
 
             // WHEN
-            const emojiVisualisation = calculator.getEmojiForHistory(correctDays, incorrect);
+            const emojiVisualisation = streakCalculator.getEmojiForHistory(correctDays, incorrect);
 
             // THEN
             expect(emojiVisualisation).toBe('💔🎉🎉🥷💔');
@@ -137,7 +150,7 @@ describe('SunriseSunsetStreakCalculator', () => {
             const today = new Date('2023-01-20T21:52Z');
 
             // WHEN
-            const shareableStatement = calculator.getShareableStatement(correctDays, incorrectDays, today);
+            const shareableStatement = streakCalculator.getShareableStatement(correctDays, incorrectDays, today);
 
             // THEN
             const expected = `Sunrise, Sunset?\n2023-01-20\n\nCurrent Streak: 0\nLongest Streak: 0`;
@@ -149,6 +162,8 @@ describe('SunriseSunsetStreakCalculator', () => {
             const correctDays = ['2023-01-26', '2023-01-27', '2023-01-31'];
             const incorrectDays = ['2023-01-28'];
             const today = new Date('2023-01-31T21:52Z');
+
+            const calculator = new SunriseSunsetStreakCalculator('2023-01-31');
 
             // WHEN
             const shareableStatement = calculator.getShareableStatement(correctDays, incorrectDays, today);
