@@ -75,7 +75,13 @@
             {#if post.book_review} 📚 {/if}
             <div class="post-title">{post.title}</div>
             <div class="post-preview">{post.preview}...</div>
-            <div class="post-date">{intlFormat(new Date(post.date))}</div>
+            <div class="post-date">
+              {intlFormat(
+                new Date(post.date),
+                { day: "2-digit", month: "long", year: "numeric" },
+                { locale: "en-GB" }
+              )}
+            </div>
           </a>
         </li>{/each}
     </ul>
