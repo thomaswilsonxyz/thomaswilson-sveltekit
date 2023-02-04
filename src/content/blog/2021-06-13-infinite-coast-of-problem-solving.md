@@ -1,5 +1,4 @@
 ---
-
 title: "The infinite coast of problem solving"
 author: "Thomas Wilson"
 date: 2021-06-13T19:48:00
