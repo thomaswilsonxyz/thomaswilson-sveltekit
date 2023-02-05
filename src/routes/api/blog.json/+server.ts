@@ -1,26 +1,11 @@
 import { json } from '@sveltejs/kit';
+import { BlogController } from './BlogController.js';
 
-import allPosts from '../../../content/posts.json';
-
-export const GET = async ({ url }) => {
+export const GET = async () => {
     try {
-        const posts = Object.entries(allPosts).map(([key, value]) => ({
-            ...value,
-        }));
-
-        const sortedBlogPosts = posts.sort((a, b) => {
-            if (a.date > b.date) {
-                return -1;
-            }
-            if (a.date < b.date) {
-                return 1;
-            }
-            return 0;
-        });
-
-        return json({
-            posts: sortedBlogPosts,
-        });
+        const controller = await BlogController.singleton();
+        const blogPosts = await controller.getAllBlogPosts();
+        return json({ posts: blogPosts });
     } catch (error) {
         console.error({ error: JSON.stringify(error) });
         return json(

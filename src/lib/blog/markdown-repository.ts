@@ -2,6 +2,13 @@ import { BlogPost } from './BlogPost.js';
 import { MarkdownFile } from './MarkdownFile.js';
 import { BlogPostSet } from './BlogPostSet.js';
 
+interface FrontmatterValues {
+    title: string;
+    slug: string;
+    date: Date;
+    author: string;
+}
+
 export class MarkdownRepository {
     readonly markdownFiles: MarkdownFile[];
     readonly blogPosts: BlogPostSet;
@@ -13,22 +20,32 @@ export class MarkdownRepository {
     }
 
     public static async fromViteGlobImport(globImport): Promise<MarkdownRepository> {
-        let fileImports: MarkdownFile[] = [];
+        let fileImports: MarkdownFile<FrontmatterValues>[] = [];
         let blogPosts: BlogPost[] = [];
         const allFiles = Object.entries(globImport);
 
         for (const entry of allFiles) {
             const [filename, module] = entry as [string, () => Promise<string>];
-            const fileContent = await module();
+            try {
+                const fileContent = await module();
 
-            const markdownFile = new MarkdownFile<{ title: string }>({ fileName: filename, content: fileContent });
-            const blogPost = new BlogPost({
-                markdownContent: markdownFile.content,
-                title: markdownFile.frontmatter.title,
-            });
+                const markdownFile = new MarkdownFile<FrontmatterValues>({ fileName: filename, content: fileContent });
+                const blogPost = new BlogPost({
+                    markdownContent: markdownFile.content,
+                    title: markdownFile.frontmatter.title,
+                    slug: markdownFile.frontmatter.slug,
+                    author: markdownFile.frontmatter.author,
+                    date: markdownFile.frontmatter.date,
+                });
 
-            fileImports = [...fileImports, markdownFile];
-            blogPosts = [...blogPosts, blogPost];
+                fileImports = [...fileImports, markdownFile];
+                blogPosts = [...blogPosts, blogPost];
+            } catch (e) {
+                console.error({
+                    message: `[MarkdownRespository::fromViteGlobImport] Error loading file ${filename}`,
+                    error: e,
+                });
+            }
         }
 
         return new MarkdownRepository(fileImports, blogPosts);

@@ -357,7 +357,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2", "@types/unist@^2.0.3":
+"@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2", "@types/unist@^2.0.3", "@types/unist@^2.0.6":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
@@ -2255,7 +2255,7 @@ remark-frontmatter@^4.0.1:
     micromark-extension-frontmatter "^1.0.0"
     unified "^10.0.0"
 
-remark-parse@^10.0.1:
+remark-parse@^10.0.0, remark-parse@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-10.0.1.tgz#6f60ae53edbf0cf38ea223fe643db64d112e0775"
   integrity sha512-1fUyHr2jLsVOkhbvPRBJ5zTKZZyD6yZzYaWCS6BPBdQ8vEMBCH+9zNCDA6tET/zHCi/jLqjCWtlJZUPk+DbnFw==
@@ -2274,13 +2274,23 @@ remark-rehype@^10.1.0:
     mdast-util-to-hast "^12.1.0"
     unified "^10.0.0"
 
-remark-stringify@^10.0.2:
+remark-stringify@^10.0.0, remark-stringify@^10.0.2:
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/remark-stringify/-/remark-stringify-10.0.2.tgz#50414a6983f5008eb9e72eed05f980582d1f69d7"
   integrity sha512-6wV3pvbPvHkbNnWB0wdDvVFHOe1hBRAx1Q/5g/EpH4RppAII6J8Gnwe7VbHuXaoKIF6LAg6ExTel/+kNqSQ7lw==
   dependencies:
     "@types/mdast" "^3.0.0"
     mdast-util-to-markdown "^1.0.0"
+    unified "^10.0.0"
+
+remark@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/remark/-/remark-14.0.2.tgz#4a1833f7441a5c29e44b37bb1843fb820797b40f"
+  integrity sha512-A3ARm2V4BgiRXaUo5K0dRvJ1lbogrbXnhkJRmD0yw092/Yl0kOCZt1k9ZeElEwkZsWGsMumz6qL5MfNJH9nOBA==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    remark-parse "^10.0.0"
+    remark-stringify "^10.0.0"
     unified "^10.0.0"
 
 require-from-string@^2.0.2:
@@ -2578,6 +2588,15 @@ strip-literal@^1.0.0:
   integrity sha512-5o4LsH1lzBzO9UFH63AJ2ad2/S2AVx6NtjOcaz+VTT2h1RiRvbipW72z8M/lxEhcPHDBQwpDrnTF7sXy/7OwCQ==
   dependencies:
     acorn "^8.8.1"
+
+strip-markdown@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/strip-markdown/-/strip-markdown-5.0.0.tgz#222b864ecce6cf2ef87b2bb1e6466464e8127081"
+  integrity sha512-PXSts6Ta9A/TwGxVVSRlQs1ukJTAwwtbip2OheJEjPyfykaQ4sJSTnQWjLTI2vYWNts/R/91/csagp15W8n9gA==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.6"
+    unified "^10.0.0"
 
 supports-color@^5.3.0:
   version "5.5.0"

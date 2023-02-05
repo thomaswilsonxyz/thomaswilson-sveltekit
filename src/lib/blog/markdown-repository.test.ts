@@ -31,6 +31,9 @@ describe(`Blog MarkdownRepository`, () => {
         });
 
         const expectedBlogPost = aBlogPost()
+            .withAuthor('Thomas Wilson')
+            .withDate(new Date('2023-02-01T08:00:00Z'))
+            .withSlug('2023-02-01-test')
             .withTitle('Test Blog Post')
             .withMarkdownContent(testMarkdownContent)
             .build();

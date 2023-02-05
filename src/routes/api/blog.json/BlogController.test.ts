@@ -14,8 +14,13 @@ describe(`BlogController`, () => {
             // GIVEN
             const blogPosts = await controller.getAllBlogPosts();
 
+            // WHEN
+            const aKnownBlogPost = blogPosts.find((post) => post.title === 'Vibe Check #10');
+            const aMadeUpBlogPost = blogPosts.find((post) => post.title === 'Some made up blog post');
+
             // then
-            expect(blogPosts.getBlogPostWithTitle('Vibe Check #10')).toBeDefined();
+            expect(aMadeUpBlogPost).toBeNull();
+            expect(aKnownBlogPost).not.toBeNull();
         });
     });
 });
