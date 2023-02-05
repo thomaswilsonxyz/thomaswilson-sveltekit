@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { BlogController } from './BlogController.js';
+import { BlogController } from '../../../lib/blog/BlogController';
 
 export const GET = async () => {
     try {

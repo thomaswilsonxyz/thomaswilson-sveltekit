@@ -73,9 +73,18 @@
           aria-setsize={posts.length}
         >
           <a href={`/blog/${post.slug}`}>
-            {#if post.book_review} 📚 {/if}
-            <div class="post-title">{post.title}</div>
-            <div class="post-preview">{post.preview}...</div>
+            <div class="post-title">
+              {#if post.book_review} 📚 {/if}{post.title}
+            </div>
+
+            <div class="post-preview">
+              {#if post.preview}
+                {post.preview}...
+              {:else}
+                No preview available ): Click to read the full post.
+              {/if}
+            </div>
+
             <div class="post-date">
               {intlFormat(
                 new Date(post.date),

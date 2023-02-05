@@ -1,35 +1,51 @@
 import { BlogPost } from './BlogPost.js';
 import { MarkdownFile } from './MarkdownFile.js';
 import { BlogPostSet } from './BlogPostSet.js';
+import { BookReviewSet } from './BookReviewSet.js';
+import { BookReview } from './BookReview.js';
 
-interface FrontmatterValues {
+interface BlogPostFrontmatterValues {
     title: string;
     slug: string;
     date: Date;
     author: string;
 }
 
-export class MarkdownRepository {
-    readonly markdownFiles: MarkdownFile[];
-    readonly blogPosts: BlogPostSet;
+interface BookReviewFrontmatterValues {
+    title: string;
+    author: string; // Author of the book, not the review
+    slug: string;
+    date: Date;
+    finished: Date;
+    score: number;
+    image: string;
+}
 
-    private constructor(files: MarkdownFile[], blogPosts: BlogPost[]) {
-        this.blogPosts = new BlogPostSet([]);
-        this.markdownFiles = files;
+export class MarkdownRepository {
+    readonly blogPosts: BlogPostSet;
+    readonly bookReviews: BookReviewSet;
+
+    private constructor(blogPosts: BlogPost[], bookReviews: BookReview[]) {
         this.blogPosts = new BlogPostSet(blogPosts);
+        this.bookReviews = new BookReviewSet(bookReviews);
     }
 
-    public static async fromViteGlobImport(globImport): Promise<MarkdownRepository> {
-        let fileImports: MarkdownFile<FrontmatterValues>[] = [];
+    public static async fromViteGlobImport(blogGlobImport, bookReviewGlobImport): Promise<MarkdownRepository> {
+        let fileImports: MarkdownFile<BlogPostFrontmatterValues>[] = [];
         let blogPosts: BlogPost[] = [];
-        const allFiles = Object.entries(globImport);
+        let bookReviews: BookReview[] = [];
 
-        for (const entry of allFiles) {
-            const [filename, module] = entry as [string, () => Promise<string>];
+        const blogPostFiles = Object.entries(blogGlobImport);
+
+        for (const blogPostFile of blogPostFiles) {
+            const [filename, module] = blogPostFile as [string, () => Promise<string>];
             try {
                 const fileContent = await module();
 
-                const markdownFile = new MarkdownFile<FrontmatterValues>({ fileName: filename, content: fileContent });
+                const markdownFile = new MarkdownFile<BlogPostFrontmatterValues>({
+                    fileName: filename,
+                    content: fileContent,
+                });
                 const blogPost = new BlogPost({
                     markdownContent: markdownFile.content,
                     title: markdownFile.frontmatter.title,
@@ -48,14 +64,36 @@ export class MarkdownRepository {
             }
         }
 
-        return new MarkdownRepository(fileImports, blogPosts);
-    }
+        for (const bookReviewFile of Object.entries(bookReviewGlobImport)) {
+            const [filename, module] = bookReviewFile as [string, () => Promise<string>];
+            try {
+                const fileContent = await module();
 
-    getMarkdownFileForFileName(fileName: string): MarkdownFile | null {
-        return this.markdownFiles.find((file) => file.fileName === fileName) ?? null;
-    }
+                const markdownFile = new MarkdownFile<BookReviewFrontmatterValues>({
+                    fileName: filename,
+                    content: fileContent,
+                });
 
-    getBlogPostWithTitle(title: string): BlogPost | null {
-        return this.blogPosts.getBlogPostWithTitle(title);
+                const bookReview = new BookReview({
+                    author: markdownFile.frontmatter.author,
+                    title: markdownFile.frontmatter.title,
+                    slug: markdownFile.frontmatter.slug,
+                    date: markdownFile.frontmatter.date,
+                    draft: false,
+                    finished: markdownFile.frontmatter.finished,
+                    image: markdownFile.frontmatter.image,
+                    score: markdownFile.frontmatter.score,
+                });
+
+                bookReviews = [...bookReviews, bookReview];
+            } catch (e) {
+                console.error({
+                    message: `[MarkdownRespository::fromViteGlobImport] Error loading file ${filename}`,
+                    error: e,
+                });
+            }
+        }
+
+        return new MarkdownRepository(blogPosts, bookReviews);
     }
 }
