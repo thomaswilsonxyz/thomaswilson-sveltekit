@@ -3,7 +3,6 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import { intlFormat } from "date-fns";
 
-  export const prerender = true;
   export let data: PageData;
 
   $: ({
