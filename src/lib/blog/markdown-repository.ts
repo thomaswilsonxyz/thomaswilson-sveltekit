@@ -83,6 +83,7 @@ export class MarkdownRepository {
                     finished: markdownFile.frontmatter.finished,
                     image: markdownFile.frontmatter.image,
                     score: markdownFile.frontmatter.score,
+                    markdownContent: markdownFile.content,
                 });
 
                 bookReviews = [...bookReviews, bookReview];
@@ -94,6 +95,21 @@ export class MarkdownRepository {
             }
         }
 
-        return new MarkdownRepository(blogPosts, bookReviews);
+        const repository = new MarkdownRepository(blogPosts, bookReviews);
+        await repository.buildAll();
+        return repository;
+    }
+
+    private async buildAll() {
+        await Promise.all([this.blogPosts.buildAllBlogPosts(), this.bookReviews.buildAllBookReviews()]);
+        return;
+    }
+
+    getBlogPostBySlug(slug: string): BlogPost | null {
+        return this.blogPosts.blogPosts.find((blogPost) => blogPost.slug === slug) ?? null;
+    }
+
+    getBookReviewBySlug(slug: string): BookReview | null {
+        return this.bookReviews.bookReviews.find((bookReview) => bookReview.slug === slug) ?? null;
     }
 }

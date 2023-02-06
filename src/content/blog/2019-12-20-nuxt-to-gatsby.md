@@ -18,7 +18,7 @@ System fonts, I had argued to me, are designed and considered specifically for t
 
 Ever since they introduced that tiny bit of doubt into my mind, I couldn’t help thinking that maybe I should just be using system fonts. Long story short, I rewrote my entire personal site (https://thomaswilson.xyz) from [Nuxt](https://nuxtjs.org) (a Vue.JS application framework) into [Gatsby](https://www.gatsbyjs.org) (a React.JS static site generator). It took me like to evenings and I’m happy with my decision.
 
-Look, there were a couple of other factors in this. Like, I had just taken the jump to go freelance so I needed to move my increasing portfolio over to my professional site. I wanted to move some of my older pieces of writing from Medium onto pages on this site. I was creating a beautiful list of my [favourite albums of 2019](/albums-2019). There was a lot going on, and I was finding a lot of friction in the process of writing blog posts for this site.
+Look, there were a couple of other factors in this. Like, I had just taken the jump to go freelance so I needed to move my increasing portfolio over to my professional site. I wanted to move some of my older pieces of writing from Medium onto pages on this site. I was creating a beautiful list of my favourite albums of 2019 (note from 2023 Wilson: This page of 2019's hottest records didn't make the move between sites). There was a lot going on, and I was finding a lot of friction in the process of writing blog posts for this site.
 
 ## Why React, not Vue ?
 

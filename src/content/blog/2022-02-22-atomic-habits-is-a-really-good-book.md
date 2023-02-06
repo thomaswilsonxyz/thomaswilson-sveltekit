@@ -28,10 +28,10 @@ But still, the problem isn't knowing what three things to do before breakfast, i
 
 We all want that.  And Clear dedicates a whole book to giving us the tools to get there.  I want to surface the parts of Atomic Habits that resonated with me:
 
-1. [The rules for forging and breaking a habit.](#1-the-rules)
-2. [Call out your automatic actions / lazy behaviours.](#2-call-out-your-automatic-or-lazy-behaviours)
-3. [Decide what kind of person you want to be.](#3-decide-what-kind-of-person-you-want-to-be)
-4. [Monkey brain makes decisions but is easy to trick.](#4-monkey-brain-is-tricky)
+1. The rules for forging and breaking a habit.
+2. Call out your automatic actions / lazy behaviours.
+3. Decide what kind of person you want to be.
+4. Monkey brain makes decisions but is easy to trick.
 
 ## 1. The Rules
 

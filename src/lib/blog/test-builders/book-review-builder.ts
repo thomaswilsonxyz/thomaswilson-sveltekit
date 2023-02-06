@@ -9,6 +9,7 @@ class BookReviewBuilder {
     private image = 'default image';
     private score = 0;
     private slug = 'default slug';
+    private markdownContent = 'default markdown content';
 
     withTitle(title: string): BookReviewBuilder {
         this.title = title;
@@ -50,6 +51,11 @@ class BookReviewBuilder {
         return this;
     }
 
+    withMarkdownContent(markdownContent: string): BookReviewBuilder {
+        this.markdownContent = markdownContent;
+        return this;
+    }
+
     build(): BookReview {
         return new BookReview({
             title: this.title,
@@ -60,6 +66,7 @@ class BookReviewBuilder {
             image: this.image,
             score: this.score,
             slug: this.slug,
+            markdownContent: this.markdownContent,
         });
     }
 }
