@@ -3,4 +3,4 @@
 // requires some Markdown parsing that I've not done yet.
 // I'd love to get tis to be `true`
 // 2023-02-06 Wilson
-export const prerender = false;
+export const prerender = true;

@@ -88,8 +88,8 @@ export class BlogPost {
             .use(markdown)
             .use(markdownFrontmatter)
             .use(remarkStringify)
-            .use(remarkRehype)
-            .use(rehypeStringify);
+            .use(remarkRehype, { allowDangerousHtml: true })
+            .use(rehypeStringify, { allowDangerousHtml: true });
     }
 
     private markdownToExcerptProcessorFactory(): Processor {

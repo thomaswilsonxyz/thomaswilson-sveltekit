@@ -11,6 +11,8 @@ author: Thomas Wilson
 
 This is the content of the blog post.
 
+<h2 id="known-id">This is a heading</h2>
+
 This is a [link](http://www.bbc.co.uk).
 
 - This is a list item
@@ -86,6 +88,7 @@ describe('BlogPost', () => {
         expect(html).toStrictEqual(
             [
                 `<p>This is the content of the blog post.</p>`,
+                `\<h2 id="known-id">This is a heading</h2>`,
                 `<p>This is a <a href="http://www.bbc.co.uk">link</a>.</p>`,
                 `<ul>`,
                 `<li>This is a list item</li>`,
