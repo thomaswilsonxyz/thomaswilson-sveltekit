@@ -29,10 +29,7 @@ interface BookReviewListItem {
 
 export class BlogController {
     static async singleton(): Promise<BlogController> {
-        const markdownRepository = await MarkdownRepository.fromViteGlobImport(
-            blogPostMetaGlobImport,
-            bookReviewsMetaGlobImport
-        );
+        const markdownRepository = await MarkdownRepository.singleton();
         return new BlogController(markdownRepository);
     }
 

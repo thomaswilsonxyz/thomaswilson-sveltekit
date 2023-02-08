@@ -14,7 +14,7 @@ A few months ago a prominent figure in the tech and software space was uninvited
 
 [^1]: I don't want to name them in this post because this isn't about them, or really the situation. Please oh goodness please don't let anything I say here be seen as any critique or defence of anyone or their action.
 
-> They had to make Software Craftsmanship because Agile became too much about project management and not about code. This made software devs sad because they hate it when things aren’t about them. [Person of Interest] and others thought too much code sucked. And people weren't paying enough attention to writing code that didn't suck. They decided the solution was to LARP as medieval craftspeople. And pretend they were making beautiful woodcarvings instead of pop up windows on websites.
+> They had to make Software Craftsmanship because Agile became too much about project management and not about code. This made software devs sad because they hate it when things aren't about them. [Person of Interest] and others thought too much code sucked. And people weren't paying enough attention to writing code that didn't suck. They decided the solution was to LARP as medieval craftspeople. And pretend they were making beautiful woodcarvings instead of pop up windows on websites.
 
 Look, I'm all for making fun of nerds, especially when they put on ill-fitting armour and probably very itchy wool and run at each other in a field, we've all seen _Role Models_. Just as people make fun of the nerds who have nothing better to do on a Tuesday evening than write things no one will ever read because it feels mildly more productive than watching the third episode of Ru Paul's since dinner.
 

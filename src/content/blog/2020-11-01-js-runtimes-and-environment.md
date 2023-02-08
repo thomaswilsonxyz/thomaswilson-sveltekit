@@ -29,7 +29,7 @@ I just assumed that the JS runtime was the browser or server where the JS actual
 
 JS runtimes get a bit of flack for causing bad performance, whatever that generic term means. Take this [critique from Sebastian De Deyne](https://sebastiandedeyne.com/going-deep):
 
-> We’re adding heavy runtimes to support multiple platforms instead of staying close to the metal, and we pay the price in performance.
+> We're adding heavy runtimes to support multiple platforms instead of staying close to the metal, and we pay the price in performance.
 
 This criticism brings us a little closer to a useful definition of a Runtime: it **includes the libraries and frameworks which act as the intermediary between the code you've written, and the operating system it is running on**. So if we take this mental model a little further, a runtime is the abstractions that sit between the bare metal and the running program ([StackOverflow source](https://softwareengineering.stackexchange.com/questions/304427/what-really-is-the-runtime-environment)).
 

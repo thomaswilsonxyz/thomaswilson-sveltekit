@@ -20,7 +20,7 @@ tags:
 - **‌My three decades alone, basking in the company of a mountain**, Susanne Sener for Psyche ([link](https://psyche.co/ideas/my-three-decades-alone-basking-in-the-company-of-a-mountain)). A personal piece written by a woman who has spent over 30 years living alone in a cabin by a mountain. I've been thinking about this importance of silence/lack of input recently.
 - **Popular Writers: A Stephen King interview**, Neil Gaiman on his own blog ([link](https://journal.neilgaiman.com/2012/04/popular-writers-stephen-king-interview.html)). King's written more books than a lot of us ever will, and I really enjoyed the following statement he makes on where/how he arrives at them:
 
-> I never think of stories as made things; I think of them as found things. As if you pull them out of the ground, and you just pick them up. Someone once told me that that was me low-balling my own creativity. That might or might not be the case. But still, on the story I am working on now, I do have some unresolved problem. It doesn’t keep me awake at nights. I feel like when it comes down, it will be there...
+> I never think of stories as made things; I think of them as found things. As if you pull them out of the ground, and you just pick them up. Someone once told me that that was me low-balling my own creativity. That might or might not be the case. But still, on the story I am working on now, I do have some unresolved problem. It doesn't keep me awake at nights. I feel like when it comes down, it will be there...
 
 ## What I've had on Rotation
 

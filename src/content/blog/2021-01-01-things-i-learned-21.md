@@ -23,7 +23,7 @@ Happy New Year 🎊🥳🍾 It's been one hell of a ride, 2020, and I hope that 
 
 ## Cool reads
 
-- [Seasons in a Pandemic: Mary Shelley on What Makes Life Worth Living and Nature’s Beauty as a Lifeline to Regaining Sanity](https://www.brainpickings.org/2020/04/16/mary-shelley-the-last-man) by Maria Popova for _Brain Pickings_. A beautiful little tribute to Mary Shelly' semi-autobiographical _The Last Man_, a novel about a pandemic which one-by-one kills of humanity. Covid references aside, Popova lays out some of Shelly's personal traumas that lead her to write this book, and quotes some of Shelly's writing about the reassuring rhythm of nature's seasons. If you like well written and researched newsletters, you'll bloody love Brain Pickings, you can sign up for it [here](https://www.brainpickings.org/).
+- [Seasons in a Pandemic: Mary Shelley on What Makes Life Worth Living and Nature's Beauty as a Lifeline to Regaining Sanity](https://www.brainpickings.org/2020/04/16/mary-shelley-the-last-man) by Maria Popova for _Brain Pickings_. A beautiful little tribute to Mary Shelly' semi-autobiographical _The Last Man_, a novel about a pandemic which one-by-one kills of humanity. Covid references aside, Popova lays out some of Shelly's personal traumas that lead her to write this book, and quotes some of Shelly's writing about the reassuring rhythm of nature's seasons. If you like well written and researched newsletters, you'll bloody love Brain Pickings, you can sign up for it [here](https://www.brainpickings.org/).
 
 ## Fun things
 

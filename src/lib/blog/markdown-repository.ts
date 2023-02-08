@@ -4,6 +4,9 @@ import { BlogPostSet } from './BlogPostSet.js';
 import { BookReviewSet } from './BookReviewSet.js';
 import { BookReview } from './BookReview.js';
 
+const blogPostMetaGlobImport = import.meta.glob('../../content/blog/*.md', { as: 'raw' });
+const bookReviewsMetaGlobImport = import.meta.glob('../../content/book-reviews/*.md', { as: 'raw' });
+
 interface BlogPostFrontmatterValues {
     title: string;
     slug: string;
@@ -28,6 +31,10 @@ export class MarkdownRepository {
     private constructor(blogPosts: BlogPost[], bookReviews: BookReview[]) {
         this.blogPosts = new BlogPostSet(blogPosts);
         this.bookReviews = new BookReviewSet(bookReviews);
+    }
+
+    public static async singleton(): Promise<MarkdownRepository> {
+        return await MarkdownRepository.fromViteGlobImport(blogPostMetaGlobImport, bookReviewsMetaGlobImport);
     }
 
     public static async fromViteGlobImport(blogGlobImport, bookReviewGlobImport): Promise<MarkdownRepository> {

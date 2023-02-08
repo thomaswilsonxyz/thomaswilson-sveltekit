@@ -87,9 +87,12 @@ export class BlogPost {
         return unified() //
             .use(markdown)
             .use(markdownFrontmatter)
-            .use(remarkStringify)
-            .use(remarkRehype, { allowDangerousHtml: true })
-            .use(rehypeStringify, { allowDangerousHtml: true });
+            .use(remarkStringify, { unsafe: [{ character: '$' }] })
+            .use(remarkRehype, { allowDangerousHtml: false })
+            .use(rehypeStringify, {
+                allowDangerousHtml: true,
+                allowDangerousCharacters: false,
+            });
     }
 
     private markdownToExcerptProcessorFactory(): Processor {
