@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'FivoSansModern-Regular';
     src: url('/FivoSansModern-Regular.otf');
+    font-display: swap;
 }
 
 :root {
