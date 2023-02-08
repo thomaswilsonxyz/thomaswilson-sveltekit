@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { PageData } from "./$types.js";
-  import type { Post } from "$lib/Post.js";
   import { intlFormat } from "date-fns";
   import Navbar from "$lib/components/Navbar.svelte";
 
