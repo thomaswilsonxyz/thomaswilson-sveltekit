@@ -87,11 +87,11 @@ export class BlogPost {
         return unified() //
             .use(markdown)
             .use(markdownFrontmatter)
-            .use(remarkStringify, { unsafe: [{ character: '$' }] })
-            .use(remarkRehype, { allowDangerousHtml: false })
+            .use(remarkStringify)
+            .use(remarkRehype, { allowDangerousHtml: true })
             .use(rehypeStringify, {
                 allowDangerousHtml: true,
-                allowDangerousCharacters: false,
+                allowDangerousCharacters: true,
             });
     }
 
