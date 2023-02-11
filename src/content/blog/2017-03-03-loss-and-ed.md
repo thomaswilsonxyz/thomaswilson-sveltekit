@@ -1,6 +1,6 @@
 ---
 
-title: "Loss and my ED  ( ED awareness week 2017)"
+title: "Loss and my ED  (ED awareness week 2017)"
 author: "Thomas Wilson"
 draft: true
 date: 2017-03-03
@@ -21,9 +21,9 @@ To recap, twelve months ago I was several months out of an abrupt breakup, which
 
 Some time around March-April last year, I slipped after a few weeks of progress (more food and sleep, less running). I have vivid memories of sitting, in tears, in my room, on Skype to a dear friend.
 
-I very rarely get angry. Frustration or impatience are well known, but to be truly deeply angry at a person, for a very distinct and obvious action - that was a very unwelcome and new feeling for me. I felt angry that someone could do something, and then appear to just not acknowledge it and move on. If you're mean you say you're sorry. If you've taken my mental and physical stability from me then you've been (perhaps unintentionally) really quite rude.
+I very rarely get angry. Frustration or impatience are well known, but to be truly deeply angry at a person, for a very distinct and obvious action-that was a very unwelcome and new feeling for me. I felt angry that someone could do something, and then appear to just not acknowledge it and move on. If you're mean you say you're sorry. If you've taken my mental and physical stability from me then you've been (perhaps unintentionally) really quite rude.
 
-What struck me is that nothing seems to stop me from feeling these pains. That is: when I'm in a bad place, I always feel the same kind of bad. It's like I said last year - my brain is a toddler in a waiting room, I have to get out. As far as I can tell, this will be the pain I feel for the rest of my life (that section of it where I'm in pain, at least). Acknowledging that was hard. Very hard.
+What struck me is that nothing seems to stop me from feeling these pains. That is: when I'm in a bad place, I always feel the same kind of bad. It's like I said last year-my brain is a toddler in a waiting room, I have to get out. As far as I can tell, this will be the pain I feel for the rest of my life (that section of it where I'm in pain, at least). Acknowledging that was hard. Very hard.
 
 ## Losing dance
 
@@ -33,11 +33,11 @@ For me, dance has always required a monastic devotion: ultimate focus on my curr
 
 Around the time I wrote the last article I began to realise that being in a dance studio wasn't making me happy. Attending classes with your recently ex-girlfriend while you're simultaneously excelling and nose-diving isn't something I can describe. It guess it was like trying to fly a plane through a thunderstorm. I don't know where I was or if I was going forwards or downwards. Sometimes I would just have to leave the space at a minute's notice, because I couldn't be in there any more.
 
-So I stopped attending classes at my university. So now I'm dancing at most three times a week. I stop seeing progress and start plateauing. I'm frustrated that I can't pick up choreography quickly, I'm lagging in routines, my technique isn't as sharp as it was. And there's nothing I can do about it. I have ideas, I'm trying to work on choreographic pieces, pieces that I feel really passionate about - but what's the point when you can't even do your own ideas justice?
+So I stopped attending classes at my university. So now I'm dancing at most three times a week. I stop seeing progress and start plateauing. I'm frustrated that I can't pick up choreography quickly, I'm lagging in routines, my technique isn't as sharp as it was. And there's nothing I can do about it. I have ideas, I'm trying to work on choreographic pieces, pieces that I feel really passionate about-but what's the point when you can't even do your own ideas justice?
 
 So I made the decision to stop dancing. Beyond a shadow of a doubt, dance saved my life. Knowing I had a class to attend, or an upcoming workshop, or that there's a weekly choreography course starting 40 minutes away and that you could definitely make it back in time if you got the last train… When these 60–90 minute periods are your islands, you become very concerned when the sea level rises. But they were putting me in a worse place, so I had to stop.
 
-This has freed up time for me to focus on acroyoga (or sports acro) - a mixture between partner acrobatics and yoga. Twelve months later and I am paid (a symbolic amount) to teach every week, I get to introduce people to something I love on a weekly basis, I train with people who treat me better than I deserve, and I can find moments of complete peace and calm. These moments are no longer mid-pirouette, but in some other equally obscure position, often on some else's feet.
+This has freed up time for me to focus on acroyoga (or sports acro)-a mixture between partner acrobatics and yoga. Twelve months later and I am paid (a symbolic amount) to teach every week, I get to introduce people to something I love on a weekly basis, I train with people who treat me better than I deserve, and I can find moments of complete peace and calm. These moments are no longer mid-pirouette, but in some other equally obscure position, often on some else's feet.
 
 I've recently started seeing dance again. I'm realising that a dance studio is different when it's full of people. Dancers who are driven by their selves or by competition act very differently to artists in a studio with an idea. I'm realising it wasn't dance that meant I had to leave, but the culture. Dance was always a tool for me, but for a lot of people I danced alongside it was an end goal. This produces some truly exceptional performers but I couldn't handle the heat, and nor did I really like the kitchen's decor so for now at least I'm staying out.
 
@@ -56,7 +56,7 @@ I've recently been involved in a number of creative projects, and I've got sever
 
 Some time in June-July I entered a relationship, with a girl I call Angel because I don't know what else you call someone who accepts and understands that sometimes I want to starve myself or make unfair quick judgements of a person or that I have a compulsive need to go to new places, be in bed by 9.30pm, and work too many hours at a job that I value too much.
 
-I have realised that I can damn well do whatever I want for my job. If I want to be a web developer then I can probably just go and do that. So what if I've got a Master's in Environmental Science - a department of chemistry happily pays me for work when I stopped studying their subject at 16. If I want someone to pay me money to keep improving some software I made when I was told explicitly by my supervisor to "not spend too much time on it" - then I should start asking a lot of people very nicely. These people do not care that I specialised in quantitative models of poverty, they care that I can show my current project has value and potential.
+I have realised that I can damn well do whatever I want for my job. If I want to be a web developer then I can probably just go and do that. So what if I've got a Master's in Environmental Science-a department of chemistry happily pays me for work when I stopped studying their subject at 16. If I want someone to pay me money to keep improving some software I made when I was told explicitly by my supervisor to "not spend too much time on it"-then I should start asking a lot of people very nicely. These people do not care that I specialised in quantitative models of poverty, they care that I can show my current project has value and potential.
 
 I realised that we're living in a world that is literally the best it has ever been. No really, we are doing just fine. Not perfect, could still improve, and perhaps we should stop trusting the general public with internationally consequential votes, but there's like no polio, fewer women are dying in childbirth, and more of these children are living and then learning to read (even the girl ones). I've started giving 5–10% of my salary to the issues I care about (you're welcome, forest elephants), and 25% of the money I earn from teaching goes to other charities.
 
@@ -64,7 +64,7 @@ I am constantly aware that nothing is permanent, which includes my feelings and 
 
 Managing a brain that advises you poorly on proper fitness routines, and which overly values an obscure art form you discovered 12 years too late to be any real good at it isn't easy. But nothing's really easy. I don't expect it to be, and I expect my situation to look different in another 12 months.
 
-I strongly agree we should be bringing discussion of mental health to the forefront of people's awareness. But you need to show continuity and narrative. I don't think a mental health story can ever truly be retrospective, because you're always living it. I want this piece to show that mental health is still there, always there, and a part of who I am - and just because it's no longer influencing my life to any great extent, does not mean this isn't an important discussion and it doesn't mean I don't think about it often.
+I strongly agree we should be bringing discussion of mental health to the forefront of people's awareness. But you need to show continuity and narrative. I don't think a mental health story can ever truly be retrospective, because you're always living it. I want this piece to show that mental health is still there, always there, and a part of who I am-and just because it's no longer influencing my life to any great extent, does not mean this isn't an important discussion and it doesn't mean I don't think about it often.
 
 I hope more people who have opened up about their mental health continue these narratives to help themselves and others understand how it affects them day-to-day, but also year-to-year, and event-to-event.
 
@@ -77,7 +77,7 @@ I ain't got the time to be your enemy
 That shit is draining, they're taking up too much energy
 I'd rather invest in something that's worth it, the time is precious
 So for Simz to waste it is something you'll never see, hold me to it
-Wings   - Little Simz.
+Wings  -Little Simz.
 </blockquote>
 
 <blockquote class="hip-hop-lyric">
@@ -86,7 +86,7 @@ How impossibly big it be, this symmetry
 This brutality, and beauty and synergy
 And beyond what we'll live to see, I know nothing can limit me
 Just take everything ever and we are that times infinity
-<cite>Tiny Glowing Screens pt. 3 - Watsky</cite>
+<cite>Tiny Glowing Screens pt. 3-Watsky</cite>
 </blockquote>
 
 <blockquote class="hip-hop-lyric">
@@ -95,7 +95,7 @@ Just know that it passes, but you'll collect scars
 They never go away, but they will make you who you are
 This is a beautiful struggle, I share it in song cause
 I can't control this, remember: the moment's beyond us
-<cite>Hold Your Head Up - Macklemore</cite>
+<cite>Hold Your Head Up-Macklemore</cite>
 </blockquote>
 
 <blockquote class="hip-hop-lyric">
@@ -103,5 +103,5 @@ I feel the waves getting far too big to handle
 Fail to turn this shit the other way
 Sail back to the harbor like your average Joe and play it safe
 But that's not life it's not what I chose
-<cite>Reflection - ATO X EDEN</cite>
+<cite>Reflection-ATO X EDEN</cite>
 </blockquote>

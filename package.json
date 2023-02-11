@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@types/js-yaml": "^4.0.5",
 		"date-fns": "^2.29.2",
+		"feed": "^4.2.2",
 		"js-yaml": "^4.1.0",
 		"just-shuffle": "^4.2.0",
 		"leaflet": "^1.8.0",
