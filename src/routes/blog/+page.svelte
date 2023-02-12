@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
+  import type { PageData } from "./$types.js";
   import Navbar from "$lib/components/Navbar.svelte";
   import { intlFormat } from "date-fns";
 
@@ -11,7 +11,8 @@
     numberOfPosts,
     daysSinceLastPublish,
     daysSinceFirstPost,
-    averageDaysBetweenPosts
+    averageDaysBetweenPosts,
+    numberOfBlogPostsThisYear
   } = data);
 </script>
 
@@ -46,18 +47,23 @@
   <section class="thomaswilson-strapline section">
     <h1>Blog</h1>
     <p>
-      I write about software and I how I should have built it, books I've read,
-      and sometimes other things.
-    </p>
-    <p>
-      It's been <span
+      It has been been
+      <span
         class="days-since"
         class:days-since-success={daysSinceLastPublish === 0}
       >
         {daysSinceLastPublish}
       </span>
       {daysSinceLastPublish === 1 ? "day" : "days"} since I last published something.
-      On average I publish something every {averageDaysBetweenPosts} days ({numberOfPosts}
+    </p>
+    <p>
+      I write about fun software I've built alone, Real Software™ I built in
+      teams, books I read, things I am sewing, and other things.
+    </p>
+    <p>
+      I have written {numberOfBlogPostsThisYear}
+      {numberOfBlogPostsThisYear === 1 ? "piece" : "pieces"} so far this year. On
+      average I publish something every {averageDaysBetweenPosts} days ({numberOfPosts}
       posts in {daysSinceFirstPost} days).
     </p>
   </section>

@@ -1,36 +1,42 @@
-import type { LoadEvent, Load, Page } from '@sveltejs/kit';
-import { differenceInCalendarDays, intlFormat } from 'date-fns';
+import type { LoadEvent } from '@sveltejs/kit';
+import { differenceInCalendarDays, getYear } from 'date-fns';
 export const prerender = true;
 
-type BlogPost = {
-	filename: string;
-	preview: string[];
-	title: string;
-	slug: string;
-	date: Date;
-	book_review?: boolean;
-};
+interface BlogPostListItem {
+    title: string;
+    author: string;
+    book_review: boolean;
+    content: string;
+    date: string;
+    preview: string;
+    slug: string;
+}
 
 export async function load({ fetch }: LoadEvent) {
-	const posts = await fetch('/api/blog.json')
-		.then((res) => res.json())
-		.then((res) => res.posts);
+    const posts: BlogPostListItem[] = await fetch('/api/blog.json')
+        .then((res) => res.json())
+        .then((res) => res.posts);
 
-	const mostRecentPost = posts[0];
+    const currentYear = getYear(new Date());
+    const mostRecentPost = posts[0];
 
-	const daysSinceLastPublish = differenceInCalendarDays(new Date(), new Date(mostRecentPost.date));
+    const daysSinceLastPublish = differenceInCalendarDays(new Date(), new Date(mostRecentPost.date));
 
-	const numberOfPosts = posts.length;
-	const firstPost = posts[numberOfPosts - 1];
-	const daysSinceFirstPost = differenceInCalendarDays(new Date(), new Date(firstPost.date));
-	const averageDaysBetweenPosts = Number(daysSinceFirstPost / numberOfPosts).toFixed(2);
+    const numberOfPosts = posts.length;
+    const firstPost = posts[numberOfPosts - 1];
+    const daysSinceFirstPost = differenceInCalendarDays(new Date(), new Date(firstPost.date));
+    const averageDaysBetweenPosts = Number(daysSinceFirstPost / numberOfPosts).toFixed(2);
+    const numberOfBlogPostsThisYear: number = posts.filter(
+        (post) => getYear(new Date(post.date)) === currentYear
+    ).length;
 
-	return {
-		posts,
-		firstPost,
-		averageDaysBetweenPosts,
-		daysSinceFirstPost,
-		daysSinceLastPublish,
-		numberOfPosts
-	};
+    return {
+        posts,
+        firstPost,
+        averageDaysBetweenPosts,
+        daysSinceFirstPost,
+        daysSinceLastPublish,
+        numberOfPosts,
+        numberOfBlogPostsThisYear,
+    };
 }
