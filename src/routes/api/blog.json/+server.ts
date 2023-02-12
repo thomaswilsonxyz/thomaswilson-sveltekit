@@ -1,4 +1,5 @@
 import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types.js';
 import { BlogController } from '../../../lib/blog/BlogController';
 
 export const GET = async () => {
@@ -17,4 +18,10 @@ export const GET = async () => {
             }
         );
     }
+};
+
+export const POST: RequestHandler = async ({ getClientAddress }) => {
+    const address = await getClientAddress();
+    console.log({ address });
+    return json({ address });
 };

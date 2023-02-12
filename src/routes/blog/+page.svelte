@@ -66,6 +66,8 @@
       average I publish something every {averageDaysBetweenPosts} days ({numberOfPosts}
       posts in {daysSinceFirstPost} days).
     </p>
+
+    <a href="/blog/feed">RSS Feed</a>
   </section>
 
   <section class="section">
