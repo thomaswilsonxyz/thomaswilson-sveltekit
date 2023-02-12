@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { open } from 'fs';
+import { writeFile, unlink, existsSync } from 'fs';
 
 import { BlogPost } from './BlogPost.js';
 import { MarkdownFile } from './MarkdownFile.js';
@@ -65,6 +65,7 @@ export class MarkdownRepository {
                     slug: markdownFile.frontmatter.slug,
                     author: markdownFile.frontmatter.author,
                     date: markdownFile.frontmatter.date,
+                    fileName: filename,
                 });
 
                 fileImports = [...fileImports, markdownFile];
@@ -126,10 +127,64 @@ export class MarkdownRepository {
         return this.bookReviews.bookReviews.find((bookReview) => bookReview.slug === slug) ?? null;
     }
 
-    async deleteBlogPostMarkdownFile(fileName: string): Promise<void> {
-        const file = this.blogPosts.blogPosts.find((blogPost) => blogPost.fileName === fileName);
-        if (file) {
-            const file = resolve(blogPostMarkdownDirectory, fileName);
+    async createBlogPostMarkdownFile(resolvdePath: string, contents: string): Promise<BlogPost> {
+        return new Promise<void>((resolve, reject) => {
+            writeFile(resolvdePath, contents, (err) => {
+                if (err) {
+                    console.error({
+                        message: `createBlogPostMarkdownFile: Caught error while writing file ${resolvdePath}`,
+                        err,
+                        error: JSON.stringify(err),
+                    });
+                    reject(err);
+                }
+
+                resolve();
+            });
+        })
+            .then(() => {
+                const markdownFile = new MarkdownFile<BlogPostFrontmatterValues>({
+                    fileName: resolvdePath,
+                    content: contents,
+                });
+
+                const blogPost = new BlogPost({
+                    markdownContent: markdownFile.content,
+                    title: markdownFile.frontmatter.title,
+                    slug: markdownFile.frontmatter.slug,
+                    author: markdownFile.frontmatter.author,
+                    date: markdownFile.frontmatter.date,
+                    fileName: resolvdePath,
+                });
+
+                return blogPost;
+            })
+            .then(async (blogPost: BlogPost) => {
+                blogPost.build();
+                return blogPost;
+            });
+    }
+
+    async deleteBlogPostMarkdownFile(resolvedFilePath: string): Promise<void> {
+        const isPresent = existsSync(resolvedFilePath);
+
+        if (!isPresent) {
+            throw `Sausages File '${resolvedFilePath}' not found.`;
         }
+
+        return new Promise((resolve, reject) => {
+            unlink(resolvedFilePath, (err) => {
+                if (err) {
+                    console.error({
+                        message: `deleteBlogPostMarkdownFile: Caught error while deleting file ${resolvedFilePath}`,
+                        err,
+                        error: JSON.stringify(err),
+                    });
+                    reject(err);
+                }
+
+                resolve();
+            });
+        });
     }
 }

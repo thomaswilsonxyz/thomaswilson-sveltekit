@@ -29,6 +29,7 @@ describe('BlogPost', () => {
                 date: new Date('2022-01-01T00:00Z'),
                 slug: 'test-slug',
                 markdownContent: 'Test Content',
+                fileName: `the-file-name.md`,
             });
 
             // WHEN
@@ -41,6 +42,7 @@ describe('BlogPost', () => {
                 .withDate(new Date('2022-01-01T00:00Z'))
                 .withSlug('test-slug')
                 .withMarkdownContent('Test Content')
+                .withFileName(`the-file-name.md`)
                 .constructAndThenBuild();
 
             expect(blogPost).toStrictEqual(expectedBlogPost);

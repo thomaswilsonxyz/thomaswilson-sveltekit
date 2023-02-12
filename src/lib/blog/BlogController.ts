@@ -28,7 +28,7 @@ interface BookReviewListItem {
 }
 
 export class BlogController {
-    private readonly _markdownRepository: MarkdownRepository;
+    private _markdownRepository: MarkdownRepository;
 
     static async singleton(): Promise<BlogController> {
         const markdownRepository = await MarkdownRepository.singleton();
@@ -41,6 +41,15 @@ export class BlogController {
 
     get markdownRepository(): MarkdownRepository {
         return this._markdownRepository;
+    }
+
+    async createBlogPost(resolvedFileName: string, markdownContent: string): Promise<BlogPost> {
+        const createdBlogPost = await this._markdownRepository.createBlogPostMarkdownFile(
+            resolvedFileName,
+            markdownContent
+        );
+        this._markdownRepository = await MarkdownRepository.singleton();
+        return createdBlogPost;
     }
 
     async getAllBlogPosts(): Promise<Array<BlogPostListItem | BookReviewListItem>> {

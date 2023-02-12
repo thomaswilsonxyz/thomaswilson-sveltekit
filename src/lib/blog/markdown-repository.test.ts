@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { MarkdownRepository } from './markdown-repository.js';
+import { resolve, dirname } from 'path';
 
 import { MarkdownFile } from './MarkdownFile.js';
 import { aBlogPost } from './test-builders/blog-post-builder.js';
@@ -31,6 +32,7 @@ describe(`Blog MarkdownRepository`, () => {
             .withSlug('2023-02-01-test')
             .withTitle('Test Blog Post')
             .withMarkdownContent(testMarkdownContent)
+            .withFileName('blog-2023-02-01-test.md')
             .constructAndThenBuild();
 
         // WHEN
@@ -68,9 +70,13 @@ describe(`Blog MarkdownRepository`, () => {
 
     describe(`Deleting markdown files`, () => {
         let repository: MarkdownRepository;
+        const currentDirectory = dirname(import.meta.url.replace('file://', ''));
 
         beforeAll(async () => {
             repository = await MarkdownRepository.fromViteGlobImport(blogPostImport, bookReviewImport);
+
+            const resolvedPath = resolve(`${currentDirectory}/test-fixtures/test-file.md`);
+            await repository.createBlogPostMarkdownFile(resolvedPath, testMarkdownContent);
         });
 
         it(`should throw an error if it attempts to delete a blog post file which does not exist`, async () => {
@@ -78,9 +84,17 @@ describe(`Blog MarkdownRepository`, () => {
             const theFileName = 'non-existent-file.md';
 
             // WHEN/THEN
-            expect(() => repository.deleteBlogPostMarkdownFile(theFileName)).toThrowError(
-                `Cannot delete file ${theFileName} as it does not exist`
+            expect(async () => repository.deleteBlogPostMarkdownFile(theFileName)).rejects.toThrowError(
+                `File 'non-existent-file.md' not found.`
             );
+        });
+
+        it(`should successfully delete a file when it does exist`, async () => {
+            // GIVEN
+            const fileName = `${currentDirectory}/test-fixtures/test-file.md`;
+
+            // WHEN
+            await repository.deleteBlogPostMarkdownFile(fileName);
         });
     });
 });

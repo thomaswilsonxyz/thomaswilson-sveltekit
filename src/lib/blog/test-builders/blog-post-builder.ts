@@ -5,6 +5,7 @@ class BlogPostBuilder {
     private _author = 'default author';
     private _date = new Date('2022-01-01T00:00Z');
     private _slug = 'default-slug';
+    private _fileName = 'default-file-name.md';
 
     private _markdownContent = 'default markdown content';
 
@@ -15,6 +16,11 @@ class BlogPostBuilder {
 
     withMarkdownContent(markdownContent: string): BlogPostBuilder {
         this._markdownContent = markdownContent;
+        return this;
+    }
+
+    withFileName(fileName: string): BlogPostBuilder {
+        this._fileName = fileName;
         return this;
     }
 
@@ -46,6 +52,7 @@ class BlogPostBuilder {
             author: this._author,
             date: this._date,
             slug: this._slug,
+            fileName: this._fileName,
         });
     }
 }

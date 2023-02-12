@@ -1,6 +1,7 @@
-import { describe, it, beforeEach, beforeAll, expect, afterEach } from 'vitest';
+import { describe, it, beforeEach, afterAll, beforeAll, expect, afterEach } from 'vitest';
 import { BlogController } from './BlogController.js';
 import { MarkdownRepository } from './markdown-repository.js';
+import { exampleMarkdown, exampleMarkdownFrontmatter } from './test-fixtures/example-markdown.js';
 
 describe(`BlogController`, () => {
     let controller: BlogController;
@@ -74,16 +75,32 @@ describe(`BlogController`, () => {
     });
 
     describe(`Creating a new blog post as a file`, () => {
-        let fileName: string;
+        const thisDirectory = import.meta.url
+            .replace('file://', '')
+            .split('/')
+            .filter((part) => part !== 'BlogController.test.ts')
+            .join('/');
+        const fileName = `${thisDirectory}/test-fixtures/test-blog-controller.md`;
         let controller: BlogController;
 
         beforeEach(async () => {
-            fileName = 'some-made-up-blog-post.md';
             controller = await BlogController.singleton();
         });
 
-        afterEach(async () => {
-            await controller.markdownRepository.deleteBlogPostFile(fileName);
+        afterAll(async () => {
+            await controller.markdownRepository.deleteBlogPostMarkdownFile(fileName);
+        });
+
+        it(`should create a new file in the content folder`, async () => {
+            // GIVEN
+            const markdownContent = exampleMarkdown;
+
+            // WHEN
+            const blogPost = await controller.createBlogPost(fileName, markdownContent);
+
+            // THEN
+            expect(blogPost).not.toBeNull();
+            expect(blogPost.html).not.toBeNull();
         });
     });
 });

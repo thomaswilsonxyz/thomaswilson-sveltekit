@@ -15,6 +15,7 @@ interface BlogPostParams {
     author: string;
     slug: string;
     markdownContent: string;
+    fileName: string; // excluding any leading `..`
 }
 
 export class BlogPost {
@@ -23,6 +24,7 @@ export class BlogPost {
     readonly author: string;
     readonly slug: string;
     readonly markdownContent: string;
+    readonly fileName: string;
 
     private _html: string | null = null;
     private _excerpt: string | null = null;
@@ -33,6 +35,7 @@ export class BlogPost {
         this.author = params.author;
         this.slug = params.slug;
         this.markdownContent = params.markdownContent;
+        this.fileName = params.fileName.split(`/`)[-1];
     }
 
     get html(): string | null {
