@@ -1,10 +1,16 @@
+import { resolve } from 'path';
+import { open } from 'fs';
+
 import { BlogPost } from './BlogPost.js';
 import { MarkdownFile } from './MarkdownFile.js';
 import { BlogPostSet } from './BlogPostSet.js';
 import { BookReviewSet } from './BookReviewSet.js';
 import { BookReview } from './BookReview.js';
 
-const blogPostMetaGlobImport = import.meta.glob('../../content/blog/*.md', { as: 'raw' });
+// We have to duplicate the `../..` here because import.meta must have a static string,
+// and it (rightfully) cannot have dynamic locations
+const blogPostMarkdownDirectory = `../../content/blog`;
+const blogPostMetaGlobImport = import.meta.glob(`../../content/blog/*.md`, { as: 'raw' });
 const bookReviewsMetaGlobImport = import.meta.glob('../../content/book-reviews/*.md', { as: 'raw' });
 
 interface BlogPostFrontmatterValues {
@@ -118,5 +124,12 @@ export class MarkdownRepository {
 
     getBookReviewBySlug(slug: string): BookReview | null {
         return this.bookReviews.bookReviews.find((bookReview) => bookReview.slug === slug) ?? null;
+    }
+
+    async deleteBlogPostMarkdownFile(fileName: string): Promise<void> {
+        const file = this.blogPosts.blogPosts.find((blogPost) => blogPost.fileName === fileName);
+        if (file) {
+            const file = resolve(blogPostMarkdownDirectory, fileName);
+        }
     }
 }

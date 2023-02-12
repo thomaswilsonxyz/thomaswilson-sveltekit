@@ -65,4 +65,22 @@ describe(`Blog MarkdownRepository`, () => {
             expect(markdownFile).toBeNull();
         });
     });
+
+    describe(`Deleting markdown files`, () => {
+        let repository: MarkdownRepository;
+
+        beforeAll(async () => {
+            repository = await MarkdownRepository.fromViteGlobImport(blogPostImport, bookReviewImport);
+        });
+
+        it(`should throw an error if it attempts to delete a blog post file which does not exist`, async () => {
+            // GIVEN
+            const theFileName = 'non-existent-file.md';
+
+            // WHEN/THEN
+            expect(() => repository.deleteBlogPostMarkdownFile(theFileName)).toThrowError(
+                `Cannot delete file ${theFileName} as it does not exist`
+            );
+        });
+    });
 });

@@ -1,5 +1,6 @@
-import { describe, it, beforeEach, beforeAll, expect } from 'vitest';
+import { describe, it, beforeEach, beforeAll, expect, afterEach } from 'vitest';
 import { BlogController } from './BlogController.js';
+import { MarkdownRepository } from './markdown-repository.js';
 
 describe(`BlogController`, () => {
     let controller: BlogController;
@@ -69,6 +70,20 @@ describe(`BlogController`, () => {
                 expect(bookReview).not.toBeNull();
                 expect(bookReview.title).toBe('After');
             });
+        });
+    });
+
+    describe(`Creating a new blog post as a file`, () => {
+        let fileName: string;
+        let controller: BlogController;
+
+        beforeEach(async () => {
+            fileName = 'some-made-up-blog-post.md';
+            controller = await BlogController.singleton();
+        });
+
+        afterEach(async () => {
+            await controller.markdownRepository.deleteBlogPostFile(fileName);
         });
     });
 });

@@ -28,17 +28,25 @@ interface BookReviewListItem {
 }
 
 export class BlogController {
+    private readonly _markdownRepository: MarkdownRepository;
+
     static async singleton(): Promise<BlogController> {
         const markdownRepository = await MarkdownRepository.singleton();
         return new BlogController(markdownRepository);
     }
 
-    constructor(private readonly markdownRepository: MarkdownRepository) {}
+    constructor(markdownRepository: MarkdownRepository) {
+        this._markdownRepository = markdownRepository;
+    }
+
+    get markdownRepository(): MarkdownRepository {
+        return this._markdownRepository;
+    }
 
     async getAllBlogPosts(): Promise<Array<BlogPostListItem | BookReviewListItem>> {
-        const blogPosts = await this.markdownRepository.blogPosts;
+        const blogPosts = await this._markdownRepository.blogPosts;
 
-        const bookReviews = await this.markdownRepository.bookReviews;
+        const bookReviews = await this._markdownRepository.bookReviews;
 
         const blogPostListItems: BlogPostListItem[] = blogPosts.blogPosts.map((blogPost) => {
             return this.blogPostToBlogPostListItem(blogPost);
@@ -78,12 +86,12 @@ export class BlogController {
     }
 
     async getBlogOrBookReviewBySlug(slug: string): Promise<BookReviewListItem | BlogPostListItem | null> {
-        const blogPost = await this.markdownRepository.getBlogPostBySlug(slug);
+        const blogPost = await this._markdownRepository.getBlogPostBySlug(slug);
         if (blogPost) {
             return this.blogPostToBlogPostListItem(blogPost, true);
         }
 
-        const bookReview = await this.markdownRepository.getBookReviewBySlug(slug);
+        const bookReview = await this._markdownRepository.getBookReviewBySlug(slug);
         if (bookReview) {
             return this.bookReviewToBookReviewListItem(bookReview, true);
         }
