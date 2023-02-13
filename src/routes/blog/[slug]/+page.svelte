@@ -35,19 +35,34 @@
     <p class="post-date">{intlFormat(date)}</p>
   </header>
 
-  <article>
+  <article id="article">
     {@html post.content}
     <a href="/blog">See other articles</a>
   </article>
 </main>
 
-<style lang="scss">
+<style lang="scss" global>
   header {
     padding-top: 24px;
   }
 
-  article {
+  #article {
     max-width: 65ch;
+
+    p,
+    a {
+      line-height: 160%;
+      font-size: 1.29rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    li {
+      margin: 0;
+      line-height: 140%;
+      font-size: 1.29rem;
+    }
   }
 
   @media screen and (max-width: 700px) {
@@ -58,18 +73,19 @@
 
   .post-title {
     text-align: center;
-    padding-bottom: 1rem;
     line-height: 125%;
   }
   .post-author {
-    font-size: 1rem;
+    font-size: 1.3rem;
     text-align: center;
     line-height: 100%;
+    margin: 0;
   }
 
   .post-date {
     font-size: 1rem;
     text-align: center;
     line-height: 100%;
+    margin: 0;
   }
 </style>
