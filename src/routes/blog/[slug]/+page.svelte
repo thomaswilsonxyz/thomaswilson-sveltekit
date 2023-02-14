@@ -49,12 +49,12 @@
   </article>
 </main>
 
-<style lang="scss" global>
+<style lang="scss">
   header {
     padding-top: 24px;
   }
 
-  #article {
+  :global(#article) {
     max-width: 95%;
     width: 65ch;
 

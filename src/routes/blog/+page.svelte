@@ -106,7 +106,7 @@
   </section>
 </main>
 
-<style>
+<style lang="scss">
   .posts {
     list-style: none;
     margin: 0;
@@ -115,6 +115,10 @@
     grid-template-columns: 100%;
     gap: var(--spacing-base);
     max-width: 100%;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .post {
@@ -127,6 +131,10 @@
 
   .post:hover {
     color: var(--brand-orange);
+    background-color: white;
+    border: 1px solid var(--brand-orange);
+    scale: 1.02;
+    box-shadow: 10px 10px 10px 10px var(--gray-200);
   }
 
   .post a {
@@ -138,7 +146,8 @@
     text-decoration: underline;
     font-family: var(--font-family-title);
     font-weight: 600;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
+    font-size: 1.1rem;
   }
 
   .post-date {
@@ -146,9 +155,10 @@
   }
 
   .post-preview {
-    font-size: 0.9rem;
-    line-height: 120%;
+    font-size: 0.95rem;
+    line-height: 140%;
     color: var(--gray-600);
+    padding-bottom: 2px;
   }
 
   .days-since {
