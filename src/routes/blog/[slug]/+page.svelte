@@ -32,7 +32,15 @@
   <header class="section">
     <h1 class="title post-title">{post.title}</h1>
     <p class="post-author">{post.author}</p>
-    <p class="post-date">{intlFormat(date)}</p>
+    <p class="post-date">
+      {intlFormat(date, {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        localeMatcher: "best fit"
+      })}
+    </p>
   </header>
 
   <article id="article">
@@ -47,12 +55,13 @@
   }
 
   #article {
-    max-width: 65ch;
+    max-width: 95%;
+    width: 65ch;
 
     p,
     a {
       line-height: 160%;
-      font-size: 1.29rem;
+      font-size: var(--font-size);
       font-weight: 400;
       margin-bottom: 1.5rem;
       letter-spacing: 0.5px;
@@ -61,13 +70,17 @@
     li {
       margin: 0;
       line-height: 140%;
-      font-size: 1.29rem;
+      font-size: var(--font-size);
     }
-  }
 
-  @media screen and (max-width: 700px) {
-    article {
+    @media screen and (max-width: 700px) {
+      --font-size: 1.1rem;
       padding: 12px;
+    }
+
+    @media screen and (min-width: 700px) {
+      --font-size: 1.29rem;
+      padding: 24px;
     }
   }
 
