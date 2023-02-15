@@ -12,7 +12,7 @@ export class SunriseSunsetDayGuess {
             case GuessType.incorrect:
                 return '💔';
             case GuessType.missing:
-                return '🥷';
+                return '👻';
         }
     }
 
