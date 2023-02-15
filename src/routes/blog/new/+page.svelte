@@ -44,7 +44,7 @@
       title,
       author,
       slug,
-      markdownContent: JSON.stringify(content),
+      markdownContent: content,
       fileName: `${slug}.md`,
       date: date.toISOString()
     };
