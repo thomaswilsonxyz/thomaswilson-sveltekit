@@ -54,24 +54,31 @@
     padding-top: 24px;
   }
 
-  :global(#article) {
+  :global(blockquote) {
+    font-size: var(--font-size);
+    font-style: italic;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    border-left: 2px solid var(--brand-orange);
+  }
+
+  :global(p, a) {
+    line-height: 160%;
+    font-size: var(--font-size);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  :global(li) {
+    margin: 0;
+    line-height: 140%;
+    font-size: var(--font-size);
+  }
+
+  #article {
     max-width: 95%;
     width: 65ch;
-
-    p,
-    a {
-      line-height: 160%;
-      font-size: var(--font-size);
-      font-weight: 400;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.5px;
-    }
-
-    li {
-      margin: 0;
-      line-height: 140%;
-      font-size: var(--font-size);
-    }
 
     @media screen and (max-width: 700px) {
       --font-size: 1.1rem;

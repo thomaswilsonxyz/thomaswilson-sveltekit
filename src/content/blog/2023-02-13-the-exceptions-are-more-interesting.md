@@ -5,6 +5,11 @@ slug: 2023-02-13-the-exceptions-are-more-interesting
 author: Thomas Wilson
 
 ---
+
+Edit: Ironically, this post is a little too generic.  My thinking got a bit clearer in [The Meta is More Appealing](/blog/2023-02-19-the-meta-is-more-appealing/).  Thomas 2023-02-19.
+
+---
+
 I'm going to open with three buzzwords and a bland sentiment:
 
 Theories, policies, and frameworks are useful.  
