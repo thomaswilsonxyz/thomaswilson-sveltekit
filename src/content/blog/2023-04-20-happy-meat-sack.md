@@ -7,7 +7,7 @@ author: Thomas Wilson
 ---
 I went for coffee with a friend today.  We were talking about how to make sense of it all.  The big stuff.
 
-We were talking about the things you should not burn: health, youth, relationships.  Those things will, if sustained, sustain you.  Or, more pessimistically, they are the things you will reassembling slowly if you discard them.
+We were talking about the things you should not burn: health, youth, relationships.  Those things will, if sustained, sustain you.  Or, more pessimistically, they are the things you will reassemble slowly if you discard them.
 
 Take the time and hone the tools to sustain them.  It does not matter if they do not feel important on a Thursday lunchtime when the sun is out.  
 
