@@ -16,9 +16,10 @@
   <section class="section thomaswilson-strapline">
     <h1 class="title">Thomas Wilson</h1>
     <p>
-      I'm a software engineer who loves the craft of leading teams, and building
-      software that is reliable and human-friendly. I build good things with
-      good people for good companies.
+      I'm a software engineer who loves the messy craft of leading teams and
+      building software. I like finding the tension between
+      <i>minimal</i> and <i>complete</i>. I build good things with good people
+      for good companies.
     </p>
   </section>
 
@@ -137,12 +138,16 @@
   }
 
   section p {
+    padding-top: 0;
     padding-bottom: var(--spacing-md);
+    font-size: 1.3rem;
+    color: var(--gray-700);
   }
 
-  .strapline p {
+  .thomaswilson-strapline > p {
     padding-top: 4px;
     padding-bottom: 1rem;
+    font-size: 1.65rem;
 
     color: var(--gray-700);
   }
