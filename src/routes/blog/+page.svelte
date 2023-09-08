@@ -1,18 +1,17 @@
 <script lang="ts">
   import type { PageData } from "./$types.js";
   import Navbar from "$lib/components/Navbar.svelte";
-  import { intlFormat } from "date-fns";
+  import BlogPostListItem from "./BlogPostListItem.svelte";
 
   export let data: PageData;
 
   $: ({
     posts,
-    firstPost,
     numberOfPosts,
     daysSinceLastPublish,
     daysSinceFirstPost,
     averageDaysBetweenPosts,
-    numberOfBlogPostsThisYear
+    numberOfBlogPostsThisYear,
   } = data);
 </script>
 
@@ -50,7 +49,7 @@
       It has been been
       <span
         class="days-since"
-        class:days-since-success={daysSinceLastPublish === 0}
+        class:days-since-success="{daysSinceLastPublish === 0}"
       >
         {daysSinceLastPublish}
       </span>
@@ -74,34 +73,17 @@
     <h2>All Writing</h2>
     <ul class="posts">
       {#each posts as post, index}
-        <li
-          class="post"
-          role="article"
-          aria-posinset={index + 1}
-          aria-setsize={posts.length}
-        >
-          <a href={`/blog/${post.slug}`}>
-            <div class="post-title">
-              {#if post.book_review} 📚 {/if}{post.title}
-            </div>
-
-            <div class="post-preview">
-              {#if post.preview}
-                {post.preview}...
-              {:else}
-                No preview available ): Click to read the full post.
-              {/if}
-            </div>
-
-            <div class="post-date">
-              {intlFormat(
-                new Date(post.date),
-                { day: "2-digit", month: "long", year: "numeric" },
-                { locale: "en-GB" }
-              )}
-            </div>
-          </a>
-        </li>{/each}
+        <BlogPostListItem
+          index="{index}"
+          content_type="{post.content_type}"
+          book_review="{post.book_review}"
+          date="{post.date}"
+          numberOfPosts="{posts.length}"
+          preview="{post.preview}"
+          slug="{post.slug}"
+          title="{post.title}"
+        />
+      {/each}
     </ul>
   </section>
 </main>
@@ -119,46 +101,6 @@
     @media screen and (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
-
-  .post {
-    border: 1px solid var(--gray-200);
-    padding: var(--spacing-md);
-    transition: 0.2s;
-    border-radius: 8px;
-    max-width: 100%;
-  }
-
-  .post:hover {
-    color: var(--brand-orange);
-    background-color: white;
-    border: 1px solid var(--brand-orange);
-    scale: 1.02;
-    box-shadow: 10px 10px 10px 10px var(--gray-200);
-  }
-
-  .post a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .post-title {
-    text-decoration: underline;
-    font-family: var(--font-family-title);
-    font-weight: 600;
-    padding-bottom: 4px;
-    font-size: 1.1rem;
-  }
-
-  .post-date {
-    font-size: 0.9rem;
-  }
-
-  .post-preview {
-    font-size: 0.95rem;
-    line-height: 140%;
-    color: var(--gray-600);
-    padding-bottom: 2px;
   }
 
   .days-since {

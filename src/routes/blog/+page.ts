@@ -10,6 +10,7 @@ interface BlogPostListItem {
     date: string;
     preview: string;
     slug: string;
+    content_type: 'blog' | 'book_review' | 'snout_street_studios';
 }
 
 export async function load({ fetch }: LoadEvent) {
@@ -18,7 +19,9 @@ export async function load({ fetch }: LoadEvent) {
         .then((res) => res.posts);
 
     const currentYear = getYear(new Date());
+    console.log({ posts });
     const mostRecentPost = posts[0];
+    console.log({ ...mostRecentPost });
 
     const daysSinceLastPublish = differenceInCalendarDays(new Date(), new Date(mostRecentPost.date));
 

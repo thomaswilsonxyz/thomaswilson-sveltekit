@@ -1,21 +1,25 @@
+import type { SnoutStreetStudiosPost } from '$lib/snout-street-studios/SnoutStreetStudiosPost.js';
 import type { BlogPost } from './BlogPost.js';
 import type { BookReview } from './BookReview.js';
 import { MarkdownRepository } from './markdown-repository.js';
 
-const blogPostMetaGlobImport = import.meta.glob('../../content/blog/*.md', { as: 'raw' });
-const bookReviewsMetaGlobImport = import.meta.glob('../../content/book-reviews/*.md', { as: 'raw' });
+interface BlogItem {
+    title: string;
+    date: string;
+    content: string;
+    slug: string;
+    content_type: 'blog' | 'book_review' | 'snout_street_studios';
+}
 
-interface BlogPostListItem {
+interface BlogPostListItem extends BlogItem {
     title: string;
     author: string;
     date: string;
     book_review: boolean;
     preview: string;
-    content: string;
-    slug: string;
 }
 
-interface BookReviewListItem {
+interface BookReviewListItem extends BlogItem {
     book_review: true;
     title: string;
     author: string;
@@ -23,8 +27,12 @@ interface BookReviewListItem {
     slug: string;
     score: number;
     finished: string;
+}
+
+interface SnoutStreetStudiosPostListItem extends BlogItem {
+    title: string;
+    slug: string;
     date: string;
-    content: string;
 }
 
 export class BlogController {
@@ -52,10 +60,12 @@ export class BlogController {
         return createdBlogPost;
     }
 
-    async getAllBlogPosts(): Promise<Array<BlogPostListItem | BookReviewListItem>> {
+    async getAllBlogPosts(): Promise<Array<BlogPostListItem | BookReviewListItem | SnoutStreetStudiosPostListItem>> {
         const blogPosts = await this._markdownRepository.blogPosts;
 
         const bookReviews = await this._markdownRepository.bookReviews;
+
+        const snoutStreetStudiosPosts = await this._markdownRepository.snoutStreetStudiosPosts;
 
         const blogPostListItems: BlogPostListItem[] = blogPosts.blogPosts.map((blogPost) => {
             return this.blogPostToBlogPostListItem(blogPost);
@@ -65,10 +75,16 @@ export class BlogController {
             return this.bookReviewToBookReviewListItem(bookReview);
         });
 
-        return [...blogPostListItems, ...bookReviewListItems].sort((a, b) => (a.date > b.date ? -1 : 1));
+        const snoutStreetStudiosPostListItems: SnoutStreetStudiosPostListItem[] = snoutStreetStudiosPosts.posts.map(
+            (post) => this.snoutStreetStudiosPostToSnoutStreetStudiosPostListItem(post)
+        );
+
+        return [...blogPostListItems, ...bookReviewListItems, ...snoutStreetStudiosPostListItems].sort((a, b) =>
+            a.date > b.date ? -1 : 1
+        );
     }
 
-    private bookReviewToBookReviewListItem(bookReview: BookReview, includeHtml = false): BookReviewListItem {
+    private bookReviewToBookReviewListItem(bookReview: BookReview): BookReviewListItem {
         return {
             book_review: true,
             title: bookReview.title,
@@ -78,31 +94,53 @@ export class BlogController {
             image: bookReview.image,
             score: bookReview.score,
             slug: bookReview.slug,
-            content: includeHtml ? bookReview.html : '',
+            content: 'bookReview.html',
+            content_type: 'book_review',
         };
     }
 
-    private blogPostToBlogPostListItem(blogPost: BlogPost, includeHtml = false): BlogPostListItem {
+    private blogPostToBlogPostListItem(blogPost: BlogPost): BlogPostListItem {
         return {
             title: blogPost.title,
             author: blogPost.author,
             book_review: false,
-            content: includeHtml ? blogPost.html : '',
+            content: blogPost.html,
             date: blogPost.date.toISOString(),
             preview: blogPost.excerpt,
             slug: blogPost.slug,
+            content_type: 'blog',
         };
     }
 
-    async getBlogOrBookReviewBySlug(slug: string): Promise<BookReviewListItem | BlogPostListItem | null> {
+    private snoutStreetStudiosPostToSnoutStreetStudiosPostListItem(
+        post: SnoutStreetStudiosPost
+    ): SnoutStreetStudiosPostListItem {
+        return {
+            title: post.title,
+            slug: post.slug,
+            date: post.date.toISOString(),
+            content_type: 'snout_street_studios',
+            content: post.html,
+        };
+    }
+
+    async getAnyKindOfContentBySlug(
+        slug: string
+    ): Promise<BookReviewListItem | BlogPostListItem | SnoutStreetStudiosPostListItem | null> {
         const blogPost = await this._markdownRepository.getBlogPostBySlug(slug);
         if (blogPost) {
-            return this.blogPostToBlogPostListItem(blogPost, true);
+            return this.blogPostToBlogPostListItem(blogPost);
         }
 
         const bookReview = await this._markdownRepository.getBookReviewBySlug(slug);
         if (bookReview) {
-            return this.bookReviewToBookReviewListItem(bookReview, true);
+            return this.bookReviewToBookReviewListItem(bookReview);
+        }
+
+        const snoutStreetStudiosPost = await this._markdownRepository.getSnoutStreetStudiosPostBySlug(slug);
+
+        if (snoutStreetStudiosPost) {
+            return this.snoutStreetStudiosPostToSnoutStreetStudiosPostListItem(snoutStreetStudiosPost);
         }
 
         return null;

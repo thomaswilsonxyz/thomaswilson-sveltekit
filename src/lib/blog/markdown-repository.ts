@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import { writeFile, unlink, existsSync } from 'fs';
 
 import { BlogPost } from './BlogPost.js';
@@ -6,12 +5,17 @@ import { MarkdownFile } from './MarkdownFile.js';
 import { BlogPostSet } from './BlogPostSet.js';
 import { BookReviewSet } from './BookReviewSet.js';
 import { BookReview } from './BookReview.js';
+import { SnoutStreetStudiosPost } from '$lib/snout-street-studios/SnoutStreetStudiosPost.js';
+import { SnoutStreetStudiosPostSet } from './SnoutStreetStudiosPostSet.js';
+import { MarkdownBuilder } from './markdown/markdown-builder.js';
 
 // We have to duplicate the `../..` here because import.meta must have a static string,
 // and it (rightfully) cannot have dynamic locations
-const blogPostMarkdownDirectory = `../../content/blog`;
 const blogPostMetaGlobImport = import.meta.glob(`../../content/blog/*.md`, { as: 'raw' });
-const bookReviewsMetaGlobImport = import.meta.glob('../../content/book-reviews/*.md', { as: 'raw' });
+const bookReviewsMetaGlobImport = import.meta.glob(`../../content/book-reviews/*.md`, { as: 'raw' });
+const snoutStreetStudiosPostMetaGlobImport = import.meta.glob('../../content/snout-street-studios/*.md', {
+    as: 'raw',
+});
 
 interface BlogPostFrontmatterValues {
     title: string;
@@ -30,37 +34,55 @@ interface BookReviewFrontmatterValues {
     image: string;
 }
 
+interface SnoutStreetStudiosPostFrontmatterValues {
+    title: string;
+    slug: string;
+    date: string;
+}
+
 export class MarkdownRepository {
     readonly blogPosts: BlogPostSet;
     readonly bookReviews: BookReviewSet;
+    readonly snoutStreetStudiosPosts: SnoutStreetStudiosPostSet;
 
-    private constructor(blogPosts: BlogPost[], bookReviews: BookReview[]) {
+    private constructor(
+        blogPosts: BlogPost[],
+        bookReviews: BookReview[],
+        snoutStreetStudiosPosts: SnoutStreetStudiosPost[]
+    ) {
         this.blogPosts = new BlogPostSet(blogPosts);
         this.bookReviews = new BookReviewSet(bookReviews);
+        this.snoutStreetStudiosPosts = new SnoutStreetStudiosPostSet(snoutStreetStudiosPosts);
     }
 
     public static async singleton(): Promise<MarkdownRepository> {
-        return await MarkdownRepository.fromViteGlobImport(blogPostMetaGlobImport, bookReviewsMetaGlobImport);
+        return await MarkdownRepository.fromViteGlobImport(
+            blogPostMetaGlobImport,
+            bookReviewsMetaGlobImport,
+            snoutStreetStudiosPostMetaGlobImport
+        );
     }
 
-    public static async fromViteGlobImport(blogGlobImport, bookReviewGlobImport): Promise<MarkdownRepository> {
+    public static async fromViteGlobImport(
+        blogGlobImport,
+        bookReviewGlobImport,
+        snoutStreetPostGlobImport
+    ): Promise<MarkdownRepository> {
         let fileImports: MarkdownFile<BlogPostFrontmatterValues>[] = [];
         let blogPosts: BlogPost[] = [];
         let bookReviews: BookReview[] = [];
+        let snoutStreetPosts: SnoutStreetStudiosPost[] = [];
 
         const blogPostFiles = Object.entries(blogGlobImport);
 
         for (const blogPostFile of blogPostFiles) {
             const [filename, module] = blogPostFile as [string, () => Promise<string>];
             try {
-                const fileContent = await module();
+                const markdownFile = await MarkdownFile.build<BlogPostFrontmatterValues>(filename, await module());
 
-                const markdownFile = new MarkdownFile<BlogPostFrontmatterValues>({
-                    fileName: filename,
-                    content: fileContent,
-                });
                 const blogPost = new BlogPost({
-                    markdownContent: markdownFile.content,
+                    excerpt: markdownFile.excerpt,
+                    html: markdownFile.html,
                     title: markdownFile.frontmatter.title,
                     slug: markdownFile.frontmatter.slug,
                     author: markdownFile.frontmatter.author,
@@ -81,12 +103,7 @@ export class MarkdownRepository {
         for (const bookReviewFile of Object.entries(bookReviewGlobImport)) {
             const [filename, module] = bookReviewFile as [string, () => Promise<string>];
             try {
-                const fileContent = await module();
-
-                const markdownFile = new MarkdownFile<BookReviewFrontmatterValues>({
-                    fileName: filename,
-                    content: fileContent,
-                });
+                const markdownFile = await MarkdownFile.build<BookReviewFrontmatterValues>(filename, await module());
 
                 const bookReview = new BookReview({
                     author: markdownFile.frontmatter.author,
@@ -97,7 +114,7 @@ export class MarkdownRepository {
                     finished: markdownFile.frontmatter.finished,
                     image: markdownFile.frontmatter.image,
                     score: markdownFile.frontmatter.score,
-                    markdownContent: markdownFile.content,
+                    html: markdownFile.html,
                 });
 
                 bookReviews = [...bookReviews, bookReview];
@@ -109,14 +126,35 @@ export class MarkdownRepository {
             }
         }
 
-        const repository = new MarkdownRepository(blogPosts, bookReviews);
-        await repository.buildAll();
-        return repository;
-    }
+        for (const snoutStreetPostFile of Object.entries(snoutStreetPostGlobImport)) {
+            const [filename, module] = snoutStreetPostFile as [string, () => Promise<string>];
+            try {
+                const markdownFile = await MarkdownFile.build<SnoutStreetStudiosPostFrontmatterValues>(
+                    filename,
+                    await module()
+                );
 
-    private async buildAll() {
-        await Promise.all([this.blogPosts.buildAllBlogPosts(), this.bookReviews.buildAllBookReviews()]);
-        return;
+                const snoutStreetPost = new SnoutStreetStudiosPost({
+                    title: markdownFile.frontmatter.title,
+                    slug: markdownFile.frontmatter.slug,
+                    date: new Date(markdownFile.frontmatter.date),
+                    html: markdownFile.html,
+                    excerpt: markdownFile.excerpt,
+                });
+
+                snoutStreetPosts = [...snoutStreetPosts, snoutStreetPost];
+            } catch (e: any) {
+                console.error({
+                    message: `[MarkdownRespository::fromViteGlobImport] Error loading file ${filename}`,
+                    error: e,
+                });
+            }
+        }
+
+        console.log(`[MarkdownRepository::fromViteGlobImport] Loaded ${fileImports.length} files.`);
+        const repository = new MarkdownRepository(blogPosts, bookReviews, snoutStreetPosts);
+        console.log(`[MarkdownRepository::fromViteGlobImport] Built all posts.`);
+        return repository;
     }
 
     getBlogPostBySlug(slug: string): BlogPost | null {
@@ -127,12 +165,16 @@ export class MarkdownRepository {
         return this.bookReviews.bookReviews.find((bookReview) => bookReview.slug === slug) ?? null;
     }
 
-    async createBlogPostMarkdownFile(resolvdePath: string, contents: string): Promise<BlogPost> {
+    getSnoutStreetStudiosPostBySlug(slug: string): SnoutStreetStudiosPost | null {
+        return this.snoutStreetStudiosPosts.posts.find((post) => post.slug === slug) ?? null;
+    }
+
+    async createBlogPostMarkdownFile(resolvedPath: string, contents: string): Promise<BlogPost> {
         return new Promise<void>((resolve, reject) => {
-            writeFile(resolvdePath, contents, (err) => {
+            writeFile(resolvedPath, contents, (err) => {
                 if (err) {
                     console.error({
-                        message: `createBlogPostMarkdownFile: Caught error while writing file ${resolvdePath}`,
+                        message: `createBlogPostMarkdownFile: Caught error while writing file ${resolvedPath}`,
                         err,
                         error: JSON.stringify(err),
                     });
@@ -141,28 +183,21 @@ export class MarkdownRepository {
 
                 resolve();
             });
-        })
-            .then(() => {
-                const markdownFile = new MarkdownFile<BlogPostFrontmatterValues>({
-                    fileName: resolvdePath,
-                    content: contents,
-                });
+        }).then(async () => {
+            const markdownFile = await MarkdownFile.build<BlogPostFrontmatterValues>(resolvedPath, contents);
 
-                const blogPost = new BlogPost({
-                    markdownContent: markdownFile.content,
-                    title: markdownFile.frontmatter.title,
-                    slug: markdownFile.frontmatter.slug,
-                    author: markdownFile.frontmatter.author,
-                    date: markdownFile.frontmatter.date,
-                    fileName: resolvdePath,
-                });
-
-                return blogPost;
-            })
-            .then(async (blogPost: BlogPost) => {
-                blogPost.build();
-                return blogPost;
+            const blogPost = new BlogPost({
+                html: markdownFile.html,
+                excerpt: markdownFile.excerpt,
+                title: markdownFile.frontmatter.title,
+                slug: markdownFile.frontmatter.slug,
+                author: markdownFile.frontmatter.author,
+                date: markdownFile.frontmatter.date,
+                fileName: resolvedPath,
             });
+
+            return blogPost;
+        });
     }
 
     async deleteBlogPostMarkdownFile(resolvedFilePath: string): Promise<void> {

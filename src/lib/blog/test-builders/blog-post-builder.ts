@@ -2,20 +2,25 @@ import { BlogPost } from '../BlogPost.js';
 
 class BlogPostBuilder {
     private _title = 'default title';
+    private _html = 'default html';
+    private _excerpt = 'default excerpt';
     private _author = 'default author';
     private _date = new Date('2022-01-01T00:00Z');
     private _slug = 'default-slug';
     private _fileName = 'default-file-name.md';
-
-    private _markdownContent = 'default markdown content';
 
     withTitle(title: string): BlogPostBuilder {
         this._title = title;
         return this;
     }
 
-    withMarkdownContent(markdownContent: string): BlogPostBuilder {
-        this._markdownContent = markdownContent;
+    withHtml(markdownContent: string): BlogPostBuilder {
+        this._html = markdownContent;
+        return this;
+    }
+
+    withExcerpt(excerpt: string): BlogPostBuilder {
+        this._excerpt = excerpt;
         return this;
     }
 
@@ -39,20 +44,15 @@ class BlogPostBuilder {
         return this;
     }
 
-    async constructAndThenBuild(): Promise<BlogPost> {
-        const blogPost = this.build();
-        await blogPost.build();
-        return blogPost;
-    }
-
     build(): BlogPost {
         return new BlogPost({
             title: this._title,
-            markdownContent: this._markdownContent,
+            html: this._html,
             author: this._author,
             date: this._date,
             slug: this._slug,
             fileName: this._fileName,
+            excerpt: this._excerpt,
         });
     }
 }

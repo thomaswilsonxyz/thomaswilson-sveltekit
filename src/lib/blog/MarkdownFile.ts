@@ -1,41 +1,46 @@
-import { unified, type Processor } from 'unified';
-import type { Parent, Node, Literal } from 'unist';
-
-import markdown from 'remark-parse';
-import markdownFrontmatter from 'remark-frontmatter';
-import remarkStringify from 'remark-stringify';
-import { load as loadYaml } from 'js-yaml';
+import { MarkdownBuilder } from './markdown/markdown-builder.js';
 
 interface MarkdownFileProps {
     fileName: string;
+    /** The raw contents of the .md file */
     content: string;
 }
 export class MarkdownFile<FrontMatter = Record<string, string>> {
     readonly fileName: string;
     readonly content: string;
-    readonly frontmatter: FrontMatter | undefined = undefined;
+    private _frontmatter: FrontMatter | null = null;
+    private _html: string | null = null;
+    private _excerpt: string | null = null;
 
-    constructor(props: MarkdownFileProps) {
+    private constructor(props: MarkdownFileProps) {
         this.fileName = props.fileName;
         this.content = props.content;
-
-        const processor = this.markdownProcesserFactory();
-        const parsedMarkdown: Parent<Literal> = processor.parse(this.content) as Parent<Literal>;
-
-        const frontmatterNode: Literal | undefined = parsedMarkdown.children.find((node) => node.type === 'yaml');
-
-        if (frontmatterNode !== undefined) {
-            const frontmatter = loadYaml(frontmatterNode.value as string);
-            this.frontmatter = frontmatter as FrontMatter;
-        } else {
-            console.warn(`Markdown file ${this.fileName} does not contain frontmatter.`);
-        }
     }
 
-    private markdownProcesserFactory(): Processor {
-        return unified() //
-            .use(markdown)
-            .use(markdownFrontmatter)
-            .use(remarkStringify);
+    get html(): string | null {
+        return this._html;
+    }
+
+    get frontmatter(): FrontMatter | null {
+        return this._frontmatter;
+    }
+
+    get excerpt(): string | null {
+        return this._excerpt;
+    }
+
+    static async build<Frontmatter extends Record<string, any>>(
+        theFileName: string,
+        theFileContents: string
+    ): Promise<MarkdownFile<Frontmatter>> {
+        const markdownFile = new MarkdownFile<Frontmatter>({ fileName: theFileName, content: theFileContents });
+        await markdownFile.build();
+        return markdownFile;
+    }
+
+    private async build(): Promise<void> {
+        this._html = await MarkdownBuilder.getHtml(this.content);
+        this._excerpt = await MarkdownBuilder.getExcerptFromMarkdown(this.content);
+        this._frontmatter = MarkdownBuilder.getFrontmatter(this.content, this.fileName);
     }
 }

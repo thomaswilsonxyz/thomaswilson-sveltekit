@@ -14,8 +14,4 @@ export class BlogPostSet {
     getBlogPostWithTitle(title: string): BlogPost | null {
         return this._blogPosts.find((post) => post.title === title) ?? null;
     }
-
-    async buildAllBlogPosts(): Promise<void> {
-        await Promise.all(this.blogPosts.map((post) => post.build()));
-    }
 }

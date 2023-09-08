@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { BlogPost } from './BlogPost.js';
 import { BlogPostSet } from './BlogPostSet.js';
 import { aBlogPost } from './test-builders/blog-post-builder.js';
 describe(`BlogPostSet`, () => {
@@ -13,19 +12,6 @@ describe(`BlogPostSet`, () => {
 
         // THEN
         expect(blogPostSet.blogPosts).toStrictEqual([blogPostOne, blogPostTwo]);
-    });
-
-    it(`Should be able to build all the blog posts`, async () => {
-        // GIVEN
-        const blogPostOne = aBlogPost().withTitle('Blog Post One').build();
-        const blogPostTwo = aBlogPost().withTitle('Blog Post Two').build();
-        const blogPostSet = new BlogPostSet([blogPostOne, blogPostTwo]);
-
-        // WHEN
-        await blogPostSet.buildAllBlogPosts();
-
-        // THEN
-        expect(blogPostSet.blogPosts.every((post) => post.hasBeenBuilt)).toBe(true);
     });
 
     describe(`Finding a blog post by title`, () => {

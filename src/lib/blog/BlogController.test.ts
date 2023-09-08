@@ -10,7 +10,7 @@ describe(`BlogController`, () => {
         controller = await BlogController.singleton();
     });
 
-    describe(`Getting all blog posts and book reviews`, () => {
+    describe(`Getting all posts which show up on the /blog page`, () => {
         it(`should load blogs from the content folder`, async () => {
             // GIVEN
             const blogPosts = await controller.getAllBlogPosts();
@@ -18,16 +18,18 @@ describe(`BlogController`, () => {
             // WHEN
             const aKnownBlogPost = blogPosts.find((post) => post.title === 'Vibe Check #10');
             const aKnownBookReview = blogPosts.find((post) => post.title === 'After');
+            const aKnownSnoutStreetStudiosPost = blogPosts.find((post) => post.title === 'Cinnamon Dust Linen Shirt');
             const aMadeUpBlogPost = blogPosts.find((post) => post.title === 'Some made up blog post');
 
             // then
             expect(aMadeUpBlogPost).toBeUndefined();
             expect(aKnownBlogPost).not.toBeUndefined();
             expect(aKnownBookReview).not.toBeUndefined();
+            expect(aKnownSnoutStreetStudiosPost).not.toBeUndefined();
         });
     });
 
-    describe(`Finding a blog post or book review by slug`, () => {
+    describe(`Finding content by slug`, () => {
         describe(`Finding a blog post`, () => {
             // GIVEN
             const slugForRealBlogPost = '2023-02-03-vibe-check-10';
@@ -35,7 +37,7 @@ describe(`BlogController`, () => {
 
             it(`should return null if there's no blog post with the slug`, async () => {
                 // WHEN
-                const blogPost = await controller.getBlogOrBookReviewBySlug(slugForFakeBlogPost);
+                const blogPost = await controller.getAnyKindOfContentBySlug(slugForFakeBlogPost);
 
                 // THEN
                 expect(blogPost).toBeNull();
@@ -43,7 +45,7 @@ describe(`BlogController`, () => {
 
             it(`should return the blog post if it exists`, async () => {
                 // WHEN
-                const blogPost = await controller.getBlogOrBookReviewBySlug(slugForRealBlogPost);
+                const blogPost = await controller.getAnyKindOfContentBySlug(slugForRealBlogPost);
 
                 // THEN
                 expect(blogPost).not.toBeNull();
@@ -57,7 +59,7 @@ describe(`BlogController`, () => {
 
             it(`should return null if there's no book review with the slug`, async () => {
                 // WHEN
-                const bookReview = await controller.getBlogOrBookReviewBySlug(fakeSlug);
+                const bookReview = await controller.getAnyKindOfContentBySlug(fakeSlug);
 
                 // THEN
                 expect(bookReview).toBeNull();
@@ -65,11 +67,33 @@ describe(`BlogController`, () => {
 
             it(`should return the book review if it exists`, async () => {
                 // WHEN
-                const bookReview = await controller.getBlogOrBookReviewBySlug(realSlug);
+                const bookReview = await controller.getAnyKindOfContentBySlug(realSlug);
 
                 // THEN
                 expect(bookReview).not.toBeNull();
                 expect(bookReview.title).toBe('After');
+            });
+        });
+
+        describe(`Finding a Snout Street Studios post`, () => {
+            const realSlug = '2023-08-cinnamon-dust-linen-shirt';
+            const fakeSlug = 'some-made-up-snout-street-studios-post';
+
+            it(`should return null if there's no Snout Street Studios post with the slug`, async () => {
+                // WHEN
+                const snoutStreetStudiosPost = await controller.getAnyKindOfContentBySlug(fakeSlug);
+
+                // THEN
+                expect(snoutStreetStudiosPost).toBeNull();
+            });
+
+            it(`should return the Snout Street Studios post if it exists`, async () => {
+                // WHEN
+                const snoutStreetStudiosPost = await controller.getAnyKindOfContentBySlug(realSlug);
+
+                // THEN
+                expect(snoutStreetStudiosPost).not.toBeNull();
+                expect(snoutStreetStudiosPost.title).toBe('Cinnamon Dust Linen Shirt');
             });
         });
     });

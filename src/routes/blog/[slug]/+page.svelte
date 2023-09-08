@@ -2,43 +2,54 @@
   import type { PageData } from "./$types.js";
   import { intlFormat } from "date-fns";
   import Navbar from "$lib/components/Navbar.svelte";
+  import { onMount } from "svelte";
 
   export let data: PageData;
   $: ({ date, post } = data);
+
+  onMount(() => {
+    console.log({ date, post });
+  });
 </script>
 
 <svelte:head>
   <!-- Primary Meta Tags -->
   <title>{post.title} | thomaswilson.xyz</title>
   <meta name="title" content="Blog | thomaswilson.xyz" />
-  <meta name="description" content={post.preview} />
+  <meta name="description" content="{post.preview}" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta
     property="og:url"
-    content={`https://www.thomaswilson.xyz/blog/${post.slug}`}
+    content="{`https://www.thomaswilson.xyz/blog/${post.slug}`}"
   />
-  <meta property="og:title" content={post.title} />
-  <meta property="og:description" content={post.preview} />
+  <meta property="og:title" content="{post.title}" />
+  <meta property="og:description" content="{post.preview}" />
 
   <!-- Twitter -->
-  <meta property="twitter:title" content={post.title} />
-  <meta property="twitter:description" content={post.preview} />
+  <meta property="twitter:title" content="{post.title}" />
+  <meta property="twitter:description" content="{post.preview}" />
 </svelte:head>
 
 <Navbar />
 <main class="thomaswilson-container">
   <header class="section">
     <h1 class="title post-title">{post.title}</h1>
-    <p class="post-author">{post.author}</p>
+    <p class="post-author">
+      {#if post.autor}
+        {post.author}
+      {:else}
+        Thomas Wilson
+      {/if}
+    </p>
     <p class="post-date">
       {intlFormat(date, {
         weekday: "long",
         day: "2-digit",
         month: "long",
         year: "numeric",
-        localeMatcher: "best fit"
+        localeMatcher: "best fit",
       })}
     </p>
   </header>

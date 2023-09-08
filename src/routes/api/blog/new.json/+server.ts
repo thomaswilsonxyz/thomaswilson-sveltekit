@@ -51,6 +51,5 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
     const resolvedFileName = resolve(thisDirectory, `../../../../content/blog/${fileName}`);
 
     await controller.createBlogPost(resolvedFileName, contentWithFrontmatter);
-    console.log({ address });
     return json({ address });
 };

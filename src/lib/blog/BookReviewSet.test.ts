@@ -17,8 +17,8 @@ describe(`BookReviewSet`, () => {
 
     it(`should build all the HTML contents`, async () => {
         // GIVEN
-        const bookReview = aBookReview().withTitle(`The title`).withMarkdownContent('test').build();
-        const anotherBookReview = aBookReview().withTitle(`Another title`).withMarkdownContent('test').build();
+        const bookReview = aBookReview().withTitle(`The title`).withHtml('test').build();
+        const anotherBookReview = aBookReview().withTitle(`Another title`).withHtml('test').build();
         const bookReviewSet = new BookReviewSet([bookReview, anotherBookReview]);
 
         // WHEN
