@@ -90,6 +90,7 @@
   #article {
     max-width: 95%;
     width: 65ch;
+    flex-grow: 1;
 
     @media screen and (max-width: 700px) {
       --font-size: 1.1rem;
