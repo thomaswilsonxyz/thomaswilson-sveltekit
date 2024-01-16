@@ -16,10 +16,10 @@
   <section class="section thomaswilson-strapline">
     <h1 class="title">Thomas Wilson</h1>
     <p>
-      I'm a software engineer who loves the messy craft of leading teams and
-      building software. I like finding the tension between
-      <i>minimal</i> and <i>complete</i>. I build good things with good people
-      for good companies.
+      <span class="strapline-animated" id="statement-1">I am a software engineer who loves the craft of building quality software, </span>
+      <span class="strapline-animated" id="statement-2">the messy-ness of working with people,</span>
+      <span class="strapline-animated" id="statement-3">and the balance between <i>minimal</i> and <i>complete</i> products.</span>
+      <span class="strapline-summary">I build good things with good people for good companies.</span>
     </p>
   </section>
 
@@ -27,13 +27,14 @@
     <h2>My work</h2>
     {#if isWorkExpanded}
       <ul transition:slide="{{ duration: 220 }}">
+        <li>Right now I am a Senior Software Engineer at <a href="https://www.laka.co.uk" target="_blank" rel="noopener noreferrer">Laka</a>.  We're building web tools to un<span class="censor">fuck</span> insurance</li>
         <li>
-          Right now I'm leading software engineering at <a
+          I spent three years building and leading the Software Engienering team at<a
             class="oxwash"
             target="_blank"
             rel="noopener noreferrer"
             href="https://www.oxwash.com">Oxwash</a
-          >, we're building the sustainable and scalable future of laundry.
+          >, where we built tools for the sustainable and scalable future of laundry.
         </li>
         <li>
           I build full-stack software for the web, especially with TypeScript,
@@ -41,7 +42,7 @@
         </li>
 
         <li>
-          I lead teams with domain driven design, and agile (with a little 'a')
+          I like domain driven design, and agile (with a little 'a')
           opinions about delivery and collaboration.
         </li>
 
@@ -198,5 +199,63 @@
 
   li {
     padding-bottom: 0.3rem;
+  }
+
+  /** Create a class called censor which places a black bar over the text*/
+  .censor {
+    position: relative;
+    color: transparent;
+    text-shadow: 0 0 3px rgba(0,0,0,0.7);
+  }
+
+  .censor::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 55%;
+  width: 100%;
+  height: 8px;
+  background-color: black;
+  transform: translateY(-50%);
+  }
+  
+
+  @keyframes statementAppear {
+    0% {
+      opacity: 0.1;
+      transform: translateY(-20px)
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0px)
+    }
+  }
+
+  .strapline-summary {
+    font-weight: 400;
+  }
+  .strapline-animated {
+    animation-fill-mode: forwards;
+    opacity: 0.15;
+    transform: translateY(-10px)
+  }
+
+  #statement-1 {
+    animation-name: statementAppear;
+    animation-delay: 0.5s;
+    animation-duration: 1.5s;
+  }
+
+  #statement-2 {
+    animation-name: statementAppear;
+    animation-delay: 1.4s;
+    animation-duration: 1.5s;
+  }
+
+  #statement-3 {
+    animation-name: statementAppear;
+    animation-delay: 2.3s;
+    animation-duration: 1.5s;
   }
 </style>
