@@ -35,7 +35,8 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
 
     if ([fileName, markdownContent, title, date, slug, author].includes(undefined)) {
         throw error(400, `Missing parameters.`);
-    } else if (address !== '127.0.0.1') {
+    } else if (!['127.0.0.1', '::1'].includes(address) ) {
+        console.log(address); 
         throw error(403, `Forbidden.`);
     }
 
