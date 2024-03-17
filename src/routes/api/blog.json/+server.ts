@@ -3,9 +3,7 @@ import { BlogController } from '../../../lib/blog/BlogController.js';
 
 export const GET = async () => {
     try {
-        console.log(`GET /api/blog.json`);
         const controller = await BlogController.singleton();
-        console.log(`Controller instantiated.`);
         const blogPosts = await controller.getAllBlogPosts();
         return json({ posts: blogPosts });
     } catch (error) {

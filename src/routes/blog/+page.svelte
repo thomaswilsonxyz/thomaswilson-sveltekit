@@ -97,10 +97,6 @@
     grid-template-columns: 100%;
     gap: var(--spacing-base);
     max-width: 100%;
-
-    @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 
   .days-since {

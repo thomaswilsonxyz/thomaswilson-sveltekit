@@ -1,19 +1,18 @@
 <script lang="ts">
-  import { intlFormat } from "date-fns";
+  import { format as formatDate } from "date-fns";
 
   export let index: number;
   export let numberOfPosts: number;
   export let book_review: boolean;
   export let title: string;
   export let preview: string;
-  export let slug: string;
+  export let slug: string
   export let date: string;
   export let content_type: "blog" | "book_review" | "snout_street_studios";
 
-  $: formattedDate = intlFormat(
+  $: formattedDate = formatDate(
     new Date(date),
-    { day: "2-digit", month: "long", year: "numeric" },
-    { locale: "en-GB" }
+    'yyyy-mm-dd',
   );
 </script>
 
@@ -58,10 +57,10 @@
 
   .post:hover {
     color: var(--brand-orange);
-    background-color: white;
+    background-color: var(--colour-scheme-background-accent);
     border: 1px solid var(--brand-orange);
     scale: 1.02;
-    box-shadow: 10px 10px 10px 10px var(--gray-200);
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.5);
   }
 
   .post a {

@@ -1,10 +1,23 @@
+<script lang="ts">
+	import { colourSchemeStore, lightColourScheme, darkColourScheme } from "../../stores/colourSchemeStore";
+
+	function onColourSchemeChange() {
+		if ($colourSchemeStore.name === 'dark') {
+			colourSchemeStore.set(lightColourScheme)
+		} else {
+			colourSchemeStore.set(darkColourScheme)
+		}
+	}
+
+</script>
 <nav>
 	<div class="left">
 		<a href="/" class="home">Thomas Wilson</a>
 	</div>
 
 	<div class="right">
-		<a href="/blog" class="blog">Blog</a>
+		<button class="colour-theme-toggle" on:click={onColourSchemeChange}>Toggle Colour Scheme</button>	
+		<a href="/blog" class="blog">/blog</a>
 	</div>
 </nav>
 
@@ -15,6 +28,7 @@
 		max-width: 100vw;
 		overflow: hidden;
 		min-height: var(--navbar-height);
+		font-family: var(--font-family-mono);
 	}
 
 	.left {
@@ -22,10 +36,12 @@
 		flex-grow: 0;
 		text-align: left;
 		padding: var(--spacing-base);
+		
 	}
 
 	.home {
 		color: var(--brand-orange);
+		font-family: inherit;
 		text-decoration: none;
 		font-weight: 300;
 		display: flex;
@@ -42,17 +58,25 @@
 		display: flex;
 		flex: 1;
 		text-align: right;
+		gap: 1rem;
 		align-items: center;
 		justify-content: flex-end;
 		padding: var(--spacing-base);
 	}
 
-	.blog {
-		font-size: 1.4rem;
-		padding: 0;
-		color: var(--gray-1000);
+	.colour-theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
+
+	.blog {
+		font-size: 1.1rem;
+		padding: 0;
+		margin: 0;
+	}
+
 	.blog:visited {
-		color: var(--gray-1000);
+		color: var(--colour-scheme-text);
 	}
 </style>

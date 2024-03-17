@@ -21,6 +21,7 @@
     --gray-900: #212529;
     --gray-950: #1a1e23;
     --gray-1000: #0a0c0e;
+    --font-family-mono: monospace;
     --font-family-title: 'FivoSansModern-Regular', sans-serif;
     --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
         sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -53,9 +54,12 @@
 
 body {
     font-family: var(--font-family-sans);
-    color: var(--gray-900);
     line-height: var(--line-height-md);
     min-height: 100vh;
+    background-color: var(--colour-scheme-background);
+    color: var(--colour-scheme-text);
+    transition: 0.3s ease;
+    transition-property: background-color, color;
 }
 
 .thomaswilson-container {
@@ -65,7 +69,6 @@ body {
     align-items: center;
     justify-content: center;
     min-height: calc(100vh - var(--navbar-height) - calc(2 * var(--container-padding)));
-    background-color: var(--gray-100);
     padding: var(--container-padding);
 }
 
@@ -76,7 +79,6 @@ body {
     font-size: 1.19rem;
     line-height: var(--line-height-md);
     padding-bottom: var(--spacing-base);
-    color: var(--gray-700);
     padding-bottom: 2rem;
 }
 
@@ -85,14 +87,13 @@ body {
     font-size: var(--font-size-base);
     font-weight: 700;
     margin: 0;
-    color: var(--gray-800);
 }
 
 .thomaswilson-strapline p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: var(--line-height-md);
     letter-spacing: -0.25px;
-    font-weight: 250;
+    font-weight: 200;
 }
 
 h1,
@@ -105,7 +106,7 @@ h6 {
     padding-bottom: 0.25rem;
     font-weight: 700;
     margin: 0;
-    color: var(--gray-800);
+    color: var(--colour-scheme-text);
     padding-top: 8px;
     padding-bottom: 6px;
     line-height: var(--line-height);
@@ -116,9 +117,9 @@ li,
 a {
     font-size: var(--font-size);
     line-height: var(--line-height-lg);
-    font-family: var(--font-family-sans);
+    font-family: var(--font-family-mono);
     margin: 0;
-    color: var(--gray-800);
+    color: var(--colour-scheme-text);
     padding: 8px 0;
 }
 
