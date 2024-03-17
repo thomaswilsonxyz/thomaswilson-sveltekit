@@ -30,14 +30,14 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
     } catch (e: any) {
         console.log(`Caught error destructuring request body`);
         console.error(e);
-        throw error(400, 'Error in request body.');
+        error(400, 'Error in request body.');
     }
 
     if ([fileName, markdownContent, title, date, slug, author].includes(undefined)) {
-        throw error(400, `Missing parameters.`);
+        error(400, `Missing parameters.`);
     } else if (!['127.0.0.1', '::1'].includes(address) ) {
         console.log(address); 
-        throw error(403, `Forbidden.`);
+        error(403, `Forbidden.`);
     }
 
     const controller = await BlogController.singleton();

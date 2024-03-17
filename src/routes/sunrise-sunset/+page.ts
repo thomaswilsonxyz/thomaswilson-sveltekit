@@ -13,5 +13,5 @@ export const load: PageLoad = async ({ fetch }) => {
         };
     }
 
-    throw error(500, 'Failed to fetch sunrise-sunset photo');
+    error(500, 'Failed to fetch sunrise-sunset photo');
 };

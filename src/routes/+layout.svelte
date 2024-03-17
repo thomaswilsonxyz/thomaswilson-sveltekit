@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
   import "../styles/thomaswilson.css";
-  import { colourSchemeStore } from "../stores/colourSchemeStore";
+  import { colourSchemeStore } from "../stores/colourSchemeStore.ts";
   import { browser } from "$app/environment";
 
   colourSchemeStore.subscribe((value) => {
