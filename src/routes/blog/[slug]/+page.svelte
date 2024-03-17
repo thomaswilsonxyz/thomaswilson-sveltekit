@@ -77,7 +77,6 @@
     line-height: 160%;
     font-size: var(--font-size);
     font-weight: 400;
-    margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
   }
 
@@ -93,8 +92,10 @@
     flex-grow: 1;
 
     @media screen and (max-width: 700px) {
-      --font-size: 1.1rem;
+      --font-size: 1rem;
       padding: 12px;
+      letter-spacing: normal;
+      line-height: 110%;
     }
 
     @media screen and (min-width: 700px) {

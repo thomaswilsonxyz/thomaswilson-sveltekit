@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { browser } from '$app/environment'
 
 type ColourSchemeName = 'light' | 'dark';
 
@@ -31,5 +32,6 @@ export const colourSchemes: Record<ColourSchemeName, ColourScheme> = {
     dark: darkColourScheme
 };
 
-export const colourSchemeStore = writable<ColourScheme>(darkColourScheme);
+export const colourSchemeStore = writable<ColourScheme>(lightColourScheme);
+
 

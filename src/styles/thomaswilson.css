@@ -114,13 +114,22 @@ h6 {
 
 p,
 li,
-a {
+a, 
+blockquote {
     font-size: var(--font-size);
     line-height: var(--line-height-lg);
     font-family: var(--font-family-mono);
     margin: 0;
     color: var(--colour-scheme-text);
     padding: 8px 0;
+}
+
+blockquote {
+    border-style: solid;
+    padding: 0.25rem 0 0.5rem 1rem;
+    border-width: 0px;
+    border-left: 4px solid var(--brand-orange);
+    opacity: 0.85;
 }
 
 ul,

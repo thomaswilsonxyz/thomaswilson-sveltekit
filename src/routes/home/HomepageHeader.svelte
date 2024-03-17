@@ -13,17 +13,16 @@
 <section class="homepage-header">
   <h1 class="title">(Thomas) Wilson</h1>
   <p class="body">
-    I love the craft of well-built things: mostly software (~8 years), but also
-    clothes (~2 years).
+    I love the craft of making well-built things, especially software and
+    clothes. My embarrassing but earnest goal is to:
   </p>
+  <blockquote class="mission-statement">
+    make things stronger which don&apos;t rely on exploitation, excessive waste, or
+    dishonesty; and to try and build a kinder, fairer world even when it's hard.
+  </blockquote>
   <p class="body">
-    I work against systems which rely on exploitation, excessive waste, and
-    dishonesty. I'm trying to build a kinder and fairer world, and I find that
-    hard sometimes.
-  </p>
-  <p class="body">
-    I try to think and be curious, that's why I keep a <a href="/blog">weblog</a
-    >. And (equally embarrassing to say) probably what got me through a
+    I try to think and be curious, which is why I keep a <a href="/blog">weblog</a
+    > and, equally worth mentioning, what got me through a
     <a
       class="thesis"
       target="_blank"
@@ -68,7 +67,8 @@
   a,
   ol,
   li,
-  p {
+  p,
+  blockquote {
     color: var(--text-color);
     font-family: inherit;
     width: 100%;
@@ -78,6 +78,7 @@
   .title {
     font-weight: 400;
     font-family: inherit;
+    padding-bottom: 1.85rem;
   }
 
   .body {

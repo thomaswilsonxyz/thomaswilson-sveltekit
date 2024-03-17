@@ -36,11 +36,4 @@
 		grid-template-columns: 100%;
 		width: 100%;
 	}
-
-	.toggle-button {
-		width: 100%;
-		color: white;
-		background: var(--brand-purple);
-		border: none;
-	}
 </style>
