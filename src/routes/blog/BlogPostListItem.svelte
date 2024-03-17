@@ -12,7 +12,7 @@
 
   $: formattedDate = formatDate(
     new Date(date),
-    'yyyy-mm-dd',
+    'yyyy-MM-dd',
   );
 </script>
 
