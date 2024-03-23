@@ -130,6 +130,7 @@ blockquote {
     border-width: 0px;
     border-left: 4px solid var(--brand-orange);
     opacity: 0.85;
+    max-width: 60ch;
 }
 
 ul,
