@@ -56,10 +56,6 @@
       {daysSinceLastPublish === 1 ? "day" : "days"} since I last published something.
     </p>
     <p>
-      I write about fun software I've built alone, Real Software™ I built in
-      teams, books I read, things I am sewing, and other things.
-    </p>
-    <p>
       I have written {numberOfBlogPostsThisYear}
       {numberOfBlogPostsThisYear === 1 ? "piece" : "pieces"} so far this year. On
       average I publish something every {averageDaysBetweenPosts} days ({numberOfPosts}

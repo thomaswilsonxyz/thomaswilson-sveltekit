@@ -33,7 +33,7 @@
   </p>
   <p class="body">Here are some things I've written recently:</p>
 
-  <ol>
+  <ol class="latest-blog-posts">
     {#each latestBlogPosts as post}
       <li>
         <a href="/blog/{post.slug}">{post.title}</a> ({formatDate(
@@ -62,13 +62,13 @@
     font-family: monospace;
     display: grid;
     place-items: center;
+    padding: 0 12px;
   }
 
   a,
   ol,
   li,
-  p,
-  blockquote {
+  p {
     color: var(--text-color);
     font-family: inherit;
     width: 100%;
@@ -83,5 +83,9 @@
 
   .body {
     text-align: left;
+  }
+
+  .latest-blog-posts {
+    list-style-position: inside;
   }
 </style>
