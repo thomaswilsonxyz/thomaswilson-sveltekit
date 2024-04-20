@@ -49,11 +49,11 @@
       href="https://www.laka.co.uk"
       target="_blank"
       rel="noopener noreferrer">Laka</a
-    >, building tools actually fairer insurance. Before that, I was Head of
+    >, making insurance genuinely fairer. Before that, I was Head of
     Software Engineering at
     <a href="https://www.oxwash.com" target="_blank" rel="noopener noreferrer"
       >Oxwash</a
-    >, building tools for actually sustainable laundry.
+    >, building tools for actually sustainable laundry and wet cleaning.
   </p>
 </section>
 

@@ -103,13 +103,18 @@ h4,
 h5,
 h6 {
     font-family: var(--font-family-title);
-    padding-bottom: 0.25rem;
     font-weight: 700;
     margin: 0;
     color: var(--colour-scheme-text);
-    padding-top: 8px;
-    padding-bottom: 6px;
+    padding-top: 12px;
+    padding-bottom: 8px;
     line-height: var(--line-height);
+}
+
+h2 { 
+    font-size: 2.25rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.5rem;
 }
 
 p,
