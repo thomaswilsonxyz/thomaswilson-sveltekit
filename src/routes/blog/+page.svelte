@@ -43,19 +43,30 @@
 
 <Navbar />
 <main class="thomaswilson-container">
-  <section class="thomaswilson-strapline section">
+  <section class="thomaswilson-strapline section heading">
     <h1>Blog</h1>
-    <p>
+    <div class="summer-hours">
+      <p class="summer-hours__emoji">☀️🥂🌻</p>
+      <p class="summer-hours__text">
+        I'm currently out of office for the summer. I'm getting married in July,
+        and I'll be spending as much time as possible out-of-doors in August.
+        I'll be back at keyboard in September.
+      </p>
+      <p class="summer-hours__signature">--TJW 2024-06-17</p>
+    </div>
+
+    <p class="heading__text">
       It has been been
       <span
         class="days-since"
-        class:days-since-success="{daysSinceLastPublish === 0}"
+        class:days-since-success={daysSinceLastPublish === 0}
       >
         {daysSinceLastPublish}
       </span>
       {daysSinceLastPublish === 1 ? "day" : "days"} since I last published something.
     </p>
-    <p>
+
+    <p class="heading__text">
       I have written {numberOfBlogPostsThisYear}
       {numberOfBlogPostsThisYear === 1 ? "piece" : "pieces"} so far this year. On
       average I publish something every {averageDaysBetweenPosts} days ({numberOfPosts}
@@ -70,14 +81,14 @@
     <ul class="posts">
       {#each posts as post, index}
         <BlogPostListItem
-          index="{index}"
-          content_type="{post.content_type}"
-          book_review="{post.book_review}"
-          date="{post.date}"
-          numberOfPosts="{posts.length}"
-          preview="{post.preview}"
-          slug="{post.slug}"
-          title="{post.title}"
+          {index}
+          content_type={post.content_type}
+          book_review={post.book_review}
+          date={post.date}
+          numberOfPosts={posts.length}
+          preview={post.preview}
+          slug={post.slug}
+          title={post.title}
         />
       {/each}
     </ul>
@@ -85,6 +96,12 @@
 </main>
 
 <style lang="scss">
+  .heading {
+    gap: var(--spacing-base);
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
   .posts {
     list-style: none;
     margin: 0;
@@ -121,5 +138,32 @@
     100% {
       box-shadow: 0 0 0 5px rgba(54, 130, 127, 0);
     }
+  }
+
+  .summer-hours {
+    border: 2px solid var(--brand-orange);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: 8px;
+    margin-top: var(--spacing-base);
+    gap: 0px;
+    font-size: var(--font-size-sm);
+  }
+
+  .summer-hours__emoji {
+    font-family: sans-serif;
+    font-size: var(--font-size-xl);
+    margin: 0;
+  }
+
+  .summer-hours__text {
+    margin: 0;
+    font-size: var(--font-size-base);
+    line-height: 150%;
+  }
+
+  .summer-hours__signature {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    text-align: right;
   }
 </style>

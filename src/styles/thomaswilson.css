@@ -1,99 +1,113 @@
 @font-face {
-    font-family: 'FivoSansModern-Regular';
-    src: url('/FivoSansModern-Regular.otf');
-    font-display: swap;
+  font-family: "FivoSansModern-Regular";
+  src: url("/FivoSansModern-Regular.otf");
+  font-display: swap;
 }
 
 :root {
-    --brand-orange: #ff8c0d;
-    --brand-purple: #464d77;
-    --brand-green: #36827f;
-    --brand-blue: #00a0e9;
-    --white: #fff;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
-    --gray-950: #1a1e23;
-    --gray-1000: #0a0c0e;
-    --font-family-mono: monospace;
-    --font-family-title: 'FivoSansModern-Regular', sans-serif;
-    --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+  --brand-orange: #ff8c0d;
+  --brand-purple: #464d77;
+  --brand-green: #36827f;
+  --brand-blue: #00a0e9;
+  --white: #fff;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --gray-950: #1a1e23;
+  --gray-1000: #0a0c0e;
+  --font-family-mono: monospace;
+  --font-family-title: "FivoSansModern-Regular", sans-serif;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 
-    --line-height: 120%;
-    --line-height-sm: 120%;
-    --line-height-md: 138%;
-    --line-height-lg: 145%;
+  --line-height: 120%;
+  --line-height-sm: 120%;
+  --line-height-md: 138%;
+  --line-height-lg: 145%;
 
-    --font-size-base: 1rem;
-    --spacing-base: 1rem;
-    --spacing-sm: 0.25rem;
-    --spacing-md: 0.5rem;
-    --spacing-lg: 1rem;
-    --spacing-xl: 1.5rem;
-    --navbar-height: 75px;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --spacing-base: 1rem;
+  --spacing-sm: 0.25rem;
+  --spacing-md: 0.5rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+  --navbar-height: 75px;
 
-    --font-size-sm: 0.875rem;
-    --font-size: 1.12rem;
-    --font-size-md: 1.25rem;
-    --font-size-lg: 1.5rem;
+  --font-size-sm: 0.875rem;
+  --font-size: 1.12rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
 
-    --btn-border: 0;
-    --btn-padding: var(--spacing-sm);
-    --btn-border-radius: 0.25rem;
-    --btn-font-size: 1.08rem;
-    --btn-text-decoration: none;
+  --btn-border: 0;
+  --btn-padding: var(--spacing-sm);
+  --btn-border-radius: 0.25rem;
+  --btn-font-size: 1.08rem;
+  --btn-text-decoration: none;
 }
 
 body {
-    font-family: var(--font-family-sans);
-    line-height: var(--line-height-md);
-    min-height: 100vh;
-    background-color: var(--colour-scheme-background);
-    color: var(--colour-scheme-text);
-    transition: 0.3s ease;
-    transition-property: background-color, color;
+  font-family: var(--font-family-sans);
+  line-height: var(--line-height-md);
+  min-height: 100vh;
+  background-color: var(--colour-scheme-background);
+  color: var(--colour-scheme-text);
+  transition: 0.3s ease;
+  transition-property: background-color, color;
 }
 
 .thomaswilson-container {
-    --container-padding: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - var(--navbar-height) - calc(2 * var(--container-padding)));
-    padding: var(--container-padding);
+  --container-padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(
+    100vh - var(--navbar-height) - calc(2 * var(--container-padding))
+  );
+  padding: var(--container-padding);
 }
 
 .thomaswilson-container .section {
-    padding: 24px;
-    width: 100%;
-    max-width: 750px;
-    font-size: 1.19rem;
-    line-height: var(--line-height-md);
-    padding-bottom: var(--spacing-base);
-    padding-bottom: 2rem;
+  padding: 24px;
+  width: 100%;
+  max-width: 750px;
+  font-size: 1.19rem;
+  line-height: var(--line-height-md);
+  padding-bottom: var(--spacing-base);
+  padding-bottom: 2rem;
 }
 
 .thomaswilson-strapline .title {
-    font-family: var(--font-family-title);
-    font-size: var(--font-size-base);
-    font-weight: 700;
-    margin: 0;
+  font-family: var(--font-family-title);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  margin: 0;
 }
 
 .thomaswilson-strapline p {
-    font-size: 1.4rem;
-    line-height: var(--line-height-md);
-    letter-spacing: -0.25px;
-    font-weight: 200;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  letter-spacing: -0.25px;
+  font-weight: 200;
+}
+
+@container (width < 500px) {
+  .thomaswilson-strapline p {
+    font-size: ;
+  }
 }
 
 h1,
@@ -102,73 +116,73 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--font-family-title);
-    font-weight: 700;
-    margin: 0;
-    color: var(--colour-scheme-text);
-    padding-top: 12px;
-    padding-bottom: 8px;
-    line-height: var(--line-height);
+  font-family: var(--font-family-title);
+  font-weight: 700;
+  margin: 0;
+  color: var(--colour-scheme-text);
+  padding-top: 12px;
+  padding-bottom: 8px;
+  line-height: var(--line-height);
 }
 
-h2 { 
-    font-size: 2.25rem;
-    padding-top: 0.7rem;
-    padding-bottom: 0.5rem;
+h2 {
+  font-size: 2.25rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.5rem;
 }
 
 p,
 li,
-a, 
+a,
 blockquote {
-    font-size: var(--font-size);
-    line-height: var(--line-height-lg);
-    font-family: var(--font-family-mono);
-    margin: 0;
-    color: var(--colour-scheme-text);
-    padding: 8px 0;
+  font-size: var(--font-size);
+  line-height: var(--line-height-lg);
+  font-family: var(--font-family-mono);
+  margin: 0;
+  color: var(--colour-scheme-text);
+  padding: 8px 0;
 }
 
 blockquote {
-    border-style: solid;
-    padding: 0.25rem 0 0.5rem 1rem;
-    border-width: 0px;
-    border-left: 4px solid var(--brand-orange);
-    opacity: 0.85;
-    max-width: 60ch;
+  border-style: solid;
+  padding: 0.25rem 0 0.5rem 1rem;
+  border-width: 0px;
+  border-left: 4px solid var(--brand-orange);
+  opacity: 0.85;
+  max-width: 60ch;
 }
 
 ul,
 ol {
-    padding-left: var(--spacing-base);
+  padding-left: var(--spacing-base);
 }
 
 .thomaswilson-button {
-    border: var(--btn-border);
-    padding: var(--btn-padding);
-    border-radius: var(--btn-border-radius);
-    font-size: var(--btn-font-size);
-    text-decoration: var(--btn-text-decoration);
+  border: var(--btn-border);
+  padding: var(--btn-padding);
+  border-radius: var(--btn-border-radius);
+  font-size: var(--btn-font-size);
+  text-decoration: var(--btn-text-decoration);
 }
 
 .thomaswilson-button:hover {
-    text-decoration: none;
-    cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }

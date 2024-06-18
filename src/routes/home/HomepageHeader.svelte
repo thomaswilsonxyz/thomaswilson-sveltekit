@@ -12,17 +12,18 @@
 
 <section class="homepage-header">
   <h1 class="title">(Thomas) Wilson</h1>
-  <p class="body">
-    I love the craft of making well-built things, especially software and
-    clothes. My embarrassing but earnest goal is to:
-  </p>
+  <p class="body">Hand-maker of things, notably software and clothes.</p>
+  <p class="body">My personal goal is to:</p>
   <blockquote class="mission-statement">
-    make things stronger which don&apos;t rely on exploitation, excessive waste, or
-    dishonesty; and to try and build a kinder, fairer world even when it's hard.
+    make things stronger which don&apos;t rely on exploitation, excessive waste,
+    or dishonesty; and to try and build a kinder, fairer world even when it's
+    hard.
   </blockquote>
   <p class="body">
-    I try to think and be curious, which is why I keep a <a href="/blog">weblog</a
-    > and, equally worth mentioning, what got me through a
+    I try to think and be curious, which is why I keep a <a href="/blog"
+      >weblog</a
+    >
+    and, equally worth mentioning, what got me through a
     <a
       class="thesis"
       target="_blank"
@@ -49,8 +50,8 @@
       href="https://www.laka.co.uk"
       target="_blank"
       rel="noopener noreferrer">Laka</a
-    >, making insurance genuinely fairer. Before that, I was Head of
-    Software Engineering at
+    >, making insurance genuinely fairer. Before that, I was Head of Software
+    Engineering at
     <a href="https://www.oxwash.com" target="_blank" rel="noopener noreferrer"
       >Oxwash</a
     >, building tools for actually sustainable laundry and wet cleaning.
@@ -83,6 +84,7 @@
 
   .body {
     text-align: left;
+    line-height: 160%;
   }
 
   .latest-blog-posts {
