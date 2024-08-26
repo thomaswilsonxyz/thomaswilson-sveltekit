@@ -2,6 +2,7 @@
   import type { PageData } from "./$types.js";
   import Navbar from "$lib/components/Navbar.svelte";
   import BlogPostListItem from "./BlogPostListItem.svelte";
+  import SummerHours2024 from "../../components/SummerHours2024.svelte";
 
   export let data: PageData;
 
@@ -45,16 +46,7 @@
 <main class="thomaswilson-container">
   <section class="thomaswilson-strapline section heading">
     <h1>Blog</h1>
-    <div class="summer-hours">
-      <p class="summer-hours__emoji">☀️🥂🌻</p>
-      <p class="summer-hours__text">
-        I'm currently out of office for the summer. I'm getting married in July,
-        and I'll be spending as much time as possible out-of-doors in August.
-        I'll be back at keyboard in September.
-      </p>
-      <p class="summer-hours__signature">--TJW 2024-06-17</p>
-    </div>
-
+    <SummerHours2024 isActive={false} />
     <p class="heading__text">
       It has been been
       <span
@@ -138,32 +130,5 @@
     100% {
       box-shadow: 0 0 0 5px rgba(54, 130, 127, 0);
     }
-  }
-
-  .summer-hours {
-    border: 2px solid var(--brand-orange);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: 8px;
-    margin-top: var(--spacing-base);
-    gap: 0px;
-    font-size: var(--font-size-sm);
-  }
-
-  .summer-hours__emoji {
-    font-family: sans-serif;
-    font-size: var(--font-size-xl);
-    margin: 0;
-  }
-
-  .summer-hours__text {
-    margin: 0;
-    font-size: var(--font-size-base);
-    line-height: 150%;
-  }
-
-  .summer-hours__signature {
-    margin: 0;
-    font-size: var(--font-size-sm);
-    text-align: right;
   }
 </style>

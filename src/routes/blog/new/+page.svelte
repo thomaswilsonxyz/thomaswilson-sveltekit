@@ -52,35 +52,34 @@
 <section class="new-blog-post">
   <a href="/blog">Back to Blog</a>
   <h1>New Blog Post</h1>
-  <form on:submit|preventDefault="{onCreate}">
+  <form on:submit|preventDefault={onCreate}>
     <div class="field">
       <label class="field__label" for="title">Title</label>
       <input
         type="text"
         id="title"
         required
-        bind:value="{title}"
-        on:change="{handleTitleChange}"
+        bind:value={title}
+        on:change={handleTitleChange}
       />
     </div>
     <div class="field">
       <label class="field__label" for="author">Author</label>
-      <input type="text" id="author" required bind:value="{author}" />
+      <input type="text" id="author" required bind:value={author} />
     </div>
 
     <div class="field">
       <label class="field__label" for="slug">Slug</label>
-      <input type="text" id="slug" required bind:value="{slug}" />
+      <input type="text" id="slug" required bind:value={slug} />
     </div>
 
     <div class="field">
       <label class="field__label" for="content">Content</label>
-      <textarea id="content" rows="10" cols="50" bind:value="{content}"
-      ></textarea>
+      <textarea id="content" rows="10" cols="50" bind:value={content} />
     </div>
 
     <div class="submit">
-      <button class="create-button">Create</button>
+      <button class="create-button">Publish</button>
     </div>
   </form>
 </section>
