@@ -77,7 +77,7 @@
     line-height: 160%;
     font-size: var(--font-size);
     font-weight: 400;
-    letter-spacing: 0.5px;
+    letter-spacing: -0.5px;
   }
 
   :global(li) {

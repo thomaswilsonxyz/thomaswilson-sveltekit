@@ -30,7 +30,7 @@
 
   --line-height: 120%;
   --line-height-sm: 120%;
-  --line-height-md: 138%;
+  --line-height-md: 140%;
   --line-height-lg: 145%;
 
   --font-size-xs: 0.75rem;
@@ -62,7 +62,7 @@ body {
   font-family: var(--font-family-sans);
   line-height: var(--line-height-md);
   min-height: 100vh;
-  background-color: var(--colour-scheme-background);
+  background-color: var(--colour-scheme-background, black);
   color: var(--colour-scheme-text);
   transition: 0.3s ease;
   transition-property: background-color, color;
@@ -117,12 +117,13 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family-title);
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
   color: var(--colour-scheme-text);
   padding-top: 12px;
   padding-bottom: 8px;
   line-height: var(--line-height);
+  letter-spacing: 1.5px;
 }
 
 h2 {
@@ -140,7 +141,8 @@ blockquote {
   font-family: var(--font-family-mono);
   margin: 0;
   color: var(--colour-scheme-text);
-  padding: 8px 0;
+  padding: 24px 0;
+  letter-spacing: -1px;
 }
 
 blockquote {
