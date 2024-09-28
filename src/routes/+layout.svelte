@@ -18,12 +18,6 @@
       localStorage.getItem("colourScheme");
     const colourScheme = colourSchemes?.[colourSchemeName];
 
-    console.log({ 
-      colourSchemeName, 
-      colourScheme, 
-      prefersDarkmode 
-    })
-    
     if (colourScheme) {
       colourSchemeStore.set(colourScheme);
     } else if (prefersDarkmode) {
@@ -35,10 +29,15 @@
 
   colourSchemeStore.subscribe((value) => {
     if (!browser) return;
+
     document.documentElement.style.setProperty(
       "--colour-scheme-background",
       value.background
     );
+
+    // document.documentElement.style.setProperty(
+    //   "--colour-scheme-back""
+    // )
 
     document.documentElement.style.setProperty(
       "--colour-scheme-text",
