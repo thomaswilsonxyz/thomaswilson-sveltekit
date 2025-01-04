@@ -8,6 +8,7 @@ export const GET = async ({ params }: LoadEvent) => {
     const post = await controller.getAnyKindOfContentBySlug(slug);
 
     if (!post) {
+        console.error(`Could not find blog post with slug '${slug}'`);
         error(404, `Could not find blog post with slug '${slug}'`);
     }
 

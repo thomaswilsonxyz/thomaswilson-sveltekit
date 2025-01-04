@@ -44,6 +44,7 @@ export class MarkdownRepository {
     readonly blogPosts: BlogPostSet;
     readonly bookReviews: BookReviewSet;
     readonly snoutStreetStudiosPosts: SnoutStreetStudiosPostSet;
+    private static _singleton: MarkdownRepository;
 
     private constructor(
         blogPosts: BlogPost[],
@@ -56,17 +57,21 @@ export class MarkdownRepository {
     }
 
     public static async singleton(): Promise<MarkdownRepository> {
-        return await MarkdownRepository.fromViteGlobImport(
-            blogPostMetaGlobImport,
-            bookReviewsMetaGlobImport,
-            snoutStreetStudiosPostMetaGlobImport
-        );
+        if (!this._singleton) {
+            this._singleton = await MarkdownRepository.fromViteGlobImport(
+                blogPostMetaGlobImport,
+                bookReviewsMetaGlobImport,
+                snoutStreetStudiosPostMetaGlobImport
+            );
+        }
+
+        return this._singleton;
     }
 
     public static async fromViteGlobImport(
-        blogGlobImport,
-        bookReviewGlobImport,
-        snoutStreetPostGlobImport
+        blogGlobImport: any,
+        bookReviewGlobImport: any,
+        snoutStreetPostGlobImport: any
     ): Promise<MarkdownRepository> {
         let fileImports: MarkdownFile<BlogPostFrontmatterValues>[] = [];
         let blogPosts: BlogPost[] = [];

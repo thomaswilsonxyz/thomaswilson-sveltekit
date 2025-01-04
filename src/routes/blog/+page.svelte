@@ -2,7 +2,6 @@
   import type { PageData } from "./$types.js";
   import Navbar from "$lib/components/Navbar.svelte";
   import BlogPostListItem from "./BlogPostListItem.svelte";
-  import SummerHours2024 from "../../components/SummerHours2024.svelte";
 
   export let data: PageData;
 
@@ -45,8 +44,7 @@
 <Navbar />
 <main class="thomaswilson-container">
   <section class="thomaswilson-strapline section heading">
-    <h1>Blog</h1>
-    <SummerHours2024 isActive={false} />
+    <h1 class="page-title">Blog</h1>
     <p class="heading__text">
       It has been been
       <span
@@ -88,10 +86,24 @@
 </main>
 
 <style lang="scss">
+  .page-title {
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 100%;
+  }
+
   .heading {
+    padding: 0;
     gap: var(--spacing-base);
     display: grid;
     grid-template-columns: 100%;
+  }
+
+  .heading__text {
+    font-family: sans-serif;
+    margin: 0;
+    line-height: 150%;
+    font-size: 1.25rem;
   }
 
   .posts {
@@ -100,7 +112,7 @@
     padding: 0;
     display: grid;
     grid-template-columns: 100%;
-    gap: var(--spacing-base);
+    gap: var(--spacing-xl);
     max-width: 100%;
   }
 
@@ -110,7 +122,9 @@
     border: 1px solid var(--brand-orange);
     border-radius: 4px;
     padding: 8px;
+    margin: 0 4px;
     font-family: monospace;
+    font-size: inherit;
   }
 
   .days-since-success {

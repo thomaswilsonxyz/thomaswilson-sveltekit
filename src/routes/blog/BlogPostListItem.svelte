@@ -6,23 +6,20 @@
   export let book_review: boolean;
   export let title: string;
   export let preview: string;
-  export let slug: string
+  export let slug: string;
   export let date: string;
   export let content_type: "blog" | "book_review" | "snout_street_studios";
 
-  $: formattedDate = formatDate(
-    new Date(date),
-    'yyyy-MM-dd',
-  );
+  $: formattedDate = formatDate(new Date(date), "yyyy-MM-dd");
 </script>
 
 <li
   class="post"
   role="article"
-  aria-posinset="{index + 1}"
-  aria-setsize="{numberOfPosts}"
+  aria-posinset={index + 1}
+  aria-setsize={numberOfPosts}
 >
-  <a href="{`/blog/${slug}`}">
+  <a href={`/blog/${slug}`}>
     <div class="post__title">
       {#if content_type === "book_review"}
         📚
@@ -49,7 +46,7 @@
 <style>
   .post {
     border: 1px solid var(--gray-200);
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     transition: 0.2s;
     border-radius: 8px;
     max-width: 100%;
@@ -72,18 +69,20 @@
     text-decoration: underline;
     font-family: var(--font-family-title);
     font-weight: 600;
-    padding-bottom: 4px;
-    font-size: 1.1rem;
+    padding-bottom: var(--spacing-md);
+    font-size: var(--font-size);
+    letter-spacing: 0px;
+  }
+
+  .post__preview {
+    font-size: var(--font-size-sm);
+    letter-spacing: -0.5px;
+    line-height: 135%;
+    color: var(--gray-600);
+    padding-bottom: var(--spacing-md);
   }
 
   .post__date {
     font-size: 0.9rem;
-  }
-
-  .post__preview {
-    font-size: 0.95rem;
-    line-height: 140%;
-    color: var(--gray-600);
-    padding-bottom: 2px;
   }
 </style>

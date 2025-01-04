@@ -1,16 +1,16 @@
 import { BlogController } from '../lib/blog/BlogController.js';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from './$types.js';
 
 export const load: PageServerLoad = async () => {
     try {
         const controller = await BlogController.singleton();
         const latestBlogPosts = await controller.getAllBlogPosts(3);
-        return { latestBlogPosts }
+        return { latestBlogPosts };
     } catch (error) {
         console.error({
             message: `Caught error in GET /api/blog.json`,
             error: JSON.stringify(error),
         });
-        return { latestBlogPosts: [] }
+        return { latestBlogPosts: [] };
     }
 };
