@@ -5,9 +5,13 @@
 	import type { Wainwright } from './Wainwright.js';
 	import { browser } from '$app/environment';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ wainwrights } = data);
+	let { data }: Props = $props();
+
+	let { wainwrights } = $derived(data);
 
 	onMount(async () => {
 		const L = await import('leaflet');
@@ -58,7 +62,7 @@
 	and forteen fells (including four mountains). These have become known as the Wainwrights.
 </p>
 
-<div id="map" style="height: 400px;" />
+<div id="map" style="height: 400px;"></div>
 
 <style lang="scss">
 	:global .wainwright-popup {

@@ -7,14 +7,14 @@
     differenceInCalendarDays
   } from "date-fns";
 
-  let lastDayOfMonth = new Date();
-  let daysUntilPayDay = 0;
+  let lastDayOfMonth = $state(new Date());
+  let daysUntilPayDay = $state(0);
 
   function prettyPrintDays(numberOfDays: number): string {
     return `${numberOfDays} ${numberOfDays === 1 ? "day" : "days"}`;
   }
 
-  $: pluralisedDays = prettyPrintDays(Math.abs(daysUntilPayDay));
+  let pluralisedDays = $derived(prettyPrintDays(Math.abs(daysUntilPayDay)));
 
   onMount(() => {
     lastDayOfMonth = endOfMonth(new Date());

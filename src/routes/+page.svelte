@@ -2,7 +2,7 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import HomepageHeader from "./home/HomepageHeader.svelte";
 
-  export let data = { latestBlogPosts: [] }
+  let { data = { latestBlogPosts: [] } } = $props();
 
 </script>
 

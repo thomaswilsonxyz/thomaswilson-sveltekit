@@ -1,16 +1,29 @@
 <script lang="ts">
   import { format as formatDate } from "date-fns";
 
-  export let index: number;
-  export let numberOfPosts: number;
-  export let book_review: boolean;
-  export let title: string;
-  export let preview: string;
-  export let slug: string;
-  export let date: string;
-  export let content_type: "blog" | "book_review" | "snout_street_studios";
+  interface Props {
+    index: number;
+    numberOfPosts: number;
+    book_review: boolean;
+    title: string;
+    preview: string;
+    slug: string;
+    date: string;
+    content_type: "blog" | "book_review" | "snout_street_studios";
+  }
 
-  $: formattedDate = formatDate(new Date(date), "yyyy-MM-dd");
+  let {
+    index,
+    numberOfPosts,
+    book_review,
+    title,
+    preview,
+    slug,
+    date,
+    content_type
+  }: Props = $props();
+
+  let formattedDate = $derived(formatDate(new Date(date), "yyyy-MM-dd"));
 </script>
 
 <li

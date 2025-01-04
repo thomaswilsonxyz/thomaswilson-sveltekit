@@ -2,20 +2,29 @@
   import { format as formatDate } from "date-fns";
   import { SunriseSunsetStreakCalculator } from "./SunriseSunsetStreakCalculator.js";
   import { browser } from "$app/environment";
-  export let doesUserHaveGuessingHistory: boolean;
-  export let correctGuessDays: string[];
-  export let incorrectGuessDays: string[];
-  export let currentStreakLength: number;
+  interface Props {
+    doesUserHaveGuessingHistory: boolean;
+    correctGuessDays: string[];
+    incorrectGuessDays: string[];
+    currentStreakLength: number;
+  }
+
+  let {
+    doesUserHaveGuessingHistory,
+    correctGuessDays,
+    incorrectGuessDays,
+    currentStreakLength
+  }: Props = $props();
 
   const todayAsString = formatDate(new Date(), "yyyy-MM-dd");
   const calculator = new SunriseSunsetStreakCalculator(todayAsString);
-  let hasTextBeenCopied = false;
+  let hasTextBeenCopied = $state(false);
 
-  $: historyStatement = calculator.getShareableStatement(
+  let historyStatement = $derived(calculator.getShareableStatement(
     correctGuessDays,
     incorrectGuessDays,
     new Date()
-  );
+  ));
 
   function copyHistory() {
     if (browser) {
@@ -32,7 +41,7 @@
       <p class="score__text">
         {historyStatement}
       </p>
-      <button on:click={() => copyHistory()}> Copy to Clipboard </button>
+      <button onclick={() => copyHistory()}> Copy to Clipboard </button>
 
       {#if hasTextBeenCopied}
         <p>Copied!</p>

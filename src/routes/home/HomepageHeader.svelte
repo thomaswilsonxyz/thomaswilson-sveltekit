@@ -7,7 +7,11 @@
     date: string;
   }
 
-  export let latestBlogPosts: BlogPost[] = [];
+  interface Props {
+    latestBlogPosts?: BlogPost[];
+  }
+
+  let { latestBlogPosts = [] }: Props = $props();
 </script>
 
 <section class="homepage-header">

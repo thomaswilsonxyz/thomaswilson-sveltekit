@@ -1,8 +1,12 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
-  export let isDisabled: boolean;
-  export let hasAlreadyGuessedToday: boolean;
+  interface Props {
+    isDisabled: boolean;
+    hasAlreadyGuessedToday: boolean;
+  }
+
+  let { isDisabled, hasAlreadyGuessedToday }: Props = $props();
 
   const eventDispatcher = createEventDispatcher<{
     optionSelected: { option: "sunrise" | "sunset" };
@@ -18,13 +22,13 @@
     <button
       disabled={isDisabled}
       class="options__button option--sunrise"
-      on:click={() => onOptionSelected("sunrise")}>Sunrise</button
+      onclick={() => onOptionSelected("sunrise")}>Sunrise</button
     >
     <button
       disabled={isDisabled}
       class="options__button option--sunset"
       id="button-sunset"
-      on:click={() => onOptionSelected("sunset")}>Sunset</button
+      onclick={() => onOptionSelected("sunset")}>Sunset</button
     >
   </div>
   {#if hasAlreadyGuessedToday}

@@ -8,6 +8,11 @@
   } from "../stores/colourSchemeStore.ts";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 
   onMount(() => {
     const prefersDarkmode: boolean = window.matchMedia(
@@ -60,4 +65,4 @@
   <title>Thomas Wilson</title>
 </svelte:head>
 
-<slot />
+{@render children?.()}

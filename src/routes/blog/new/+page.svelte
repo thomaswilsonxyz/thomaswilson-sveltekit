@@ -1,12 +1,14 @@
 <script lang="ts">
+  import { preventDefault } from 'svelte/legacy';
+
   import { format as formatDate } from "date-fns";
   import { BlogPost } from "$lib/blog/BlogPost.js";
   import { goto } from "$app/navigation";
-  let title = "";
-  let author = "Thomas Wilson";
+  let title = $state("");
+  let author = $state("Thomas Wilson");
   let date = new Date();
-  let content = "";
-  let slug = "";
+  let content = $state("");
+  let slug = $state("");
   let blogPost: BlogPost | null = null;
 
   function slugifyString(originalString: string): string {
@@ -52,7 +54,7 @@
 <section class="new-blog-post">
   <a href="/blog">Back to Blog</a>
   <h1>New Blog Post</h1>
-  <form on:submit|preventDefault={onCreate}>
+  <form onsubmit={preventDefault(onCreate)}>
     <div class="field">
       <label class="field__label" for="title">Title</label>
       <input
@@ -60,7 +62,7 @@
         id="title"
         required
         bind:value={title}
-        on:change={handleTitleChange}
+        onchange={handleTitleChange}
       />
     </div>
     <div class="field">
@@ -75,7 +77,7 @@
 
     <div class="field">
       <label class="field__label" for="content">Content</label>
-      <textarea id="content" rows="10" cols="50" bind:value={content} />
+      <textarea id="content" rows="10" cols="50" bind:value={content}></textarea>
     </div>
 
     <div class="submit">

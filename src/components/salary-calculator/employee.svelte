@@ -1,10 +1,19 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
-  export let id: string;
-  export let name: string;
-  export let salary: number;
-  export let count: number;
+  interface Props {
+    id: string;
+    name: string;
+    salary: number;
+    count: number;
+  }
+
+  let {
+    id,
+    name = $bindable(),
+    salary = $bindable(),
+    count = $bindable(),
+  }: Props = $props();
 
   const dispatch = createEventDispatcher<{
     change: { name: string; salary: number; count: number };
@@ -27,8 +36,8 @@
     <input
       type="text"
       placeholder="Junior Software Engineer"
-      bind:value="{name}"
-      on:input="{handleChange}"
+      bind:value={name}
+      oninput={handleChange}
     />
   </div>
   <div class="form__field">
@@ -37,8 +46,8 @@
       type="number"
       step="1"
       placeholder="30,000"
-      bind:value="{salary}"
-      on:change="{handleChange}"
+      bind:value={salary}
+      onchange={handleChange}
     />
   </div>
   <div class="form__field">
@@ -47,11 +56,11 @@
       type="number"
       step="1"
       placeholder="30,000"
-      bind:value="{count}"
-      on:change="{handleChange}"
+      bind:value={count}
+      onchange={handleChange}
     />
   </div>
-  <button type="button" on:click="{handleRemove}"> Remove </button>
+  <button type="button" onclick={handleRemove}> Remove </button>
 </form>
 
 <style>

@@ -29,7 +29,7 @@
   </div>
 
   <div class="right">
-    <button class="colour-theme-toggle" on:click={onColourSchemeChange}>
+    <button class="colour-theme-toggle" onclick={onColourSchemeChange}>
       <img
         class="icon"
         src={$colourSchemeStore.name === "light" ? sunSvg : moonSvg}

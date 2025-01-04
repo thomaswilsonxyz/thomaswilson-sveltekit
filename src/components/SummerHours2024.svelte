@@ -1,5 +1,9 @@
 <script lang="ts">
-  export let isActive: boolean;
+  interface Props {
+    isActive: boolean;
+  }
+
+  let { isActive }: Props = $props();
 </script>
 
 <div class="summer-hours">

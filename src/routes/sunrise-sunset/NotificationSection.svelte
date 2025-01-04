@@ -3,7 +3,11 @@
   import { fade } from "svelte/transition";
   import type { Writable } from "svelte/store";
 
-  export let visibleNotification: Writable<"none" | "success" | "failure">;
+  interface Props {
+    visibleNotification: Writable<"none" | "success" | "failure">;
+  }
+
+  let { visibleNotification }: Props = $props();
   let hasAnimationTriggered = false;
   const revealResultDelayDurationMs = 550;
 

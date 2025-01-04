@@ -12,7 +12,7 @@
   import { SunriseSunsetStreakCalculator } from "./SunriseSunsetStreakCalculator.js";
   import type { ISunriseSunsetGuessingHistory } from "./ISunriseSunsetGuessingHistory.js";
 
-  let hasGuessingHistoryBeenLoaded = false;
+  let hasGuessingHistoryBeenLoaded = $state(false);
   let debug = false;
   let visibleNotification: Writable<"none" | "success" | "failure"> =
     writable("none");
@@ -25,15 +25,19 @@
     incorrectDays: []
   });
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
   const now = new Date();
   const todaysDateString = formatDate(now, "yyyy-MM-dd");
   const localStorageKey = "sunrise-sunset-guessing-history";
-  let currentStreakLength = 0;
+  let currentStreakLength = $state(0);
 
   const streakCalculator = new SunriseSunsetStreakCalculator(todaysDateString);
 
-  $: picture = data.body.photo;
+  let picture = $derived(data.body.photo);
 
   function debugRemoveLocalStorage() {
     localStorage.removeItem(localStorageKey);
@@ -119,7 +123,7 @@
   </section>
 
   {#if debug}
-    <button on:click={debugRemoveLocalStorage}>Remove Local Storage</button>
+    <button onclick={debugRemoveLocalStorage}>Remove Local Storage</button>
   {/if}
 
   <section class="picture">

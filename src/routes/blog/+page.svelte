@@ -3,16 +3,20 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import BlogPostListItem from "./BlogPostListItem.svelte";
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  $: ({
+  let { data }: Props = $props();
+
+  let {
     posts,
     numberOfPosts,
     daysSinceLastPublish,
     daysSinceFirstPost,
     averageDaysBetweenPosts,
     numberOfBlogPostsThisYear,
-  } = data);
+  } = $derived(data);
 </script>
 
 <svelte:head>

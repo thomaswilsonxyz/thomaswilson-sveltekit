@@ -4,8 +4,12 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import { onMount } from "svelte";
 
-  export let data: PageData;
-  $: ({ date, post } = data);
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
+  let { date, post } = $derived(data);
 
   onMount(() => {
     console.log({ date, post });
