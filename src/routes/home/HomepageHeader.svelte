@@ -15,14 +15,17 @@
 </script>
 
 <section class="homepage-header">
-  <h1 class="title">(Thomas) Wilson</h1>
-  <p class="body">Hand-maker of things, notably software and clothes.</p>
-  <p class="body">My personal goal is to:</p>
-  <blockquote class="mission-statement">
-    make things stronger which don&apos;t rely on exploitation, excessive waste,
-    or dishonesty; and to try and build a kinder, fairer world even when it's
-    hard.
-  </blockquote>
+  <h1 class="title">Thomas Wilson-Cook</h1>
+  <p class="body strapline">
+    I craft well-meaning things, like software, clothes, photographs, and words.
+  </p>
+  <p class="body strapline">
+    I am trying to make things stronger which don&apos;t rely on exploitation,
+    excessive waste, or dishonesty; and to try and build a kinder, fairer world
+    even when it's hard.
+  </p>
+
+  <hr />
   <p class="body">
     I try to think and be curious, which is why I keep a <a href="/blog"
       >weblog</a
@@ -64,10 +67,12 @@
 
 <style>
   .homepage-header {
-    font-family: monospace;
     display: grid;
-    place-items: center;
     padding: 0 12px;
+    gap: 8px;
+    font-size: var(--font-size-md);
+    font-family: var(--font-family-serif);
+    max-width: 60ch;
   }
 
   a,
@@ -76,19 +81,42 @@
   p {
     color: var(--text-color);
     font-family: inherit;
+    font-size: inherit;
     width: 100%;
     max-width: 60ch;
+    padding-bottom: 8px;
+  }
+
+  .mission-statement {
+    display: flex;
+    padding: 12px 34px;
+    font-family: inherit;
+    font-size: var(--font-size-lg);
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid white;
+    margin: 24px 0;
   }
 
   .title {
     font-weight: 400;
     font-family: inherit;
     padding-bottom: 1.85rem;
+    text-align: center;
   }
 
   .body {
     text-align: left;
     line-height: 160%;
+  }
+
+  .body.strapline {
+    font-size: var(--font-size-lg);
+    line-height: 140%;
   }
 
   .latest-blog-posts {

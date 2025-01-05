@@ -57,6 +57,16 @@
     --btn-text-decoration: none;
 }
 
+html {
+    font-size: 16px;
+    font-family: var(--font-family-sans);
+    line-height: var(--line-height-md);
+    color: var(--colour-scheme-text);
+    background-color: var(--colour-scheme-background, black);
+    transition: 0.3s ease;
+    transition-property: background-color, color;
+}
+
 body {
     font-family: var(--font-family-sans);
     line-height: var(--line-height-md);
@@ -103,7 +113,7 @@ body {
 
 @container (width < 500px) {
     .thomaswilson-strapline p {
-        font-size: ;
+        font-size:;
     }
 }
 
@@ -139,7 +149,7 @@ blockquote {
     margin: 0;
     color: var(--colour-scheme-text);
     padding: 4px 0;
-    letter-spacing: -1px;
+    letter-spacing: 0px;
 }
 
 blockquote {
