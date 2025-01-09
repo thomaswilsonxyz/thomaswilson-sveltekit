@@ -13,18 +13,20 @@
     doesUserHaveGuessingHistory,
     correctGuessDays,
     incorrectGuessDays,
-    currentStreakLength
+    currentStreakLength,
   }: Props = $props();
 
   const todayAsString = formatDate(new Date(), "yyyy-MM-dd");
   const calculator = new SunriseSunsetStreakCalculator(todayAsString);
   let hasTextBeenCopied = $state(false);
 
-  let historyStatement = $derived(calculator.getShareableStatement(
-    correctGuessDays,
-    incorrectGuessDays,
-    new Date()
-  ));
+  let historyStatement = $derived(
+    calculator.getShareableStatement(
+      correctGuessDays,
+      incorrectGuessDays,
+      new Date()
+    )
+  );
 
   function copyHistory() {
     if (browser) {
@@ -52,7 +54,7 @@
   </div>
 </section>
 
-<style type="text/postcss">
+<style>
   .score {
     display: flex;
     place-content: center;
@@ -71,7 +73,9 @@
     padding: 12px;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   .score__title {

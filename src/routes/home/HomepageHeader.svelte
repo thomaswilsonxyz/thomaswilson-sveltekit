@@ -20,9 +20,9 @@
     I craft well-meaning things, like software, clothes, photographs, and words.
   </p>
   <p class="body strapline">
-    I am trying to make things stronger which don&apos;t rely on exploitation,
-    excessive waste, or dishonesty; and to try and build a kinder, fairer world
-    even when it's hard.
+    I want to help build things that don&apos;t rely on exploitation, excessive
+    waste, or dishonesty; and to try and build a kinder, fairer world even when
+    it's hard.
   </p>
 
   <hr />

@@ -38,7 +38,7 @@
   {/if}
 </section>
 
-<style type="text/postcss">
+<style>
   .options {
     padding: 12px;
     display: grid;

@@ -14,7 +14,7 @@
   const resultSpring = spring(20, {
     stiffness: 0.1,
     damping: 0.15,
-    precision: 0.01
+    precision: 0.01,
   });
 
   function triggerAnimation() {
@@ -58,7 +58,7 @@
   {/if}
 </section>
 
-<style type="text/postcss">
+<style>
   .notification {
   }
 

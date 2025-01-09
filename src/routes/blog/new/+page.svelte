@@ -1,9 +1,6 @@
 <script lang="ts">
-  import { preventDefault } from 'svelte/legacy';
-
   import { format as formatDate } from "date-fns";
   import { BlogPost } from "$lib/blog/BlogPost.js";
-  import { goto } from "$app/navigation";
   let title = $state("");
   let author = $state("Thomas Wilson");
   let date = new Date();
@@ -24,42 +21,18 @@
     const slugifiedTitle = slugifyString(title);
     slug = `${dateAsString}-${slugifiedTitle}`;
   }
-
-  async function onCreate() {
-    const requestBody = {
-      title,
-      author,
-      slug,
-      markdownContent: content,
-      fileName: `${slug}.md`,
-      date: date.toISOString(),
-    };
-
-    fetch("/api/blog/new.json", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    }).then(async (res) => {
-      if (res.status === 200) {
-        await goto(`/blog/${slug}`);
-      } else {
-        alert("Something went wrong");
-      }
-    });
-  }
 </script>
 
 <section class="new-blog-post">
   <a href="/blog">Back to Blog</a>
   <h1>New Blog Post</h1>
-  <form onsubmit={preventDefault(onCreate)}>
+  <form method="POST" action="/blog">
     <div class="field">
       <label class="field__label" for="title">Title</label>
       <input
         type="text"
         id="title"
+        name="title"
         required
         bind:value={title}
         onchange={handleTitleChange}
@@ -67,21 +40,33 @@
     </div>
     <div class="field">
       <label class="field__label" for="author">Author</label>
-      <input type="text" id="author" required bind:value={author} />
+      <input
+        type="text"
+        name="author"
+        id="author"
+        required
+        bind:value={author}
+      />
     </div>
 
     <div class="field">
       <label class="field__label" for="slug">Slug</label>
-      <input type="text" id="slug" required bind:value={slug} />
+      <input type="text" name="slug" id="slug" required bind:value={slug} />
     </div>
 
     <div class="field">
       <label class="field__label" for="content">Content</label>
-      <textarea id="content" rows="10" cols="50" bind:value={content}></textarea>
+      <textarea
+        name="content"
+        id="content"
+        rows="10"
+        cols="50"
+        bind:value={content}
+      ></textarea>
     </div>
 
     <div class="submit">
-      <button class="create-button">Publish</button>
+      <button type="submit" class="create-button">Publish</button>
     </div>
   </form>
 </section>

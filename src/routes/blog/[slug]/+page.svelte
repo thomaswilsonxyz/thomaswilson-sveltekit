@@ -86,6 +86,7 @@
     text-align: center;
     line-height: 125%;
     max-width: 30ch;
+    font-family: var(--font-family-serif);
   }
 
   .post-author {
@@ -93,6 +94,7 @@
     text-align: center;
     line-height: 100%;
     margin: 0;
+    font-weight: 300;
   }
 
   .post-date {
@@ -129,22 +131,22 @@
 
   #article {
     --padding: 4px;
-    background-color: var(--colour-scheme-background-accent);
+    --font-size: var(--font-size-base);
     padding: var(--padding);
-    font-size: var(--font-size-base);
+    font-size: var(--font-size);
     width: var(--width);
     max-width: var(--max-width);
     flex-grow: 1;
 
     @media screen and (max-width: 700px) {
-      --font-size: 1rem;
+      --font-size: var(--font-size-sm);
+      --padding: 4px;
       letter-spacing: normal;
       line-height: 110%;
-      --padding: 4px;
     }
 
     @media screen and (min-width: 700px) {
-      --font-size: 1.29rem;
+      --font-size: var(--font-size-base);
       --padding: 1.5rem 2rem;
     }
   }

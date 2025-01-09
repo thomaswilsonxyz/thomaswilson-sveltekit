@@ -1,8 +1,9 @@
 import { resolve } from 'path';
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from '@sveltejs/kit';
-import { BlogController } from '../../../../lib/blog/BlogController.js';
 import { dump as dumpYaml } from 'js-yaml';
+
+import { BlogController } from '../../../../lib/blog/BlogController.js';
 
 const thisDirectory = import.meta.url
     .replace('file://', '')
@@ -11,6 +12,7 @@ const thisDirectory = import.meta.url
     .join('/');
 
 export const POST: RequestHandler = async ({ getClientAddress, request }) => {
+    console.log(`Received request to create new blog post.`);
     const address = await getClientAddress();
     let fileName: string;
     let markdownContent: string;
@@ -33,10 +35,19 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
         error(400, 'Error in request body.');
     }
 
+    console.log({
+        fileName,
+        markdownContent,
+        title,
+        date,
+        slug,
+        author,
+    });
+
     if ([fileName, markdownContent, title, date, slug, author].includes(undefined)) {
         error(400, `Missing parameters.`);
-    } else if (!['127.0.0.1', '::1'].includes(address) ) {
-        console.log(address); 
+    } else if (!['127.0.0.1', '::1'].includes(address)) {
+        console.log(address);
         error(403, `Forbidden.`);
     }
 

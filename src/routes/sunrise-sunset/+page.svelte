@@ -22,7 +22,7 @@
     totalNumberOfGuesses: 0,
     guesses: [],
     correctDays: [],
-    incorrectDays: []
+    incorrectDays: [],
   });
 
   interface Props {
@@ -47,7 +47,7 @@
       totalNumberOfGuesses: 0,
       guesses: [],
       correctDays: [],
-      incorrectDays: []
+      incorrectDays: [],
     });
   }
 
@@ -69,13 +69,13 @@
       revealNotification(true);
       $guessingHistory.correctDays = [
         ...$guessingHistory.correctDays,
-        todaysDateString
+        todaysDateString,
       ];
     } else {
       revealNotification(false);
       $guessingHistory.incorrectDays = [
         ...$guessingHistory.incorrectDays,
-        todaysDateString
+        todaysDateString,
       ];
     }
   }
@@ -152,7 +152,7 @@
   {/if}
 </div>
 
-<style lang="scss" type="text/postcss">
+<style>
   :root {
     --background-colour: hsl(40, 8%, 85%);
     --colour-light-grey: hsl(28, 35%, 85%);
