@@ -10,8 +10,6 @@ const thisDirectory = import.meta.url
     .filter((part) => part !== '+server.ts')
     .join('/');
 
-export const prerender = true;
-
 export const actions = {
     default: async ({ getClientAddress, request }) => {
         console.log(`Received request to create new blog post.`);

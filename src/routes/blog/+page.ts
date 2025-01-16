@@ -1,6 +1,6 @@
 import type { LoadEvent } from '@sveltejs/kit';
 import { differenceInCalendarDays, getYear } from 'date-fns';
-export const prerender = true;
+export const prerender = false;
 
 interface BlogPostListItem {
     title: string;

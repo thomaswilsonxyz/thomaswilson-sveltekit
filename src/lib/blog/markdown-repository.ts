@@ -56,8 +56,8 @@ export class MarkdownRepository {
         this.snoutStreetStudiosPosts = new SnoutStreetStudiosPostSet(snoutStreetStudiosPosts);
     }
 
-    public static async singleton(): Promise<MarkdownRepository> {
-        if (!this._singleton) {
+    public static async singleton(forceRefresh = false): Promise<MarkdownRepository> {
+        if (forceRefresh || !this._singleton) {
             this._singleton = await MarkdownRepository.fromViteGlobImport(
                 blogPostMetaGlobImport,
                 bookReviewsMetaGlobImport,

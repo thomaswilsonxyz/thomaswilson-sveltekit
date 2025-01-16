@@ -56,14 +56,14 @@ export class BlogController {
             resolvedFileName,
             markdownContent
         );
-        this._markdownRepository = await MarkdownRepository.singleton();
+        this._markdownRepository = await MarkdownRepository.singleton(true);
         return createdBlogPost;
     }
 
     async getAllBlogPosts(
         pageSize?: number
     ): Promise<Array<BlogPostListItem | BookReviewListItem | SnoutStreetStudiosPostListItem>> {
-        console.log('getAllBlogPosts')
+        console.log('getAllBlogPosts');
         console.log({ pageSize });
         const blogPosts = await this._markdownRepository.blogPosts;
 
@@ -83,12 +83,12 @@ export class BlogController {
             (post) => this.snoutStreetStudiosPostToSnoutStreetStudiosPostListItem(post)
         );
 
-        const allBlogPosts = [...blogPostListItems, ...bookReviewListItems, ...snoutStreetStudiosPostListItems].sort((a, b) =>
-            a.date > b.date ? -1 : 1
-        )
+        const allBlogPosts = [...blogPostListItems, ...bookReviewListItems, ...snoutStreetStudiosPostListItems].sort(
+            (a, b) => (a.date > b.date ? -1 : 1)
+        );
 
         if (pageSize === undefined) {
-            console.log('returning all blog posts')
+            console.log('returning all blog posts');
             return allBlogPosts;
         }
 

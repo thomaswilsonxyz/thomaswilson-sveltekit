@@ -7,9 +7,9 @@ import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import stripMarkdown from 'strip-markdown';
 import type { Parent, Literal } from 'unist';
-import { load as loadYaml } from 'js-yaml';
+import remarkGfm from 'remark-gfm';
 
-type MarkdownDocumentType = 'body' | 'excerpt';
+import { load as loadYaml } from 'js-yaml';
 
 export class MarkdownBuilder {
     static async getHtml(markdownContent: string): Promise<string> {
@@ -20,7 +20,7 @@ export class MarkdownBuilder {
 
     static getFrontmatter<T extends Record<string, any>>(markdownContent: string, fileName: string): T | null {
         const processor = this.getFrontmatterProcessor();
-        const parsedMarkdown: Parent<Literal> = processor.parse(markdownContent) as Parent<Literal>;
+        const parsedMarkdown = processor.parse(markdownContent);
 
         const frontmatterNode: Literal | undefined = parsedMarkdown.children.find((node) => node.type === 'yaml');
 
@@ -47,14 +47,14 @@ export class MarkdownBuilder {
             .join(' ');
     }
 
-    private static getFrontmatterProcessor(): Processor {
+    private static getFrontmatterProcessor() {
         return unified() //
             .use(remarkParse)
             .use(remarkFrontmatter)
             .use(remarkStringify);
     }
 
-    private static getExcerptMarkdownProcessor(): Processor {
+    private static getExcerptMarkdownProcessor() {
         return unified()
             .use(remarkParse)
             .use(remarkStringify)
@@ -62,12 +62,13 @@ export class MarkdownBuilder {
             .use(stripMarkdown);
     }
 
-    static getDocumentProcessor(): Processor {
+    static getDocumentProcessor() {
         return unified() //
             .use(remarkParse)
+            .use(remarkGfm)
             .use(remarkFrontmatter)
             .use(remarkStringify)
-            .use(remarkRehype, { allowDangerousHtml: true })
+            .use(remarkRehype, { allowDangerousHtml: true, footnoteLabel: 'notes', footnoteLabelTagName: 'sup' })
             .use(rehypeStringify, {
                 allowDangerousHtml: true,
                 allowDangerousCharacters: true,

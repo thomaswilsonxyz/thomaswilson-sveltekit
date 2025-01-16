@@ -117,7 +117,7 @@
   }
 
   :global(#article p, a) {
-    line-height: 160%;
+    line-height: 165%;
     font-size: var(--font-size);
     font-weight: 400;
     letter-spacing: -0.5px;
@@ -129,6 +129,22 @@
     font-size: var(--font-size);
   }
 
+  :global(sup > a) {
+    font-size: 0.75rem;
+    vertical-align: super;
+    color: var(--brand-orange);
+    padding: 2px;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+
+    &:hover {
+      text-decoration: underline;
+      background-color: var(--brand-orange);
+      color: white;
+    }
+  }
+
   #article {
     --padding: 4px;
     --font-size: var(--font-size-base);
@@ -137,6 +153,7 @@
     width: var(--width);
     max-width: var(--max-width);
     flex-grow: 1;
+    line-height: 150%;
 
     @media screen and (max-width: 700px) {
       --font-size: var(--font-size-sm);

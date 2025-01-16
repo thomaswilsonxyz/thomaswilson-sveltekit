@@ -17,7 +17,6 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
     let fileName: string;
     let markdownContent: string;
     let title: string;
-    let date: string;
     let slug: string;
     let author: string;
 
@@ -26,7 +25,6 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
         fileName = requestBody.fileName;
         markdownContent = requestBody.markdownContent;
         title = requestBody.title;
-        date = requestBody.date;
         slug = requestBody.slug;
         author = requestBody.author;
     } catch (e: any) {
@@ -35,16 +33,7 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
         error(400, 'Error in request body.');
     }
 
-    console.log({
-        fileName,
-        markdownContent,
-        title,
-        date,
-        slug,
-        author,
-    });
-
-    if ([fileName, markdownContent, title, date, slug, author].includes(undefined)) {
+    if ([fileName, markdownContent, title, slug, author].includes(undefined)) {
         error(400, `Missing parameters.`);
     } else if (!['127.0.0.1', '::1'].includes(address)) {
         console.log(address);
@@ -53,9 +42,7 @@ export const POST: RequestHandler = async ({ getClientAddress, request }) => {
 
     const controller = await BlogController.singleton();
 
-    const worryinglyManualFrontMatter = [`---`, dumpYaml({ title, date: new Date(date), slug, author }), `---`].join(
-        `\n`
-    );
+    const worryinglyManualFrontMatter = [`---`, dumpYaml({ title, date: new Date(), slug, author }), `---`].join(`\n`);
     const escapedMarkdown = markdownContent.replaceAll(/\\n/g, '\n');
 
     const contentWithFrontmatter = [worryinglyManualFrontMatter, escapedMarkdown].join(`\n`);
