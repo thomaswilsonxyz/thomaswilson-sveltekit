@@ -26,7 +26,7 @@
 <section class="new-blog-post">
   <a href="/blog">Back to Blog</a>
   <h1>New Blog Post</h1>
-  <form method="POST" action="/blog">
+  <form method="POST" action="/blog/new">
     <div class="field">
       <label class="field__label" for="title">Title</label>
       <input
