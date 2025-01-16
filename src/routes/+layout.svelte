@@ -5,23 +5,30 @@
     colourSchemes,
     darkColourScheme,
     lightColourScheme,
-  } from "../stores/colourSchemeStore.ts";
+  } from "../stores/colourSchemeStore.js";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
   interface Props {
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   }
 
   let { children }: Props = $props();
 
-  onMount(() => {
+  $effect(() => {
     const prefersDarkmode: boolean = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
 
     const colourSchemeName: string | null =
       localStorage.getItem("colourScheme");
+
     const colourScheme = colourSchemes?.[colourSchemeName];
+
+    console.log({
+      prefersDarkmode,
+      colourSchemeName,
+      colourScheme,
+    });
 
     if (colourScheme) {
       colourSchemeStore.set(colourScheme);
@@ -39,10 +46,6 @@
       "--colour-scheme-background",
       value.background
     );
-
-    // document.documentElement.style.setProperty(
-    //   "--colour-scheme-back""
-    // )
 
     document.documentElement.style.setProperty(
       "--colour-scheme-text",

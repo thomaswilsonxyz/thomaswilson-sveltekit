@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { tweened } from 'svelte/motion'
-  import { expoOut } from 'svelte/easing'
+  import { tweened } from "svelte/motion";
+  import { expoOut } from "svelte/easing";
   import {
     colourSchemeStore,
     lightColourScheme,
@@ -14,18 +14,18 @@
       $colourSchemeStore.name === "dark" ? lightColourScheme : darkColourScheme;
     localStorage.setItem("colourScheme", newColourScheme.name);
     colourSchemeStore.set(newColourScheme);
-	iconMovement.set($iconMovement + 360);
+    iconMovement.set($iconMovement + 360);
   }
 
   const iconMovement = tweened(0, {
-	duration: 300,
-	easing: expoOut
+    duration: 300,
+    easing: expoOut,
   });
 </script>
 
 <nav>
   <div class="left">
-    <a href="/" class="home">Thomas Wilson</a>
+    <a href="/" class="home">TWC</a>
   </div>
 
   <div class="right">
@@ -37,7 +37,6 @@
         width="24"
         height="24"
         style="transform: rotate({$iconMovement}deg)"
-		
       />
     </button>
     <a href="/blog" class="blog">/blog</a>
@@ -93,7 +92,7 @@
   }
 
   svg path {
-	fill: var(--colour-scheme-text);
+    fill: var(--colour-scheme-text);
   }
 
   .blog {
