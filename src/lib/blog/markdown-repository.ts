@@ -7,15 +7,12 @@ import { BookReviewSet } from './BookReviewSet.js';
 import { BookReview } from './BookReview.js';
 import { SnoutStreetStudiosPost } from '$lib/snout-street-studios/SnoutStreetStudiosPost.js';
 import { SnoutStreetStudiosPostSet } from './SnoutStreetStudiosPostSet.js';
-import { MarkdownBuilder } from './markdown/markdown-builder.js';
 
 // We have to duplicate the `../..` here because import.meta must have a static string,
 // and it (rightfully) cannot have dynamic locations
 const blogPostMetaGlobImport = import.meta.glob(`../../content/blog/*.md`, { as: 'raw' });
 const bookReviewsMetaGlobImport = import.meta.glob(`../../content/book-reviews/*.md`, { as: 'raw' });
-const snoutStreetStudiosPostMetaGlobImport = import.meta.glob('../../content/snout-street-studios/*.md', {
-    as: 'raw',
-});
+const snoutStreetStudiosPostMetaGlobImport = import.meta.glob('../../content/snout-street-studios/*.md', { as: 'raw' });
 
 interface BlogPostFrontmatterValues {
     title: string;
@@ -93,6 +90,7 @@ export class MarkdownRepository {
                     author: markdownFile.frontmatter.author,
                     date: markdownFile.frontmatter.date,
                     fileName: filename,
+                    tags: [],
                 });
 
                 fileImports = [...fileImports, markdownFile];
@@ -199,6 +197,7 @@ export class MarkdownRepository {
                 author: markdownFile.frontmatter?.author ?? undefined,
                 date: markdownFile.frontmatter?.date ?? undefined,
                 fileName: resolvedPath,
+                tags: [],
             });
 
             return blogPost;

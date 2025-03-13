@@ -14,6 +14,7 @@ describe('BlogPost', () => {
                 fileName: `the-file-name.md`,
                 html: 'Test Content',
                 excerpt: 'Test Excerpt',
+                tags: [],
             });
 
             // THEN
@@ -25,6 +26,7 @@ describe('BlogPost', () => {
                 .withHtml('Test Content')
                 .withExcerpt('Test Excerpt')
                 .withFileName(`the-file-name.md`)
+                .withEmptyTags()
                 .build();
 
             expect(blogPost).toStrictEqual(expectedBlogPost);

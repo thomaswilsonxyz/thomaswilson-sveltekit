@@ -8,6 +8,7 @@ class BlogPostBuilder {
     private _date = new Date('2022-01-01T00:00Z');
     private _slug = 'default-slug';
     private _fileName = 'default-file-name.md';
+    private _tags: string[] = [];
 
     withTitle(title: string): BlogPostBuilder {
         this._title = title;
@@ -44,6 +45,16 @@ class BlogPostBuilder {
         return this;
     }
 
+    withTags(tags: string[]): BlogPostBuilder {
+        this._tags = tags;
+        return this;
+    }
+
+    withEmptyTags(): BlogPostBuilder {
+        this._tags = [];
+        return this;
+    }
+
     build(): BlogPost {
         return new BlogPost({
             title: this._title,
@@ -53,6 +64,7 @@ class BlogPostBuilder {
             slug: this._slug,
             fileName: this._fileName,
             excerpt: this._excerpt,
+            tags: this._tags,
         });
     }
 }

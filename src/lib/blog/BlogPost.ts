@@ -6,6 +6,7 @@ interface BlogPostParams {
     fileName: string; // excluding any leading `..`
     html: string;
     excerpt: string;
+    tags: string[];
 }
 
 export class BlogPost {
@@ -16,6 +17,7 @@ export class BlogPost {
     readonly fileName: string;
     public readonly html: string;
     public readonly excerpt: string;
+    public readonly tags: string[] = [];
 
     constructor(params: BlogPostParams) {
         this.title = params.title;
@@ -25,5 +27,6 @@ export class BlogPost {
         this.fileName = params.fileName.split(`/`)[-1];
         this.html = params.html;
         this.excerpt = params.excerpt;
+        this.tags = params.tags;
     }
 }
