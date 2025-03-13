@@ -101,6 +101,7 @@
   @container (min-width: 550px) {
     .post-title {
       font-size: 4rem;
+      max-width: 21ch;
     }
   }
 
