@@ -18,7 +18,7 @@ export class MarkdownBuilder {
         return value.toString();
     }
 
-    static getFrontmatter<T extends Record<string, any>>(markdownContent: string, fileName: string): T | null {
+    static getFrontmatter<T extends Record<string, any> = {}>(markdownContent: string, fileName: string): T | null {
         const processor = this.getFrontmatterProcessor();
         const parsedMarkdown = processor.parse(markdownContent);
 
@@ -45,6 +45,17 @@ export class MarkdownBuilder {
             .filter((word) => word !== ' ' && word !== '')
             .slice(0, wordLength)
             .join(' ');
+    }
+
+    static getTagsFromMarkdown<T extends { tags?: string[] }>(markdownContent: string, theFileName: string): string[] {
+        const frontMatter = this.getFrontmatter<T>(markdownContent, theFileName);
+
+        if (frontMatter === null) {
+            return [];
+        } else if (!frontMatter.tags) {
+            return [];
+        }
+        return frontMatter.tags;
     }
 
     private static getFrontmatterProcessor() {
