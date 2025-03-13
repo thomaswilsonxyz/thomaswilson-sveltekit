@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageData } from "./$types.js";
+  import type { PageData, PageServerData } from "./$types.js";
   import { intlFormat } from "date-fns";
   import Navbar from "$lib/components/Navbar.svelte";
   import { onMount } from "svelte";
@@ -9,11 +9,7 @@
   }
 
   let { data }: Props = $props();
-  let { date, post } = $derived(data);
-
-  onMount(() => {
-    console.log({ date, post });
-  });
+  const post = data.post;
 </script>
 
 <svelte:head>
@@ -41,14 +37,14 @@
   <header class="blog__header">
     <h1 class="title post-title">{post.title}</h1>
     <p class="post-author">
-      {#if post.autor}
+      {#if post.author}
         {post.author}
       {:else}
         Thomas Wilson
       {/if}
     </p>
     <p class="post-date">
-      {intlFormat(date, {
+      {intlFormat(post.date, {
         weekday: "long",
         day: "2-digit",
         month: "long",
@@ -56,6 +52,16 @@
         localeMatcher: "best fit",
       })}
     </p>
+    {#if post}
+      <div class="post-tags">
+        {#each post.tags as tag}
+          <a
+            href={`/blog?tag=${encodeURIComponent(tag)}`}
+            class="post-tags__tag">#{tag}</a
+          >
+        {/each}
+      </div>
+    {/if}
   </header>
 
   <article id="article">
@@ -64,7 +70,7 @@
   </article>
 </main>
 
-<style lang="scss">
+<style>
   .blog {
     background-color: var(--colour-scheme-background);
     display: flex;
@@ -80,6 +86,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    container-type: inline-size;
   }
 
   .post-title {
@@ -87,6 +94,14 @@
     line-height: 125%;
     max-width: 30ch;
     font-family: var(--font-family-serif);
+    font-size: clamp(2rem, 10vw, 4rem);
+    max-width: 95%;
+  }
+
+  @container (min-width: 550px) {
+    .post-title {
+      font-size: 4rem;
+    }
   }
 
   .post-author {
@@ -102,6 +117,21 @@
     text-align: center;
     line-height: 100%;
     margin: 0;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+    gap: 8px;
+  }
+
+  .post-tags__tag {
+    border: 2px solid var(--brand-orange);
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
   }
 
   :global(#article p) {

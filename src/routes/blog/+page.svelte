@@ -71,7 +71,11 @@
   </section>
 
   <section class="section">
-    <h2>All Writing</h2>
+    {#if data.tags.length > 0}
+      <h2>Tags: {data.tags.join(", ")}</h2>
+    {:else}
+      <h2>All Writing</h2>
+    {/if}
     <ul class="posts">
       {#each posts as post, index}
         <BlogPostListItem
