@@ -27,7 +27,7 @@ You know what I asked for ?  `"A black cat, stretching"`.  It generated me some 
 
 When I was asked if I wanted to modify my image, I said yes! `"a witch's cabin in the woods"`.  And I received the image of the cat with it's fifth arm raised.
 
-I quickly saved the image, and now the app appears to have forgotten all about it.  I opened it today, and asked for a `"black cat doing a stretch"` and got the above image.  When I promote it with `"a witch's cabin in the woods"`, I got a cat in the cabin, but no longer stretching:
+I quickly saved the image, and now the app appears to have forgotten all about it.  I opened it today, and asked for a `"black cat doing a stretch"` and got the above image.  When I prompted it with `"a witch's cabin in the woods"`, I got a cat in the cabin, but no longer stretching:
 
 ![A black cat in a cartoonish, smooth style, obviously generated with AI, sitting in the interior of a wooden cabin, there are pumpkin-like vegetables in the background, as well as some candles and house plants.](https://www.herearethose.photos/api/files/dce932f3-4d04-4d71-a21f-5f10970c5106/cdn?viewport=md)
 
