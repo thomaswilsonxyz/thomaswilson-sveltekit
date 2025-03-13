@@ -13,7 +13,9 @@ Apple gave Apple Intelligence [the closing forty minutes](https://www.youtube.co
 
 One of those features was Image Playgrounds: Apple's play at image generation *a la* DALL·E or literally countless other examples if you just type `"AI image generation"` into anything that looks like a search engine.  You'll find one, I promise.
 
-The problem is, very famously, these image generation tools are sorta janky.  And also, you know what kinds of things can be signalled or identified visually: parts of race, gender, and religion.  You wanna let a little random machine, trained with images on the open internet[^Some popular tools likely included Child Sexual Abuse Material (CSAM) images in their training source too ([source](https://purl.stanford.edu/kh752sm9123)).  I doubt, strongly, that this is the case for Apple, but finding proof of a negative is famously hard.] , generate an image with ideas of race, gender, and religion - and then put your brand name next to it ?
+The problem is, very famously, these image generation tools are sorta janky.  And also, you know what kinds of things can be signalled or identified visually: parts of race, gender, and religion.  You wanna let a little random machine, trained with images on the open internet[^1] , generate an image with ideas of race, gender, and religion - and then put your brand name next to it ?
+
+[^1]: Some popular tools likely included Child Sexual Abuse Material (CSAM) images in their training source too ([source](https://purl.stanford.edu/kh752sm9123)).  I doubt, strongly, that this is the case for Apple, but finding proof of a negative is famously hard.
 
 You might remember that Google [apologised](https://www.theverge.com/2024/2/21/24079371/google-ai-gemini-generative-inaccurate-historical) after their generative AI tool insisted on generating racially diverse American Founding Fathers.
 
