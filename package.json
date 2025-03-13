@@ -41,8 +41,6 @@
 		"js-yaml": "^4.1.0",
 		"just-shuffle": "^4.2.0",
 		"leaflet": "^1.9.4",
-		"mongodb": "^4.17.2",
-		"nanoid": "3.3.4",
 		"node-fetch": "^3.3.2",
 		"rehype-stringify": "^10.0.1",
 		"remark": "^15.0.1",
