@@ -6,7 +6,7 @@ import remarkStringify from 'remark-stringify';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import stripMarkdown from 'strip-markdown';
-import type { Parent, Literal } from 'unist';
+import type { Literal } from 'unist';
 import remarkGfm from 'remark-gfm';
 
 import { load as loadYaml } from 'js-yaml';
@@ -69,9 +69,6 @@ export class MarkdownBuilder {
             .use(remarkFrontmatter)
             .use(remarkStringify)
             .use(remarkRehype, { allowDangerousHtml: true, footnoteLabel: 'notes', footnoteLabelTagName: 'sup' })
-            .use(rehypeStringify, {
-                allowDangerousHtml: true,
-                allowDangerousCharacters: true,
-            });
+            .use(rehypeStringify, { allowDangerousHtml: true, allowDangerousCharacters: true });
     }
 }
