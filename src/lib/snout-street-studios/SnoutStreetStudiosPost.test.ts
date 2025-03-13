@@ -20,6 +20,7 @@ describe('SnoutStreetStudiosPost', () => {
                 .withSlug('the-slug')
                 .withDate(new Date('2023-09-02T06:58:00Z'))
                 .withHtml('the html')
+                .withExcerpt(undefined)
                 .build()
         );
     });

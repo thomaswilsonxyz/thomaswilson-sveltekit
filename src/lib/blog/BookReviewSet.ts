@@ -7,10 +7,7 @@ export class BookReviewSet {
         this._bookReviews = bookReviews;
     }
 
-    async buildAllBookReviews(): Promise<void> {
-        const bookReviewPromises = this._bookReviews.map((bookReview) => bookReview.build());
-        await Promise.all(bookReviewPromises);
-    }
+    async buildAllBookReviews(): Promise<void> {}
 
     get bookReviews(): BookReview[] {
         return this._bookReviews;

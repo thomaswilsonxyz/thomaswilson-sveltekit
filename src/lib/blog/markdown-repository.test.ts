@@ -30,7 +30,7 @@ describe(`Blog MarkdownRepository`, () => {
             .withDate(new Date('2023-02-01T08:00:00Z'))
             .withSlug('2023-02-01-test')
             .withTitle('Test Blog Post')
-            .withExcerpt('This is a blog post written in markdown.')
+            .withExcerpt('This is a blog post written in markdown. This is a link')
             .withHtml(expectedHtml)
             .withFileName('blog-2023-02-01-test.md')
             .build();
@@ -39,6 +39,8 @@ describe(`Blog MarkdownRepository`, () => {
             .withSlug('the-test-slug')
             .withTitle('Test Post')
             .withDate(new Date('2023-09-02T06:40:00.000Z'))
+            .withExcerpt('This is a test post.')
+            .withHtml('<p>This is a test post.</p>')
             .build();
 
         // WHEN

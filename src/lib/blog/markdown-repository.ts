@@ -194,10 +194,10 @@ export class MarkdownRepository {
             const blogPost = new BlogPost({
                 html: markdownFile.html,
                 excerpt: markdownFile.excerpt,
-                title: markdownFile.frontmatter.title,
-                slug: markdownFile.frontmatter.slug,
-                author: markdownFile.frontmatter.author,
-                date: markdownFile.frontmatter.date,
+                title: markdownFile.frontmatter?.title ?? undefined,
+                slug: markdownFile.frontmatter?.slug ?? undefined,
+                author: markdownFile.frontmatter?.author ?? undefined,
+                date: markdownFile.frontmatter?.date ?? undefined,
                 fileName: resolvedPath,
             });
 
