@@ -29,6 +29,25 @@ describe(`BlogController`, () => {
         });
     });
 
+    describe(`getBlogPostBySlug`, () => {
+        it(`should return null when the post doesn't exist`, async () => {
+            // When
+            const shouldBeNull = await controller.getBlogPostBySlug('some-made-up-blog-post');
+
+            // Then
+            expect(shouldBeNull).toBeNull();
+        });
+
+        it(`should return the blog post when it exists`, async () => {
+            // When
+            const blogPost = await controller.getBlogPostBySlug('2023-02-03-vibe-check-10');
+
+            // Then
+            expect(blogPost).not.toBeNull();
+            expect(blogPost.title).toBe('Vibe Check #10');
+        });
+    });
+
     describe(`Finding content by slug`, () => {
         describe(`Finding a blog post`, () => {
             // GIVEN

@@ -17,6 +17,7 @@ export class SnoutStreetStudiosApiGateway {
             title: post.title,
             html: post.content,
             toJson: () => JSON.stringify(post),
+            excerpt: post.
         };
     }
 }

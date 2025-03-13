@@ -9,6 +9,7 @@ interface BlogItem {
     content: string;
     slug: string;
     content_type: 'blog' | 'book_review' | 'snout_street_studios';
+    tags?: string[];
 }
 
 interface BlogPostListItem extends BlogItem {
@@ -17,6 +18,7 @@ interface BlogPostListItem extends BlogItem {
     date: string;
     book_review: boolean;
     preview: string;
+    tags: string[];
 }
 
 interface BookReviewListItem extends BlogItem {
@@ -95,6 +97,45 @@ export class BlogController {
         return allBlogPosts.slice(0, pageSize);
     }
 
+    async getBlogPostBySlug(slug: string): Promise<BlogPostListItem | null> {
+        const blogPost = await this._markdownRepository.getBlogPostBySlug(slug);
+        if (blogPost) {
+            return this.blogPostToBlogPostListItem(blogPost);
+        }
+
+        return null;
+    }
+
+    async getBlogPostsByTags(tags: string[]): Promise<BlogPostListItem[]> {
+        const posts = await this.getAllBlogPosts();
+        const blogPosts = posts.filter((post) => post.content_type === 'blog') as BlogPostListItem[];
+        return blogPosts
+            .filter((post: BlogPostListItem) => post['tags']?.length > 0)
+            .filter((post: BlogPostListItem) => (post.tags as string[]).some((tag) => tags.includes(tag)));
+    }
+
+    async getAnyKindOfContentBySlug(
+        slug: string
+    ): Promise<BookReviewListItem | BlogPostListItem | SnoutStreetStudiosPostListItem | null> {
+        const blogPost = await this._markdownRepository.getBlogPostBySlug(slug);
+        if (blogPost) {
+            return this.blogPostToBlogPostListItem(blogPost);
+        }
+
+        const bookReview = await this._markdownRepository.getBookReviewBySlug(slug);
+        if (bookReview) {
+            return this.bookReviewToBookReviewListItem(bookReview);
+        }
+
+        const snoutStreetStudiosPost = await this._markdownRepository.getSnoutStreetStudiosPostBySlug(slug);
+
+        if (snoutStreetStudiosPost) {
+            return this.snoutStreetStudiosPostToSnoutStreetStudiosPostListItem(snoutStreetStudiosPost);
+        }
+
+        return null;
+    }
+
     private bookReviewToBookReviewListItem(bookReview: BookReview): BookReviewListItem {
         return {
             book_review: true,
@@ -120,6 +161,7 @@ export class BlogController {
             preview: blogPost.excerpt,
             slug: blogPost.slug,
             content_type: 'blog',
+            tags: blogPost.tags,
         };
     }
 
@@ -133,27 +175,5 @@ export class BlogController {
             content_type: 'snout_street_studios',
             content: post.html,
         };
-    }
-
-    async getAnyKindOfContentBySlug(
-        slug: string
-    ): Promise<BookReviewListItem | BlogPostListItem | SnoutStreetStudiosPostListItem | null> {
-        const blogPost = await this._markdownRepository.getBlogPostBySlug(slug);
-        if (blogPost) {
-            return this.blogPostToBlogPostListItem(blogPost);
-        }
-
-        const bookReview = await this._markdownRepository.getBookReviewBySlug(slug);
-        if (bookReview) {
-            return this.bookReviewToBookReviewListItem(bookReview);
-        }
-
-        const snoutStreetStudiosPost = await this._markdownRepository.getSnoutStreetStudiosPostBySlug(slug);
-
-        if (snoutStreetStudiosPost) {
-            return this.snoutStreetStudiosPostToSnoutStreetStudiosPostListItem(snoutStreetStudiosPost);
-        }
-
-        return null;
     }
 }

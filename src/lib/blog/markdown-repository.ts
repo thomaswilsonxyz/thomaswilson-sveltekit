@@ -19,6 +19,7 @@ interface BlogPostFrontmatterValues {
     slug: string;
     date: Date;
     author: string;
+    tags?: string[];
 }
 
 interface BookReviewFrontmatterValues {
@@ -55,6 +56,7 @@ export class MarkdownRepository {
 
     public static async singleton(forceRefresh = false): Promise<MarkdownRepository> {
         if (forceRefresh || !this._singleton) {
+            console.log(`[MarkdownRepository::singleton] Building MarkdownRepository singleton.`);
             this._singleton = await MarkdownRepository.fromViteGlobImport(
                 blogPostMetaGlobImport,
                 bookReviewsMetaGlobImport,
@@ -90,7 +92,7 @@ export class MarkdownRepository {
                     author: markdownFile.frontmatter.author,
                     date: markdownFile.frontmatter.date,
                     fileName: filename,
-                    tags: [],
+                    tags: markdownFile.frontmatter.tags,
                 });
 
                 fileImports = [...fileImports, markdownFile];
