@@ -21,6 +21,14 @@
     const slugifiedTitle = slugifyString(title);
     slug = `${dateAsString}-${slugifiedTitle}`;
   }
+
+  function handleContentChange(value: string) {
+    const maybeTitle = value.trim();
+    if (maybeTitle.startsWith(`#`) && !title) {
+      title = content.split("\n")[0].replace("#", "").trim();
+      handleTitleChange();
+    }
+  }
 </script>
 
 <section class="new-blog-post">
@@ -62,6 +70,7 @@
         rows="10"
         cols="50"
         bind:value={content}
+        onchange={(e) => handleContentChange(e.currentTarget.value ?? "")}
       ></textarea>
     </div>
 

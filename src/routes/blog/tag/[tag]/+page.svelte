@@ -1,10 +1,9 @@
 <script lang="ts">
   import type { PageData } from "./$types.js";
+  import BlogHead from "../../BlogHead.svelte";
   import Navbar from "$lib/components/Navbar.svelte";
-  import BlogHead from "./BlogHead.svelte";
-  import BlogHeader from "./BlogHeader.svelte";
-  import BlogPostListItem from "./BlogPostListItem.svelte";
-  import { BlogPost } from "$lib/blog/BlogPost.js";
+  import BlogHeader from "../../BlogHeader.svelte";
+  import BlogPostListItem from "../../BlogPostListItem.svelte";
 
   interface Props {
     data: PageData;
@@ -14,6 +13,7 @@
 
   let {
     posts,
+    tag,
     numberOfPosts,
     daysSinceLastPublish,
     daysSinceFirstPost,
@@ -23,31 +23,30 @@
 </script>
 
 <BlogHead />
-
 <Navbar />
-
 <main class="thomaswilson-container">
   <BlogHeader
-    title="Weblog"
-    showRssFeed={true}
-    showLinkToAllPosts={false}
+    title={`Posts tagged #${tag}`}
+    showLinkToAllPosts={true}
+    showRssFeed={false}
     {numberOfBlogPostsThisYear}
     {daysSinceFirstPost}
     {numberOfPosts}
     averageDaysBetweenPosts={Number(averageDaysBetweenPosts)}
     {daysSinceLastPublish}
   />
+
   <section class="section">
-    <h2>All Writing</h2>
+    <h2>#{tag}</h2>
     <ul class="posts">
       {#each posts as post, index}
         <BlogPostListItem
           {index}
           content_type={post.content_type}
-          book_review={post.content_type === "book_review"}
+          book_review={post.book_review}
           date={post.date}
           numberOfPosts={posts.length}
-          preview={(post as any).preview ?? ""}
+          preview={post.preview}
           slug={post.slug}
           title={post.title}
         />
@@ -85,5 +84,35 @@
     grid-template-columns: 100%;
     gap: var(--spacing-xl);
     max-width: 100%;
+  }
+
+  .days-since {
+    color: var(--brand-orange);
+    font-weight: 300;
+    border: 1px solid var(--brand-orange);
+    border-radius: 4px;
+    padding: 8px;
+    margin: 0 4px;
+    font-family: monospace;
+    font-size: inherit;
+  }
+
+  .days-since-success {
+    color: var(--brand-green);
+    border: 1px solid var(--brand-green);
+    animation-name: pulse_green;
+    animation-duration: 5.2s;
+    animation-iteration-count: infinite;
+    background: rgba(54, 130, 127, 0.05);
+  }
+
+  @keyframes pulse_green {
+    0% {
+      box-shadow: 0 0 0 0px rgba(54, 130, 127, 1);
+    }
+    20%,
+    100% {
+      box-shadow: 0 0 0 5px rgba(54, 130, 127, 0);
+    }
   }
 </style>

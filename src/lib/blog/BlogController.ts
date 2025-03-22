@@ -65,13 +65,11 @@ export class BlogController {
     async getAllBlogPosts(
         pageSize?: number
     ): Promise<Array<BlogPostListItem | BookReviewListItem | SnoutStreetStudiosPostListItem>> {
-        console.log('getAllBlogPosts');
-        console.log({ pageSize });
-        const blogPosts = await this._markdownRepository.blogPosts;
+        const blogPosts = this._markdownRepository.blogPosts;
 
-        const bookReviews = await this._markdownRepository.bookReviews;
+        const bookReviews = this._markdownRepository.bookReviews;
 
-        const snoutStreetStudiosPosts = await this._markdownRepository.snoutStreetStudiosPosts;
+        const snoutStreetStudiosPosts = this._markdownRepository.snoutStreetStudiosPosts;
 
         const blogPostListItems: BlogPostListItem[] = blogPosts.blogPosts.map((blogPost) => {
             return this.blogPostToBlogPostListItem(blogPost);
@@ -90,7 +88,6 @@ export class BlogController {
         );
 
         if (pageSize === undefined) {
-            console.log('returning all blog posts');
             return allBlogPosts;
         }
 
@@ -146,7 +143,7 @@ export class BlogController {
             image: bookReview.image,
             score: bookReview.score,
             slug: bookReview.slug,
-            content: 'bookReview.html',
+            content: bookReview.html,
             content_type: 'book_review',
         };
     }

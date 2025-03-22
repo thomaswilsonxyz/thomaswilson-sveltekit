@@ -56,7 +56,7 @@
       <div class="post-tags">
         {#each post.tags as tag}
           <a
-            href={`/blog?tag=${encodeURIComponent(tag)}`}
+            href={`/blog/tag/${encodeURIComponent(tag)}`}
             class="post-tags__tag">#{tag}</a
           >
         {/each}
