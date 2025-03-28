@@ -20,7 +20,7 @@
     preview,
     slug,
     date,
-    content_type
+    content_type,
   }: Props = $props();
 
   let formattedDate = $derived(formatDate(new Date(date), "yyyy-MM-dd"));
@@ -32,7 +32,7 @@
   aria-posinset={index + 1}
   aria-setsize={numberOfPosts}
 >
-  <a href={`/blog/${slug}`}>
+  <a href={`/blog/${slug}`} class="no-icon">
     <div class="post__title">
       {#if content_type === "book_review"}
         📚

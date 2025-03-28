@@ -25,7 +25,7 @@
 
 <nav>
   <div class="left">
-    <a href="/" class="home">TWC</a>
+    <a href="/" class="home no-icon">TWC</a>
   </div>
 
   <div class="right">
@@ -39,7 +39,7 @@
         style="transform: rotate({$iconMovement}deg)"
       />
     </button>
-    <a href="/blog" class="blog">/blog</a>
+    <a href="/blog" class="blog no-icon">/blog</a>
   </div>
 </nav>
 

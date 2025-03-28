@@ -17,7 +17,9 @@
 <section class="homepage-header">
   <h1 class="title">Thomas Wilson-Cook</h1>
   <p class="body strapline">
-    I craft well-meaning things, like software, clothes, photographs, and words.
+    I craft well-meaning things, like
+    <a href="https://glass.photo/wilsoncookphotography">photographs</a>,
+    software, clothes, and <a href="/blog">words</a>.
   </p>
   <p class="body strapline">
     I want to help build things that don&apos;t rely on exploitation, excessive

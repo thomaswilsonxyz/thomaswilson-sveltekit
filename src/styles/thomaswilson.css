@@ -23,8 +23,9 @@
     --gray-1000: #0a0c0e;
     --font-family-mono: monospace;
     --font-family-title: 'FivoSansModern-Regular', sans-serif;
-    --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-family-sans:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
 
     --line-height: 120%;
@@ -194,4 +195,23 @@ ol {
 img {
     max-width: 100%;
     height: auto;
+}
+
+.a-link-icon {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--colour-scheme-text);
+    width: 5px;
+    stroke: white;
+}
+a::after {
+    content: url('/assets/icons/link.svg');
+    margin-left: 3px;
+    color: inherit;
+}
+
+a.no-icon::after {
+    content: '';
+    display: none;
 }
