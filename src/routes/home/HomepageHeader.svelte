@@ -22,12 +22,13 @@
     software, clothes, and <a href="/blog">words</a>.
   </p>
   <p class="body strapline">
-    I want to help build things that don&apos;t rely on exploitation, excessive
-    waste, or dishonesty; and to try and build a kinder, fairer world even when
+    I want to build a world that is more kind and fair to everyone, even when
     it's hard.
   </p>
 
   <hr />
+
+  <h2>Writing</h2>
   <p class="body">
     I try to think and be curious, which is why I keep a <a href="/blog"
       >weblog</a
@@ -54,13 +55,18 @@
     {/each}
   </ol>
 
+  <hr />
+
+  <h2>Career</h2>
+
   <p class="body">
-    Right now I am a Senior Software engineer at <a
+    I am a Lead Developer in the UK's Civil Service, helping digital teams build
+    software for our justice system. I have previously helped make bike
+    insurance more fair at <a
       href="https://www.laka.co.uk"
       target="_blank"
       rel="noopener noreferrer">Laka</a
-    >, making insurance genuinely fairer. Before that, I was Head of Software
-    Engineering at
+    >, and before that I was Head of Software Engineering at
     <a href="https://www.oxwash.com" target="_blank" rel="noopener noreferrer"
       >Oxwash</a
     >, building tools for actually sustainable laundry and wet cleaning.

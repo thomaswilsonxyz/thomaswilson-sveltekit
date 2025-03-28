@@ -114,7 +114,6 @@ body {
 
 @container (width < 500px) {
     .thomaswilson-strapline p {
-        font-size:;
     }
 }
 
@@ -197,18 +196,9 @@ img {
     height: auto;
 }
 
-.a-link-icon {
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    color: var(--colour-scheme-text);
-    width: 5px;
-    stroke: white;
-}
 a::after {
     content: url('/assets/icons/link.svg');
     margin-left: 3px;
-    color: inherit;
 }
 
 a.no-icon::after {
