@@ -38,7 +38,7 @@
   <p class="heading__text">
     I have written {numberOfBlogPostsThisYear}
     {numberOfBlogPostsThisYear === 1 ? "piece" : "pieces"} so far this year. On average
-    I publish something every {averageDaysBetweenPosts} days ({numberOfPosts}
+    I publish something every {averageDaysBetweenPosts.toFixed(2)} days ({numberOfPosts}
     posts in {daysSinceFirstPost} days).
   </p>
 

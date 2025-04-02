@@ -4,19 +4,14 @@ import { differenceInCalendarDays, getYear } from 'date-fns';
 
 export const prerender = true;
 
-export const load: Load = async ({ params, url }) => {
+export const load: Load = async ({}) => {
     const controller = await BlogController.singleton();
     const posts = await controller.getAllBlogPosts();
 
     const currentYear = getYear(new Date());
-    const mostRecentPost = posts[0];
-
-    const daysSinceLastPublish = differenceInCalendarDays(new Date(), new Date(mostRecentPost.date));
 
     const numberOfPosts = posts.length;
     const firstPost = posts[numberOfPosts - 1];
-    const daysSinceFirstPost = differenceInCalendarDays(new Date(), new Date(firstPost.date));
-    const averageDaysBetweenPosts = Number(daysSinceFirstPost / numberOfPosts).toFixed(2);
     const numberOfBlogPostsThisYear: number = posts.filter(
         (post) => getYear(new Date(post.date)) === currentYear
     ).length;
@@ -24,9 +19,6 @@ export const load: Load = async ({ params, url }) => {
     return {
         posts,
         firstPost,
-        averageDaysBetweenPosts,
-        daysSinceFirstPost,
-        daysSinceLastPublish,
         numberOfPosts,
         numberOfBlogPostsThisYear,
     };

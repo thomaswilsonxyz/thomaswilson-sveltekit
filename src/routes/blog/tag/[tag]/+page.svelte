@@ -4,6 +4,7 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import BlogHeader from "../../BlogHeader.svelte";
   import BlogPostListItem from "../../BlogPostListItem.svelte";
+  import { differenceInCalendarDays } from "date-fns";
 
   interface Props {
     data: PageData;
@@ -11,15 +12,15 @@
 
   let { data }: Props = $props();
 
-  let {
-    posts,
-    tag,
-    numberOfPosts,
-    daysSinceLastPublish,
-    daysSinceFirstPost,
-    averageDaysBetweenPosts,
-    numberOfBlogPostsThisYear,
-  } = $derived(data);
+  const { posts, tag, numberOfPosts, numberOfBlogPostsThisYear } = data;
+
+  const daysSinceFirstPost = $derived(
+    differenceInCalendarDays(new Date(), new Date(posts[posts.length - 1].date))
+  );
+
+  const daysSinceLastPublish = $derived(
+    differenceInCalendarDays(new Date(), new Date(posts[0].date))
+  );
 </script>
 
 <BlogHead />
@@ -32,7 +33,7 @@
     {numberOfBlogPostsThisYear}
     {daysSinceFirstPost}
     {numberOfPosts}
-    averageDaysBetweenPosts={Number(averageDaysBetweenPosts)}
+    averageDaysBetweenPosts={(posts.length, daysSinceFirstPost)}
     {daysSinceLastPublish}
   />
 
