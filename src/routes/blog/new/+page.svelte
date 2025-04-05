@@ -26,6 +26,7 @@
     const maybeTitle = value.trim();
     if (maybeTitle.startsWith(`#`) && !title) {
       title = content.split("\n")[0].replace("#", "").trim();
+      content = value.split("\n").slice(1).join("\n").trim();
       handleTitleChange();
     }
   }
