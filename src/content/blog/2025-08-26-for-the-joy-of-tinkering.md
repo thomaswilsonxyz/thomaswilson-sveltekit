@@ -1,0 +1,24 @@
+---
+title: For the joy of tinkering
+date: 2025-08-26T20:56:18.428Z
+slug: 2025-08-26-for-the-joy-of-tinkering
+author: Thomas Wilson
+
+---
+I have always given myself license to take Summer Hours during the longer months.  
+
+To me that means getting "out there" (wherever that is) and "doing something" (whatever that happens to be).  
+
+As a reluctant creature of habit, I think I benefit a lot from doing unusual (for me) things, at odd schedules.  It's nice to see people at weird times and in weird places.  It's great to be able to spend long, uninterrupted spells with good folk.  
+
+But as I start coming back to my Regularly Scheduled Behaviour, as the months get shorter and Summer Hours come to an end - I've noticed one particular joy I have missed: the joy of tinkering.  
+
+The summer is about _doing_ and _going_, but there's not a lot of tinkering.  When you're going away somewhere for four days, or you only have a couple of Actually Restful (TM) weekend days a month, that doesn't lend itself towards tinkering.
+
+To tinker, you have to hang around a problem.  You have to walk all the paths, try all the doors. And then change some small corner of your tiny world.  Like shifting where the spices live in the kitchen, or the layout of the app icons on your phone.
+
+I think it's one of the many small rewards you get when you pay sustained attention to a problem.  When you stop noticing the absence of some minute pain point that _only_ you had.  
+
+There's a lot of joy in tinkering, and I think you learn a lot about yourself by seeing what you want tinker with, and also figuring out what pain is bearable or ignorable.
+
+Or maybe it's all wasted time, and really you're just making things unnecessarily complicated.  But it _is_ enjoyable.
