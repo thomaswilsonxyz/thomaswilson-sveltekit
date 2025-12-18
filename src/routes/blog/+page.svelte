@@ -12,14 +12,22 @@
 
   const { data }: Props = $props();
 
-  const { numberOfBlogPostsThisYear, numberOfPosts, posts } = data;
+  const {
+    numberOfBlogPostsThisYear,
+    numberOfPosts,
+    posts,
+    postsGroupedByMonth,
+  } = data;
 
   const daysSinceFirstPost = $derived(
-    differenceInCalendarDays(new Date(), new Date(posts[posts.length - 1].date))
+    differenceInCalendarDays(
+      new Date(),
+      new Date(posts[posts.length - 1].date),
+    ),
   );
 
   const daysSinceLastPublish = $derived(
-    differenceInCalendarDays(new Date(), new Date(posts[0].date))
+    differenceInCalendarDays(new Date(), new Date(posts[0].date)),
   );
 </script>
 
@@ -40,24 +48,27 @@
   />
   <section class="section">
     <h2>All Writing</h2>
-    <ul class="posts">
-      {#each posts as post, index}
-        <BlogPostListItem
-          {index}
-          content_type={post.content_type}
-          book_review={post.content_type === "book_review"}
-          date={post.date}
-          numberOfPosts={posts.length}
-          preview={(post as any).preview ?? ""}
-          slug={post.slug}
-          title={post.title}
-        />
-      {/each}
-    </ul>
+    {#each postsGroupedByMonth as month}
+      <h3>{month.yearDate}</h3>
+      <ul class="posts">
+        {#each month.posts as post, index}
+          <BlogPostListItem
+            {index}
+            content_type={post.content_type}
+            book_review={post.content_type === "book_review"}
+            date={post.date}
+            numberOfPosts={posts.length}
+            preview={(post as any).preview ?? ""}
+            slug={post.slug}
+            title={post.title}
+          />
+        {/each}
+      </ul>
+    {/each}
   </section>
 </main>
 
-<style lang="scss">
+<style>
   .page-title {
     font-size: 2.5rem;
     margin: 0;
@@ -82,9 +93,10 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 24px;
     display: grid;
     grid-template-columns: 100%;
-    gap: var(--spacing-xl);
     max-width: 100%;
+    gap: 12px;
   }
 </style>
