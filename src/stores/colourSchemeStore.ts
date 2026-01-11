@@ -8,6 +8,8 @@ interface ColourScheme {
     backgroundAccent: string;
     text: string;
     textAccent: string;
+    textSecondary: string;
+    border: string;
 }
 
 export const lightColourScheme: ColourScheme = {
@@ -16,6 +18,8 @@ export const lightColourScheme: ColourScheme = {
     backgroundAccent: '#f8f9fa',
     text: '#212529',
     textAccent: '#495057',
+    textSecondary: '#6c757d',
+    border: '#495057',
 };
 
 export const darkColourScheme: ColourScheme = {
@@ -24,6 +28,8 @@ export const darkColourScheme: ColourScheme = {
     backgroundAccent: '#343a40',
     text: '#f8f9fa',
     textAccent: '#ced4da',
+    textSecondary: '#adb5bd',
+    border: '#343a40',
 };
 
 export const colourSchemes: Record<ColourSchemeName, ColourScheme> = {

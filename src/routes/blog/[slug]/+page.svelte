@@ -66,7 +66,12 @@
 
   <article id="article">
     {@html post.content}
-    <a href="/blog">See other articles</a>
+    <div id="disclosure">
+      <a id="see-other-articles" href="/blog">See other articles</a>
+      <br />
+      Everything written here, on my personal blog, is just that: personal. Nothing
+      here reflects, or is endorsed by, my current or previous employers.
+    </div>
   </article>
 </main>
 
@@ -152,6 +157,19 @@
     font-size: var(--font-size);
     font-weight: 400;
     letter-spacing: -0.5px;
+  }
+
+  :global(#article #disclosure) {
+    padding: 4px;
+    margin-top: 48px;
+    font-size: 0.9rem;
+    color: var(--colour-scheme-text-secondary);
+    border-top: 1px solid var(--colour-scheme-border);
+  }
+
+  :global(#article #see-other-articles) {
+    padding-bottom: 4px;
+    display: inline-block;
   }
 
   :global(li) {

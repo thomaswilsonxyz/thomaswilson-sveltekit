@@ -53,6 +53,16 @@
     );
 
     document.documentElement.style.setProperty(
+      "--colour-scheme-text-secondary",
+      value.textSecondary
+    );
+
+    document.documentElement.style.setProperty(
+      "--colour-scheme-border",
+      value.border
+    );
+
+    document.documentElement.style.setProperty(
       "--colour-scheme-background-accent",
       value.backgroundAccent
     );
