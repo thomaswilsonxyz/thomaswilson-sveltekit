@@ -5,6 +5,7 @@ author: Thomas Wilson
 date: 2021-02-12
 draft: false
 tags:
+  - changelog
   - redesign
   - technical
 slug: "2021-02-12-website-design-2-0-changelog"

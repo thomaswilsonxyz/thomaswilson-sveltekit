@@ -19,11 +19,11 @@
   <p class="body strapline">
     I craft well-meaning things, like
     <a href="https://glass.photo/wilsoncookphotography">photographs</a>,
-    software, clothes, and <a href="/blog">words</a>.
+    software, clothes, and <a href="/blog">words</a>.  You can see what
+    I'm up to on my <a href="/now">now page</a>.
   </p>
   <p class="body strapline">
-    I want to build a world that is more kind and fair to everyone, even when
-    it's hard.
+    I want to build a kinder, fairer world for everyone, even when it's hard.
   </p>
 
   <hr />
@@ -61,16 +61,22 @@
 
   <p class="body">
     I am a Lead Developer in the UK's Civil Service, helping digital teams build
-    software for our justice system. I have previously helped make bike
-    insurance more fair at <a
+    software for our justice system.  I fill the gaps between folks in tech, product, design,
+    data, strategy, and research.
+  </p>
+  
+  <p>
+    I have been building software for over a decade.  I worked freelance with founding teams, 
+    was Head of Software Engineering at Oxwash (acquired),
+    helped make bicyle insurance more fair at <a
       href="https://www.laka.co.uk"
       target="_blank"
       rel="noopener noreferrer">Laka</a
-    >, and before that I was Head of Software Engineering at
-    <a href="https://www.oxwash.com" target="_blank" rel="noopener noreferrer"
-      >Oxwash</a
-    >, building tools for actually sustainable laundry and wet cleaning.
+    >, and founded a front-end team at Privitar (acquired).
+    
   </p>
+
+  <p>I am also a freelance photographer, specialising in working with people and community.  I do that as <a href="https://www.wilsoncookphotography.co.uk">Wilson-Cook Photography</a>.</p>
 </section>
 
 <style>

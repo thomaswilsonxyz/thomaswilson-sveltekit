@@ -5,7 +5,7 @@
     colourSchemeStore,
     lightColourScheme,
     darkColourScheme,
-  } from "../../stores/colourSchemeStore.ts";
+  } from "../../stores/colourSchemeStore";
   import sunSvg from "./sun.svg";
   import moonSvg from "./moon.svg";
 
@@ -29,6 +29,9 @@
   </div>
 
   <div class="right">
+    <a href="/" class="navlink no-icon">/</a>
+    <a href="/now" class="navlink no-icon">/now</a>
+    <a href="/blog" class="navlink no-icon">/blog</a>
     <button class="colour-theme-toggle" onclick={onColourSchemeChange}>
       <img
         class="icon"
@@ -39,7 +42,6 @@
         style="transform: rotate({$iconMovement}deg)"
       />
     </button>
-    <a href="/blog" class="blog no-icon">/blog</a>
   </div>
 </nav>
 
@@ -95,13 +97,13 @@
     fill: var(--colour-scheme-text);
   }
 
-  .blog {
+  .navlink {
     font-size: 1.1rem;
     padding: 0;
     margin: 0;
   }
 
-  .blog:visited {
+  .navlink:visited {
     color: var(--colour-scheme-text);
   }
 </style>
