@@ -2,7 +2,7 @@
   import { format as formatDate } from "date-fns";
   import { BlogPost } from "$lib/blog/BlogPost.js";
   let title = $state("");
-  let author = $state("Thomas Wilson");
+  let author = $state("Thomas Wilson-Cook");
   let date = new Date();
   let content = $state("");
   let slug = $state("");
